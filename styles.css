@@ -88,9 +88,9 @@ body {
 @media (prefers-color-scheme: dark) {
   :root {
     --background: hsl(220, 8%, 8%);
-    --foreground: hsl(220, 4%, 92%);
-    --primary: hsl(220, 4%, 92%);
-    --profile-shadow: hsl(220, 4%, 92%, 0.1);
+    --foreground: hsl(0, 0%, 0%);
+    --primary: hsl(0, 0%, 0%);
+    --profile-shadow: hsl(0, 0%, 0%, 0.1);
   }
 }
 
