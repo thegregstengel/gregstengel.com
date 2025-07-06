@@ -1,109 +1,193 @@
-/* Design system variables */
+/* ========================================
+   CSS CUSTOM PROPERTIES (VARIABLES)
+   ======================================== */
+
+/* Light mode color scheme - Default appearance */
 :root {
-  --background: hsl(0, 0%, 97%);
-  --foreground: hsl(0, 0%, 0%);
-  --primary: hsl(0, 0%, 0%);
-  --profile-shadow: hsl(0, 0%, 0%, 0.1);
+  --background: hsl(0, 0%, 97%);        /* Light gray background */
+  --foreground: hsl(0, 0%, 0%);         /* Black text color */
+  --primary: hsl(0, 0%, 0%);            /* Black accent/hover color */
+  --profile-shadow: hsl(0, 0%, 0%, 0.1); /* Black shadow with 10% opacity */
 }
+
+/* Dark mode override class - Can be toggled via JavaScript */
 .dark {
-  --background: hsl(220, 8%, 8%);
-  --foreground: hsl(220, 4%, 92%);
-  --primary: hsl(220, 4%, 92%);
-  --profile-shadow: hsl(220, 4%, 92%, 0.1);
+  --background: hsl(220, 8%, 8%);       /* Very dark blue-gray background */
+  --foreground: hsl(220, 4%, 92%);      /* Light gray text for dark mode */
+  --primary: hsl(220, 4%, 92%);         /* Light gray accent for dark mode */
+  --profile-shadow: hsl(220, 4%, 92%, 0.1); /* Light shadow for dark mode */
 }
 
-/* Base styles */
+/* ========================================
+   GLOBAL RESET & BASE STYLES
+   ======================================== */
+
+/* Reset default browser margins, padding, and box model */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  margin: 0;                    /* Remove default margins */
+  padding: 0;                   /* Remove default padding */
+  box-sizing: border-box;       /* Include padding/border in element width */
 }
 
+/* Body element - Sets up the page foundation */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
-  background-image: url('assets/main_background_tile.png');
-  background-repeat: repeat;
-  background-size: 512px 512px;
+  /* Font stack - Uses system fonts for best performance and native feel */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Robbo, "Helvetica Neue", Arial, sans-serif;
+  
+  /* Apply color variables */
+  background-color: var(--background);  /* Uses the background variable */
+  color: var(--foreground);             /* Uses the text color variable */
+  
+  /* Background pattern setup */
+  background-image: url('assets/main_background_tile.png');  /* Tiled background image */
+  background-repeat: repeat;            /* Tiles the image across entire background */
+  background-size: 256px 256px;        /* Sets the size of each tile */
 }
 
+/* ========================================
+   LAYOUT CONTAINERS
+   ======================================== */
+
+/* Main container - Creates the centered layout using flexbox */
 .container {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
+  min-height: 100vh;           /* Takes full viewport height (100vh = 100% of screen height) */
+  display: flex;               /* Enables flexbox layout */
+  align-items: center;         /* Centers content vertically */
+  justify-content: center;     /* Centers content horizontally */
+  position: relative;          /* Allows z-index positioning for child elements */
+  overflow: hidden;            /* Prevents any content from overflowing container */
 }
 
+/* Content wrapper - Contains all the main content elements */
 .content {
-  position: relative;
-  z-index: 10;
-  text-align: center;
+  position: relative;          /* Allows z-index positioning */
+  z-index: 10;                /* Ensures content appears above background elements */
+  text-align: center;         /* Centers all text and inline elements */
 }
 
+/* ========================================
+   PROFILE SECTION
+   ======================================== */
+
+/* Profile image container */
 .profile-section {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.5rem;      /* Adds space below the profile image (1.5rem = ~24px) */
 }
 
+/* Profile image styling */
 .profile-image {
-  width: 8rem;
-  height: 8rem;
-  border-radius: 50%;
-  box-shadow: 0 10px 30px var(--profile-shadow);
-  display: block;
-  margin: 0 auto;
+  width: 8rem;                 /* Image width (8rem = ~128px) */
+  height: 8rem;                /* Image height (8rem = ~128px) */
+  border-radius: 50%;          /* Makes image perfectly circular */
+  box-shadow: 0 10px 30px var(--profile-shadow); /* Soft shadow using shadow variable */
+  display: block;              /* Makes image a block element */
+  margin: 0 auto;              /* Centers image horizontally (0 top/bottom, auto left/right) */
 }
 
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+
+/* Main heading text */
 .main-text {
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 0.025em;
-  margin-bottom: 2rem;
-  color: var(--foreground);
+  font-size: 1.5rem;           /* Text size (1.5rem = ~24px) */
+  font-weight: 300;            /* Light font weight */
+  letter-spacing: 0.025em;     /* Slightly increased spacing between letters */
+  margin-bottom: 2rem;         /* Space below heading (2rem = ~32px) */
+  color: var(--foreground);    /* Uses the text color variable */
 }
 
+/* ========================================
+   SOCIAL MEDIA LINKS
+   ======================================== */
+
+/* Social links container - Arranges icons in a horizontal row */
 .social-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
+  display: flex;               /* Enables flexbox for horizontal layout */
+  justify-content: center;     /* Centers the group of icons horizontally */
+  gap: 1.5rem;                /* Space between each icon (1.5rem = ~24px) */
 }
 
+/* Individual social media link styling */
 .social-link {
-  color: var(--foreground);
-  text-decoration: none;
-  transition: color 0.3s ease;
+  color: var(--foreground);    /* Uses the text color variable for icon color */
+  text-decoration: none;       /* Removes underline from links */
+  transition: color 0.3s ease; /* Smooth color change on hover (0.3 seconds) */
 }
 
+/* Social link hover effect */
 .social-link:hover {
-  color: var(--primary);
+  color: var(--primary);       /* Changes to primary color on hover */
 }
 
+/* SVG icon styling inside social links */
 .social-link svg {
-  display: block;
+  display: block;              /* Makes SVG a block element for consistent sizing */
 }
 
-/* Dark mode support */
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE DEVICES
+   ======================================== */
+
+/* Styles for screens smaller than 640px wide (mobile phones) */
+@media (max-width: 640px) {
+  
+  /* Smaller profile image on mobile */
+  .profile-image {
+    width: 6rem;               /* Reduced width (6rem = ~96px) */
+    height: 6rem;              /* Reduced height (6rem = ~96px) */
+  }
+  
+  /* Smaller text on mobile */
+  .main-text {
+    font-size: 1.25rem;        /* Reduced font size (1.25rem = ~20px) */
+  }
+  
+  /* Tighter spacing between social icons on mobile */
+  .social-links {
+    gap: 1rem;                 /* Reduced gap (1rem = ~16px) */
+  }
+}
+
+/* ========================================
+   DARK MODE SUPPORT
+   ======================================== */
+
+/* 
+  Automatically applies dark mode when user's system is set to dark mode
+  This overrides the light mode variables defined at the top
+*/
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: hsl(220, 8%, 8%);
-    --foreground: hsl(0, 0%, 0%);
-    --primary: hsl(0, 0%, 0%);
-    --profile-shadow: hsl(0, 0%, 0%, 0.1);
+    --background: hsl(220, 8%, 8%);     /* Dark background for dark mode */
+    --foreground: hsl(0, 0%, 0%);       /* Still black text (you may want to change this) */
+    --primary: hsl(0, 0%, 0%);          /* Still black accent (you may want to change this) */
+    --profile-shadow: hsl(0, 0%, 0%, 0.1); /* Black shadow for dark mode */
   }
 }
 
-/* Responsive design */
-@media (max-width: 640px) {
-  .profile-image {
-    width: 6rem;
-    height: 6rem;
-  }
-  .main-text {
-    font-size: 1.25rem;
-  }
-  .social-links {
-    gap: 1rem;
-  }
-}
+/* ========================================
+   CUSTOMIZATION NOTES
+   ======================================== */
+
+/*
+  TO CHANGE COLORS:
+  - Edit the CSS variables at the top of this file
+  - --foreground controls text and icon colors
+  - --background controls the page background color
+  - --primary controls hover/accent colors
+  
+  TO CHANGE SPACING:
+  - Look for margin and padding values
+  - rem units: 1rem = ~16px
+  - Adjust gap values to change spacing between elements
+  
+  TO CHANGE SIZES:
+  - Profile image: edit width/height in .profile-image
+  - Text size: edit font-size in .main-text
+  - Mobile breakpoint: change 640px in @media query
+  
+  TO ADD NEW SOCIAL ICONS:
+  - Add new <a> tag with .social-link class in HTML
+  - No CSS changes needed - styling will apply automatically
+*/
