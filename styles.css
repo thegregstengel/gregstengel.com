@@ -1,9 +1,9 @@
 /* Design system variables */
 :root {
   --background: hsl(0, 0%, 97%);
-  --foreground: hsl(220, 8%, 25%);
-  --primary: hsl(220, 8%, 25%);
-  --profile-shadow: hsl(220, 8%, 25%, 0.1);
+  --foreground: hsl(0, 0%, 0%);
+  --primary: hsl(0, 0%, 0%);
+  --profile-shadow: hsl(0, 0%, 0%, 0.1);
 }
 .dark {
   --background: hsl(220, 8%, 8%);
