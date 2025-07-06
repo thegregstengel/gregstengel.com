@@ -1,0 +1,112 @@
+/* Design system variables */
+:root {
+  --background: hsl(0, 0%, 97%);
+  --foreground: hsl(220, 8%, 25%);
+  --primary: hsl(220, 8%, 25%);
+  --profile-shadow: hsl(220, 8%, 25%, 0.1);
+}
+
+.dark {
+  --background: hsl(220, 8%, 8%);
+  --foreground: hsl(220, 4%, 92%);
+  --primary: hsl(220, 4%, 92%);
+  --profile-shadow: hsl(220, 4%, 92%, 0.1);
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  background-image: url('assets/main_background_tile.png');
+  background-repeat: repeat;
+  background-size: 512px 512px;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.profile-section {
+  margin-bottom: 1.5rem;
+}
+
+.profile-image {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  box-shadow: 0 10px 30px var(--profile-shadow);
+  display: block;
+  margin: 0 auto;
+}
+
+.main-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.025em;
+  margin-bottom: 2rem;
+  color: var(--foreground);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.social-link {
+  color: var(--foreground);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.social-link:hover {
+  color: var(--primary);
+}
+
+.social-link svg {
+  display: block;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: hsl(220, 8%, 8%);
+    --foreground: hsl(220, 4%, 92%);
+    --primary: hsl(220, 4%, 92%);
+    --profile-shadow: hsl(220, 4%, 92%, 0.1);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .profile-image {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .main-text {
+    font-size: 1.25rem;
+  }
+
+  .social-links {
+    gap: 1rem;
+  }
+}
