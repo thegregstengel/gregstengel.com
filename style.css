@@ -5,7 +5,6 @@
   --primary: hsl(220, 8%, 25%);
   --profile-shadow: hsl(220, 8%, 25%, 0.1);
 }
-
 .dark {
   --background: hsl(220, 8%, 8%);
   --foreground: hsl(220, 4%, 92%);
@@ -101,11 +100,9 @@ body {
     width: 6rem;
     height: 6rem;
   }
-
   .main-text {
     font-size: 1.25rem;
   }
-
   .social-links {
     gap: 1rem;
   }
