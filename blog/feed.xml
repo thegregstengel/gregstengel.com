@@ -2,9 +2,9 @@
 
 <feed xmlns="http://www.w3.org/2005/Atom">
   <id>https://gregstengel.com/blog/</id>
-  <title>Blog</title>
+  <title>gregstengel.com/blog</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2025-07-06T14:11:28-05:00</updated>
+  <updated>2025-07-07T15:05:46-05:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
