@@ -14,7 +14,7 @@ timezone: America/Chicago
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Blog # the main title
+title: gregstengel.com/blog # the main title
 
 tagline: All the things. # it will display as the subtitle
 
@@ -35,7 +35,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Greg Stengel
-  email: example@domain.com # change to your email address
+  email: gregstengel@gmail.com # change to your email address
   links:
     # The first element serves as the copyright owner's link
     - https://x.com/thegregstengel # change to your Twitter homepage
@@ -98,7 +98,7 @@ theme_mode: # [light | dark]
 cdn: "https://chirpy-img.netlify.app"
 
 # the avatar on sidebar, support local or CORS resources
-avatar: "/commons/main_profile_pic.jpg"
+avatar: "assets/main_profile_pic.jpg"
 
 # The URL of the site-wide social preview image used in SEO `og:image` meta tag.
 # It can be overridden by a customized `page.image` in front matter.
