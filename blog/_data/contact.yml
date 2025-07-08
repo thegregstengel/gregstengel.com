@@ -4,7 +4,7 @@
   icon: "fab fa-github"
 
 - type: linkedin
-  icon: "fab fa-linkedin"
+  icon: "fa-brands fa-linkedin-in"
   url:  "https://linkedin.com/in/gregstengel"
 
 - type: instagram
