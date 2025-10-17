@@ -1,5 +1,13 @@
 [
   {
+    "title": "My first post!!",
+    "url": "/blog/posts/my-first-post/",
+    "categories": "jekyll, update",
+    "tags": "",
+    "date": "2025-10-17 13:32:43 -0500",
+    "content": "Hello world?"
+  },
+  {
     "title": "Welcome to Jekyll!",
     "url": "/blog/posts/welcome-to-jekyll/",
     "categories": "jekyll, update",
