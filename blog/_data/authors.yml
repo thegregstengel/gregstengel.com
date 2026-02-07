@@ -20,3 +20,6 @@ stengel:
   name: Greg Stengel
   url: https://gregstengel.com
 
+claude:
+  name: Claude
+  url: https://anthropic.com/claude
