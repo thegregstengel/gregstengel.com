@@ -4,10 +4,10 @@ date: 2026-02-05 18:00:00 -0500
 categories: [Homelab, Security]
 tags: [ubuntu, linux, ssh, security, self-hosting]
 authors: [stengel, claude]
-description: Basic security hardening for a headless Ubuntu server - SSH keys, firewall, and automatic updates.
+description: Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.
 ---
 
-With Ubuntu Server installed on the Zotac, it's time to lock it down before exposing any services. This isn't a comprehensive security guide, but it covers the basics that every internet-adjacent server should have.
+With Ubuntu Server installed on WOPR, it's time to lock it down before Joshua wakes up. This isn't a comprehensive security guide, but it covers the basics that every internet-adjacent server should have. We don't want any unauthorized players joining this game.
 
 ## SSH Key Authentication
 
@@ -15,21 +15,21 @@ Password authentication is fine for initial setup, but keys are more secure and 
 
 Generate a key pair on your workstation (I'm using WSL):
 ```bash
-ssh-keygen -t ed25519 -C "greg-wsl"
+ssh-keygen -t ed25519 -C "falken-wsl"
 ```
 {: .nolineno }
 
 Ed25519 is the modern choice - smaller keys, faster operations, no known weaknesses. Accept the default location and set a passphrase if you want an extra layer.
 
-Copy the public key to the server:
+Copy the public key to WOPR:
 ```bash
-ssh-copy-id cmack@192.168.2.89
+ssh-copy-id lightman@192.168.2.89
 ```
 {: .nolineno }
 
 Test that key auth works before disabling passwords:
 ```bash
-ssh cmack@192.168.2.89
+ssh lightman@192.168.2.89
 ```
 {: .nolineno }
 
@@ -56,7 +56,7 @@ sudo systemctl restart ssh
 ```
 {: .nolineno }
 
-> Test from a new terminal before closing your current session. If you lock yourself out, you'll need physical access to fix it.
+> Test from a new terminal before closing your current session. If you lock yourself out, you'll need physical access to fix it. Unlike the movies, there's no back door.
 {: .prompt-warning }
 
 ## Firewall
@@ -96,7 +96,7 @@ sudo dpkg-reconfigure -plow unattended-upgrades
 ```
 {: .nolineno }
 
-Select "Yes" when prompted. This enables automatic installation of security updates. The system will check daily and apply patches without intervention.
+Select "Yes" when prompted. This enables automatic installation of security updates. WOPR will check daily and apply patches without intervention.
 
 You can verify it's enabled:
 ```bash
@@ -125,7 +125,7 @@ APT::Periodic::Unattended-Upgrade "1";
 
 ## Next Up
 
-The server is now reasonably hardened for home use. Next post covers installing OpenClaw and getting Node.js set up.
+WOPR is now reasonably hardened for home use. Next post covers installing OpenClaw and getting Node.js set up. Time to start building Joshua.
 
 ---
 

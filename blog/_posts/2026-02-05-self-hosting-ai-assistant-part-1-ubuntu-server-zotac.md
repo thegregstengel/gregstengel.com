@@ -4,14 +4,16 @@ date: 2026-02-05 16:00:00 -0500
 categories: [Homelab, AI]
 tags: [ubuntu, zotac, linux, self-hosting, openclaw]
 authors: [stengel, claude]
-description: Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC as the foundation for a self-hosted AI assistant.
+description: Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.
 ---
 
-This is the first post in a series documenting my journey to self-host [OpenClaw](https://openclaws.io/), an open-source autonomous AI assistant, on a small fanless mini PC. The goal: a 24/7 AI assistant I can chat with via Discord, running entirely on my own hardware.
+This is the first post in a series documenting my journey to self-host [OpenClaw](https://github.com/openclaw-ai/openclaw), an open-source autonomous AI assistant, on a small fanless mini PC. The goal: a 24/7 AI assistant I can chat with via Discord, running entirely on my own hardware.
+
+I'm calling him Joshua. The machine he runs on? WOPR. If you get the reference, we're going to get along fine.
 
 ## The Hardware
 
-I had a Zotac CI323 Nano sitting around. It's an older barebones mini PC with an Intel Celeron N3150 (Braswell architecture), passive cooling (completely silent), dual Gigabit Ethernet, and support for up to 8GB DDR3L RAM. Perfect for a low-power always-on server.
+I had a Zotac CI323 Nano sitting around. It's an older barebones mini PC with an Intel Celeron N3150 (Braswell architecture), passive cooling (completely silent), dual Gigabit Ethernet, and support for up to 8GB DDR3L RAM. Perfect for a low-power always-on server that doesn't sound like it's planning thermonuclear war.
 
 > If you're using a Braswell-based system (N3150, N3160, etc.), pay attention to the kernel issues below. This will save you hours.
 {: .prompt-warning }
@@ -47,12 +49,14 @@ Selected that option, and the installer completed without issues.
 
 Kept it minimal:
 
+- **Hostname:** wopr
+- **Username:** lightman
 - **Storage:** Use entire disk, no LVM needed for a single-purpose box
 - **SSH:** Yes, install OpenSSH server (critical for headless management)
 - **Snaps:** None selected, we'll install what we need manually
 - **Ubuntu Pro:** Skipped
 
-After reboot, pulled the USB and let it come up. Noted the IP address from the console and moved to SSH for everything else.
+After reboot, pulled the USB and let it come up. Noted the IP address from the console and moved to SSH for everything else. Greetings, Professor Falken.
 
 ## Key Commands Reference
 
@@ -65,7 +69,7 @@ After reboot, pulled the USB and let it come up. Noted the IP address from the c
 
 ## Next Up
 
-With the base OS installed, the next post covers hardening the server: SSH key authentication, firewall setup, and unattended security updates.
+With the base OS installed, the next post covers hardening the server: SSH key authentication, firewall setup, and unattended security updates. WOPR needs to be secure before Joshua wakes up.
 
 ---
 

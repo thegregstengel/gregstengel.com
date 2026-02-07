@@ -4,14 +4,16 @@ date: 2026-02-06 10:00:00 -0500
 categories: [Homelab, AI]
 tags: [openclaw, nodejs, linux, self-hosting, ai-assistant]
 authors: [stengel, claude]
-description: Installing Node.js 22 and OpenClaw on Ubuntu Server to power a self-hosted AI assistant.
+description: Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.
 ---
 
-With the server hardened, it's time to install [OpenClaw](https://github.com/openclaw-ai/openclaw) - an open-source autonomous AI assistant that can connect to chat platforms like Discord, Telegram, and WhatsApp, and execute tasks using Claude or OpenAI APIs.
+With WOPR hardened, it's time to install [OpenClaw](https://github.com/openclaw-ai/openclaw) - the framework that will power Joshua, my self-hosted AI assistant.
 
 ## Why OpenClaw
 
 I wanted an AI assistant I could interact with naturally via Discord - something that runs 24/7 on my own hardware, uses my own API keys, and gives me full control. OpenClaw fits that niche. It's essentially a bridge between chat platforms and LLM APIs, with the ability to execute tasks, manage files, and run automation.
+
+The name Joshua comes from WarGames, naturally. "Shall we play a game?"
 
 ## Node.js 22
 
@@ -50,11 +52,11 @@ openclaw onboard --install-daemon
 ```
 {: .nolineno }
 
-This walks you through initial configuration and installs a systemd service so OpenClaw starts automatically on boot.
+This walks you through initial configuration and installs a systemd service so Joshua starts automatically when WOPR boots.
 
 ## Daemon Management
 
-Once installed, you can manage OpenClaw with these commands:
+Once installed, you can manage Joshua with these commands:
 
 | Task | Command |
 |------|---------|
@@ -74,9 +76,9 @@ The config lives in `~/.openclaw/`{: .filepath}:
 
 ## Dashboard Access
 
-OpenClaw runs a local dashboard on port 18789. Since the server is headless, use an SSH tunnel to access it:
+OpenClaw runs a local dashboard on port 18789. Since WOPR is headless, use an SSH tunnel to access it:
 ```bash
-ssh -N -L 18789:127.0.0.1:18789 cmack@192.168.2.89
+ssh -N -L 18789:127.0.0.1:18789 lightman@192.168.2.89
 ```
 {: .nolineno }
 
@@ -84,8 +86,8 @@ Then open `http://localhost:18789` in your browser. The onboarding process will 
 
 ## Next Up
 
-OpenClaw is installed but not yet connected to anything useful. Next post covers setting up a Discord bot and connecting it to OpenClaw.
+Joshua is installed but not yet connected to anything useful. Next post covers setting up a Discord bot so I can actually talk to him. "Greetings, Professor Falken."
 
 ---
 
-*This post was co-written with Claude, who will soon be answering questions through this very setup.*
+*This post was co-written with Claude, who will soon be the brain behind Joshua.*
