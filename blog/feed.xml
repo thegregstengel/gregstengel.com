@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T12:01:46-06:00</updated>
+  <updated>2026-02-07T13:35:18-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 6 - Personality and Configuration</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 6 - Personality and Configuration" />
+    <published>2026-02-07T13:00:00-06:00</published>
+  
+    <updated>2026-02-07T13:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>Giving Joshua a soul - configuring OpenClaw&amp;#39;s workspace files and assistant behavior.</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC" />
-    <published>2026-02-05T15:00:00-06:00</published>
-  
-    <updated>2026-02-05T15:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.</summary>
 
   </entry>
 

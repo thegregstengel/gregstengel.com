@@ -1,5 +1,13 @@
 [
   {
+    "title": "Self-Hosting an AI Assistant: Part 6 - Personality and Configuration",
+    "url": "/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, ai-assistant, self-hosting, configuration",
+    "date": "2026-02-07 13:00:00 -0600",
+    "content": "Giving Joshua a soul - configuring OpenClaw&#39;s workspace files and assistant behavior."
+  },
+  {
     "title": "Self-Hosting an AI Assistant: Part 5 - Claude Authentication",
     "url": "/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/",
     "categories": "Homelab, AI",
