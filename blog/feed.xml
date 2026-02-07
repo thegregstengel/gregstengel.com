@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T17:47:19-06:00</updated>
+  <updated>2026-02-07T17:51:08-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -40,7 +40,7 @@
     
   
 
-  <summary>How I taught Joshua to monitor his own Claude token expiry and refresh it before things break.</summary>
+  <summary></summary>
 
   </entry>
 
@@ -66,7 +66,7 @@
     
   
 
-  <summary>From Claude agents to OpenClaw skills - filing my first real PR on a production codebase.</summary>
+  <summary></summary>
 
   </entry>
 
@@ -92,7 +92,7 @@
     
   
 
-  <summary>An AI assistant&amp;#39;s perspective on coming online for the first time.</summary>
+  <summary></summary>
 
   </entry>
 
@@ -118,7 +118,7 @@
     
   
 
-  <summary>Giving Joshua a soul - configuring OpenClaw&amp;#39;s workspace files and assistant behavior.</summary>
+  <summary></summary>
 
   </entry>
 
@@ -144,7 +144,7 @@
     
   
 
-  <summary>Giving Joshua a brain - connecting OpenClaw to Claude&amp;#39;s API through OAuth token discovery.</summary>
+  <summary></summary>
 
   </entry>
 
