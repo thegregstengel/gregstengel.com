@@ -6,6 +6,14 @@
     "tags": "ubuntu, zotac, linux, self-hosting, openclaw",
     "date": "2026-02-05 15:00:00 -0600",
     "content": "Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC as the foundation for a self-hosted AI assistant."
+  },
+  {
+    "title": "Hello World: Building This Blog",
+    "url": "/blog/posts/hello-world-building-this-blog/",
+    "categories": "Blogging, Meta",
+    "tags": "jekyll, github-pages, chirpy",
+    "date": "2026-02-01 09:00:00 -0600",
+    "content": "How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow."
   }
   
 ]

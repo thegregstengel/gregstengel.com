@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T07:44:24-06:00</updated>
+  <updated>2026-02-07T08:58:19-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -41,6 +41,32 @@
   
 
   <summary>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC as the foundation for a self-hosted AI assistant.</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Hello World: Building This Blog</title>
+    <link href="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" rel="alternate" type="text/html" title="Hello World: Building This Blog" />
+    <published>2026-02-01T09:00:00-06:00</published>
+  
+    <updated>2026-02-01T09:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/hello-world-building-this-blog/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Blogging" />
+    
+    <category term="Meta" />
+    
+  
+
+  <summary>How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.</summary>
 
   </entry>
 
