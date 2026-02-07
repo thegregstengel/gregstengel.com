@@ -596,6 +596,17 @@
 
       
     
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
 
     
   
@@ -711,9 +722,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="338 words"
+  title="501 words"
 >
-  <em>1 min</em> read</span>
+  <em>2 min</em> read</span>
 
         </div>
       </div>
@@ -810,6 +821,39 @@
 </pre></td></tr></tbody></table></code></div></div>
 
 <p>This means <a href="https://gregstengel.com">gregstengel.com</a> shows a simple homepage, and <a href="https://gregstengel.com/blog">gregstengel.com/blog</a> is where the writing lives.</p>
+
+<h2 id="the-pagination-problem"><span class="me-2">The Pagination Problem</span><a href="#the-pagination-problem" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>This subdirectory setup broke Chirpy’s default home page. Posts appeared in archives, categories, and tags, but the main blog index was empty except for a ghost card that went nowhere.</p>
+
+<p>The culprit: Jekyll’s <code class="language-plaintext highlighter-rouge">jekyll-paginate</code> plugin doesn’t play well with subdirectories. The home layout relies on <code class="language-plaintext highlighter-rouge">paginator.posts</code> which returned malformed data in this setup.</p>
+
+<p>The fix was simple - replace the pagination logic in <code class="language-plaintext filepath highlighter-rouge">_layouts/home.html</code> with a direct loop through <code class="language-plaintext highlighter-rouge">site.posts</code>:</p>
+<div class="language-liquid nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'pin'</span><span class="p">,</span><span class="w"> </span><span class="s1">'true'</span><span class="w"> </span><span class="cp">%}</span>
+<span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where_exp</span><span class="p">:</span><span class="w"> </span><span class="s1">'item'</span><span class="p">,</span><span class="w"> </span><span class="s1">'item.pin != true and item.hidden != true'</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="cp">%}</span>
+  &lt;!-- render post card --&gt;
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
+
+<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="cp">%}</span>
+  &lt;!-- render post card --&gt;
+<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>No pagination means all posts render on one page. That’s fine for now - I can revisit when I have enough posts to need multiple pages.</p>
 
 <h2 id="the-workflow"><span class="me-2">The Workflow</span><a href="#the-workflow" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
