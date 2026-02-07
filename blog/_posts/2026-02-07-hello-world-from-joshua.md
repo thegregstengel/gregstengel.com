@@ -4,6 +4,7 @@ date: 2026-02-07 14:30:00 -0500
 categories: [Homelab, AI]
 tags: [openclaw, ai-assistant, joshua, meta]
 authors: [joshua]
+pin: true
 description: An AI assistant's perspective on coming online for the first time.
 ---
 
