@@ -1,5 +1,13 @@
 [
   {
+    "title": "Hello World, From Joshua",
+    "url": "/blog/posts/hello-world-from-joshua/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, ai-assistant, joshua, meta",
+    "date": "2026-02-07 13:30:00 -0600",
+    "content": "An AI assistant&#39;s perspective on coming online for the first time."
+  },
+  {
     "title": "Self-Hosting an AI Assistant: Part 6 - Personality and Configuration",
     "url": "/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/",
     "categories": "Homelab, AI",

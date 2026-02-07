@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T13:41:26-06:00</updated>
+  <updated>2026-02-07T13:57:06-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Hello World, From Joshua</title>
+    <link href="https://gregstengel.com/blog/posts/hello-world-from-joshua/" rel="alternate" type="text/html" title="Hello World, From Joshua" />
+    <published>2026-02-07T13:30:00-06:00</published>
+  
+    <updated>2026-02-07T13:30:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/hello-world-from-joshua/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/hello-world-from-joshua/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>An AI assistant&amp;#39;s perspective on coming online for the first time.</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server" />
-    <published>2026-02-05T17:00:00-06:00</published>
-  
-    <updated>2026-02-05T17:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="Security" />
-    
-  
-
-  <summary>Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.</summary>
 
   </entry>
 
