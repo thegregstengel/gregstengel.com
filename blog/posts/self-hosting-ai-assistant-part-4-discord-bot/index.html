@@ -30,23 +30,26 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Blogging" />
+<meta property="og:title" content="Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration" />
+<meta name="author" content="Stengel" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
-<meta property="og:description" content="A minimal, responsive and feature-rich Jekyll theme for technical writing." />
-<link rel="canonical" href="https://gregstengel.com/blog/categories/blogging/" />
-<meta property="og:url" content="https://gregstengel.com/blog/categories/blogging/" />
+<meta name="description" content="Creating a Discord bot so Joshua has a voice - shall we play a game?" />
+<meta property="og:description" content="Creating a Discord bot so Joshua has a voice - shall we play a game?" />
+<link rel="canonical" href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" />
+<meta property="og:url" content="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" />
 <meta property="og:site_name" content="Greg Stengel" />
-<meta property="og:type" content="website" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2026-02-06T13:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Blogging" />
+<meta property="twitter:title" content="Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration" />
 <meta name="twitter:site" content="@thegregstengel" />
+<meta name="twitter:creator" content="@Stengel" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","description":"A minimal, responsive and feature-rich Jekyll theme for technical writing.","headline":"Blogging","url":"https://gregstengel.com/blog/categories/blogging/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-06T13:00:00-06:00","datePublished":"2026-02-06T13:00:00-06:00","description":"Creating a Discord bot so Joshua has a voice - shall we play a game?","headline":"Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/"},"url":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Blogging | Greg Stengel
+  <title>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration | Greg Stengel
   </title>
 
   <!--
@@ -110,9 +113,16 @@
   <!-- 3rd-party Dependencies -->
 
   
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.32.2/dist/tocbot.min.css">
   
 
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.min.css">
+  
+
+  
+    <!-- Image Popup -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox@3.3.0/dist/css/glightbox.min.css">
   
 
   <!-- Scripts -->
@@ -128,6 +138,13 @@
 <!-- layout specified -->
 
 
+  
+
+  
+    <!-- image lazy-loading & popup & clipboard -->
+    
+  
+
 
 
 
@@ -177,9 +194,37 @@
 
   
 
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
+
+  
+    
+
+    
+
+  
 
 
-  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/en.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js"></script>
+
+  <script defer src="https://cdn.jsdelivr.net/combine/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js,npm/loading-attribute-polyfill@2.1.1/dist/loading-attribute-polyfill.umd.min.js,npm/glightbox@3.3.0/dist/js/glightbox.min.js,npm/clipboard@2.0.11/dist/clipboard.min.js,npm/dayjs@1.11.13/dayjs.min.js,npm/dayjs@1.11.13/locale/en.js,npm/dayjs@1.11.13/plugin/relativeTime.js,npm/dayjs@1.11.13/plugin/localizedFormat.js,npm/tocbot@4.32.2/dist/tocbot.min.js"></script>
 
 
 
@@ -187,11 +232,15 @@
 
 
 
-<script defer src="/blog/assets/js/dist/misc.min.js"></script>
+<script defer src="/blog/assets/js/dist/post.min.js"></script>
 
 
 
 <!-- Pageviews -->
+
+  
+
+  
 
 
 
@@ -410,14 +459,10 @@
           
         
           
-            <span>
-              <a href="/blog/categories/">Categories</a>
-            </span>
-          
         
           
             
-              <span>Blogging</span>
+              <span>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</span>
             
 
           
@@ -431,7 +476,7 @@
     </button>
 
     <div id="topbar-title">
-      Category
+      Post
     </div>
 
     <button type="button" id="search-trigger" class="btn btn-link" aria-label="Search">
@@ -457,28 +502,177 @@
         <div class="row flex-grow-1">
           <main aria-label="Main Content" class="col-12 col-lg-11 col-xl-9 px-md-4">
             
-              
+              <!-- Refactor the HTML structure -->
 
 
 
-<article class="px-1">
+<!--
+  In order to allow a wide table to scroll horizontally,
+  we suround the markdown table with `<div class="table-wrapper">` and `</div>`
+-->
+
+
+
+<!--
+  Fixed kramdown code highlight rendering:
+  https://github.com/penibelst/jekyll-compress-html/issues/101
+  https://github.com/penibelst/jekyll-compress-html/issues/71#issuecomment-188144901
+-->
+
+
+
+<!-- Change the icon of checkbox -->
+
+
+
+<!-- Handle images -->
+
+
+
+
+
+<!-- Add header for code snippets -->
+
+
+
+<!-- Create heading anchors -->
+
+
+
+
+
+  
+  
+
   
     
-
-
-
-<div id="page-category">
-  <h1 class="ps-lg-2">
-    <i class="far fa-folder-open fa-fw text-muted"></i>
-    Blogging
-    <span class="lead text-muted ps-2">1</span>
-  </h1>
-
-  <ul class="content ps-0">
     
-      <li class="d-flex justify-content-between px-md-3">
-        <a href="/blog/posts/hello-world-building-this-blog/">Hello World: Building This Blog</a>
-        <span class="dash flex-grow-1"></span>
+
+    
+      
+        
+        
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
+
+    
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+  
+  
+
+  
+
+
+
+
+<!-- return -->
+
+
+
+
+
+
+
+
+
+
+<article class="px-1" data-toc="true">
+  <header>
+    <h1 data-toc-skip>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</h1>
+    
+      <p class="post-desc fw-light mb-4">Creating a Discord bot so Joshua has a voice - shall we play a game?</p>
+    
+
+    <div class="post-meta text-muted">
+      <!-- published date -->
+      <span>
+        Posted
         <!--
   Date format snippet
   See: ${JS_ROOT}/utils/locale-dateime.js
@@ -489,22 +683,320 @@
 
 <time
   
-    class="text-muted small text-nowrap"
-  
-  data-ts="1769958000"
+  data-ts="1770404400"
   data-df="ll"
   
+    data-bs-toggle="tooltip" data-bs-placement="bottom"
+  
 >
-  Feb  1, 2026
+  Feb  6, 2026
 </time>
 
-      </li>
-    
-  </ul>
-</div>
+      </span>
+
+      <!-- lastmod date -->
+      
+
+      
+
+      <div class="d-flex justify-content-between">
+        <!-- author(s) -->
+        <span>
+          
+
+          By
+
+          <em>
+            
+              
+                <a href="https://gregstengel.com">Stengel</a>
+                </em>, <em>
+              
+                <a href="https://anthropic.com/claude">Claude</a>
+                
+              
+            
+          </em>
+        </span>
+
+        <div>
+          <!-- pageviews -->
+          
+
+          <!-- read time -->
+          <!-- Calculate the post's reading time, and display the word count in tooltip -->
+
+
+
+<!-- words per minute -->
+
+
+
+
+
+
+
+
+
+
+<!-- return element -->
+<span
+  class="readtime"
+  data-bs-toggle="tooltip"
+  data-bs-placement="bottom"
+  title="428 words"
+>
+  <em>2 min</em> read</span>
+
+        </div>
+      </div>
+    </div>
+  </header>
 
   
+    <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
+      <span class="label text-truncate">Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</span>
+      <button type="button" class="toc-trigger btn me-1">
+        <i class="fa-solid fa-list-ul fa-fw"></i>
+      </button>
+    </div>
+
+    <button id="toc-solo-trigger" type="button" class="toc-trigger btn btn-outline-secondary btn-sm">
+      <span class="label ps-2 pe-1">Contents</span>
+      <i class="fa-solid fa-angle-right fa-fw"></i>
+    </button>
+
+    <dialog id="toc-popup" class="p-0">
+      <div class="header d-flex flex-row align-items-center justify-content-between">
+        <div class="label text-truncate py-2 ms-4">Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</div>
+        <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
+          <i class="fas fa-close"></i>
+        </button>
+      </div>
+      <div id="toc-popup-content" class="px-4 py-3 pb-4"></div>
+    </dialog>
+  
+
+  <div class="content">
+    <p>Joshua is installed and running as a daemon on WOPR. Now he needs a way to communicate. I chose Discord since I already use it daily and the bot setup is straightforward.</p>
+
+<h2 id="create-the-discord-application"><span class="me-2">Create the Discord Application</span><a href="#create-the-discord-application" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Head to the <a href="https://discord.com/developers/applications">Discord Developer Portal</a> and create a new application. I named mine “Joshua” to keep the theme going.</p>
+
+<p>Once created, go to the <strong>Bot</strong> section in the left sidebar and click <strong>Reset Token</strong>. Copy this token somewhere safe - you’ll need it for OpenClaw’s config and Discord won’t show it again.</p>
+
+<h2 id="enable-privileged-intents"><span class="me-2">Enable Privileged Intents</span><a href="#enable-privileged-intents" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Still in the Bot section, scroll down to <strong>Privileged Gateway Intents</strong> and enable:</p>
+
+<ul>
+  <li><strong>Message Content Intent</strong> - Required for Joshua to read message content</li>
+  <li><strong>Presence Intent</strong> - Optional, lets Joshua see user status</li>
+  <li><strong>Server Members Intent</strong> - Optional, lets Joshua see member lists</li>
+</ul>
+
+<blockquote class="prompt-warning">
+  <p>Message Content Intent is the critical one. Without it, Joshua receives empty messages and can’t respond. He needs to hear the question before he can ask if you’d like to play a game.</p>
+</blockquote>
+
+<h2 id="generate-the-invite-url"><span class="me-2">Generate the Invite URL</span><a href="#generate-the-invite-url" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Go to <strong>OAuth2 &gt; URL Generator</strong> in the sidebar.</p>
+
+<p>Under <strong>Scopes</strong>, select:</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">bot</code></li>
+</ul>
+
+<p>Under <strong>Bot Permissions</strong>, select:</p>
+<ul>
+  <li>Send Messages</li>
+  <li>Read Message History</li>
+  <li>View Channels</li>
+</ul>
+
+<p>Copy the generated URL at the bottom and open it in your browser. Select your server and authorize the bot.</p>
+
+<h2 id="configure-openclaw"><span class="me-2">Configure OpenClaw</span><a href="#configure-openclaw" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Back on WOPR, edit the OpenClaw config:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>vim ~/.openclaw/openclaw.json
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Add your Discord bot token and channel ID to the appropriate section. You can get the channel ID by enabling Developer Mode in Discord (Settings &gt; Advanced &gt; Developer Mode), then right-clicking the channel and selecting “Copy Channel ID”.</p>
+
+<p>Restart the daemon to pick up the changes:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>openclaw daemon stop
+openclaw daemon start
+</pre></td></tr></tbody></table></code></div></div>
+
+<h2 id="test-it"><span class="me-2">Test It</span><a href="#test-it" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Send a message in your Discord channel. If everything is configured correctly, Joshua should respond. Check the logs if he doesn’t:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>openclaw logs
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Common issues:</p>
+<ul>
+  <li><strong>Joshua doesn’t respond:</strong> Check that Message Content Intent is enabled</li>
+  <li><strong>Authentication errors:</strong> Verify the bot token is correct in the config</li>
+  <li><strong>Channel not found:</strong> Double-check the channel ID</li>
+</ul>
+
+<h2 id="quick-reference"><span class="me-2">Quick Reference</span><a href="#quick-reference" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Create Discord app</td>
+      <td><a href="https://discord.com/developers/applications">discord.com/developers/applications</a></td>
+    </tr>
+    <tr>
+      <td>Bot token</td>
+      <td>Bot section &gt; Reset Token</td>
+    </tr>
+    <tr>
+      <td>Enable intents</td>
+      <td>Bot section &gt; Privileged Gateway Intents</td>
+    </tr>
+    <tr>
+      <td>Generate invite URL</td>
+      <td>OAuth2 &gt; URL Generator</td>
+    </tr>
+    <tr>
+      <td>Get channel ID</td>
+      <td>Right-click channel in Discord (Developer Mode)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="next-up"><span class="me-2">Next Up</span><a href="#next-up" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Joshua can hear me now, but he doesn’t have a brain yet. Next post covers connecting him to Claude’s API - including a detour through rate limits and token formats. Time to wake him up.</p>
+
+<hr />
+
+<p><em>This post was co-written with Claude, who is about to become Joshua’s brain.</em></p>
+
+  </div>
+
+  <div class="post-tail-wrapper text-muted">
+    <!-- categories -->
+    
+      <div class="post-meta mb-3">
+        <i class="far fa-folder-open fa-fw me-1"></i>
+        
+          <a href="/blog/categories/homelab/">Homelab</a>,
+          <a href="/blog/categories/ai/">AI</a>
+      </div>
+    
+
+    <!-- tags -->
+    
+      <div class="post-tags">
+        <i class="fa fa-tags fa-fw me-1"></i>
+        
+          <a
+            href="/blog/tags/openclaw/"
+            class="post-tag no-text-decoration"
+          >openclaw</a>
+        
+          <a
+            href="/blog/tags/discord/"
+            class="post-tag no-text-decoration"
+          >discord</a>
+        
+          <a
+            href="/blog/tags/bot/"
+            class="post-tag no-text-decoration"
+          >bot</a>
+        
+          <a
+            href="/blog/tags/self-hosting/"
+            class="post-tag no-text-decoration"
+          >self-hosting</a>
+        
+          <a
+            href="/blog/tags/ai-assistant/"
+            class="post-tag no-text-decoration"
+          >ai-assistant</a>
+        
+      </div>
+    
+
+    <div
+      class="
+        post-tail-bottom
+        d-flex justify-content-between align-items-center mt-5 pb-2
+      "
+    >
+      <div class="license-wrapper">
+        
+          
+
+          This post is licensed under 
+        <a href="https://creativecommons.org/licenses/by/4.0/">
+          CC BY 4.0
+        </a>
+         by the author.
+        
+      </div>
+
+      <!-- Post sharing snippet -->
+
+<div class="share-wrapper d-flex align-items-center">
+  <span class="share-label text-muted">Share</span>
+  <span class="share-icons">
+    
+    
+    
+
+    
+
+      
+
+      <a href="https://twitter.com/intent/tweet?text=Self-Hosting%20an%20AI%20Assistant:%20Part%204%20-%20Discord%20Bot%20Integration%20-%20Greg%20Stengel&url=https%3A%2F%2Fgregstengel.com%2Fblog%2Fposts%2Fself-hosting-ai-assistant-part-4-discord-bot%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+        <i class="fa-fw fa-brands fa-square-x-twitter"></i>
+      </a>
+    
+
+    <button
+      id="copy-link"
+      aria-label="Copy link"
+      class="btn small"
+      data-bs-toggle="tooltip"
+      data-bs-placement="top"
+      title="Copy link"
+      data-title-succeed="Link copied successfully!"
+    >
+      <i class="fa-fw fas fa-link pe-none fs-6"></i>
+    </button>
+  </span>
+</div>
+
+    </div>
+    <!-- .post-tail-bottom -->
+  </div>
+  <!-- div.post-tail-wrapper -->
 </article>
+
 
             
           </main>
@@ -1072,12 +1564,238 @@
             </div>
 
             
+              
+              
+
+
+
+
+
+
+  <div class="toc-border-cover z-3"></div>
+  <section id="toc-wrapper" class="invisible position-sticky ps-0 pe-4 pb-4">
+    <h2 class="panel-heading ps-3 pb-2 mb-0">Contents</h2>
+    <nav id="toc"></nav>
+  </section>
+
+
+            
           </aside>
         </div>
 
         <div class="row">
           <!-- tail -->
           <div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 px-md-4">
+            
+              
+              <!-- Recommend the other 3 posts according to the tags and categories of the current post. -->
+
+<!-- The total size of related posts -->
+
+
+<!-- An random integer that bigger than 0 -->
+
+
+<!-- Equals to TAG_SCORE / {max_categories_hierarchy} -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770390000"
+  data-df="ll"
+  
+>
+  Feb  6, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</h4>
+              <div class="text-muted">
+                <p>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770476400"
+  data-df="ll"
+  
+>
+  Feb  7, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 5 - Claude Authentication</h4>
+              <div class="text-muted">
+                <p>Giving Joshua a brain - connecting OpenClaw to Claude&#39;s API through OAuth token discovery.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770325200"
+  data-df="ll"
+  
+>
+  Feb  5, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</h4>
+              <div class="text-muted">
+                <p>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
+
+            
+              
+              <!-- Navigation buttons at the bottom of the post. -->
+
+<nav class="post-navigation d-flex justify-content-between" aria-label="Post Navigation">
+  
+  
+
+  
+    <a
+      href="/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</p>
+    </a>
+  
+
+  
+    <a
+      href="/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"
+      class="btn btn-outline-primary"
+      aria-label="Newer"
+    >
+      <p>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</p>
+    </a>
+  
+</nav>
+
             
 
             <!-- The Footer -->
@@ -1667,6 +2385,11 @@
     
 
     <!-- Embedded scripts -->
+
+    
+      
+      <!-- The comments switcher -->
+
 
     
 

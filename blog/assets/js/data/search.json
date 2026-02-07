@@ -1,11 +1,43 @@
 [
   {
+    "title": "Self-Hosting an AI Assistant: Part 5 - Claude Authentication",
+    "url": "/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, claude, anthropic, api, oauth, self-hosting",
+    "date": "2026-02-07 09:00:00 -0600",
+    "content": "Giving Joshua a brain - connecting OpenClaw to Claude&#39;s API through OAuth token discovery."
+  },
+  {
+    "title": "Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration",
+    "url": "/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, discord, bot, self-hosting, ai-assistant",
+    "date": "2026-02-06 13:00:00 -0600",
+    "content": "Creating a Discord bot so Joshua has a voice - shall we play a game?"
+  },
+  {
+    "title": "Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw",
+    "url": "/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, nodejs, linux, self-hosting, ai-assistant",
+    "date": "2026-02-06 09:00:00 -0600",
+    "content": "Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life."
+  },
+  {
+    "title": "Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server",
+    "url": "/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/",
+    "categories": "Homelab, Security",
+    "tags": "ubuntu, linux, ssh, security, self-hosting",
+    "date": "2026-02-05 17:00:00 -0600",
+    "content": "Basic security hardening for WOPR - SSH keys, firewall, and automatic updates."
+  },
+  {
     "title": "Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC",
     "url": "/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/",
     "categories": "Homelab, AI",
     "tags": "ubuntu, zotac, linux, self-hosting, openclaw",
     "date": "2026-02-05 15:00:00 -0600",
-    "content": "Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC as the foundation for a self-hosted AI assistant."
+    "content": "Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR."
   },
   {
     "title": "Hello World: Building This Blog",

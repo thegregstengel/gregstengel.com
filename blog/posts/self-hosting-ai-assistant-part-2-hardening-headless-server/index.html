@@ -30,26 +30,26 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Hello World: Building This Blog" />
+<meta property="og:title" content="Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server" />
 <meta name="author" content="Stengel" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow." />
-<meta property="og:description" content="How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow." />
-<link rel="canonical" href="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
-<meta property="og:url" content="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
+<meta name="description" content="Basic security hardening for WOPR - SSH keys, firewall, and automatic updates." />
+<meta property="og:description" content="Basic security hardening for WOPR - SSH keys, firewall, and automatic updates." />
+<link rel="canonical" href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" />
+<meta property="og:url" content="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" />
 <meta property="og:site_name" content="Greg Stengel" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-01T09:00:00-06:00" />
+<meta property="article:published_time" content="2026-02-05T17:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Hello World: Building This Blog" />
+<meta property="twitter:title" content="Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server" />
 <meta name="twitter:site" content="@thegregstengel" />
 <meta name="twitter:creator" content="@Stengel" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-01T09:00:00-06:00","datePublished":"2026-02-01T09:00:00-06:00","description":"How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.","headline":"Hello World: Building This Blog","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/hello-world-building-this-blog/"},"url":"https://gregstengel.com/blog/posts/hello-world-building-this-blog/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-05T17:00:00-06:00","datePublished":"2026-02-05T17:00:00-06:00","description":"Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.","headline":"Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/"},"url":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Hello World: Building This Blog | Greg Stengel
+  <title>Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server | Greg Stengel
   </title>
 
   <!--
@@ -462,7 +462,7 @@
         
           
             
-              <span>Hello World: Building This Blog</span>
+              <span>Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</span>
             
 
           
@@ -607,6 +607,17 @@
 
       
     
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
 
     
   
@@ -642,9 +653,9 @@
 
 <article class="px-1" data-toc="true">
   <header>
-    <h1 data-toc-skip>Hello World: Building This Blog</h1>
+    <h1 data-toc-skip>Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</h1>
     
-      <p class="post-desc fw-light mb-4">How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.</p>
+      <p class="post-desc fw-light mb-4">Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.</p>
     
 
     <div class="post-meta text-muted">
@@ -661,13 +672,13 @@
 
 <time
   
-  data-ts="1769958000"
+  data-ts="1770332400"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Feb  1, 2026
+  Feb  5, 2026
 </time>
 
       </span>
@@ -722,7 +733,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="501 words"
+  title="419 words"
 >
   <em>2 min</em> read</span>
 
@@ -733,7 +744,7 @@
 
   
     <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
-      <span class="label text-truncate">Hello World: Building This Blog</span>
+      <span class="label text-truncate">Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</span>
       <button type="button" class="toc-trigger btn me-1">
         <i class="fa-solid fa-list-ul fa-fw"></i>
       </button>
@@ -746,7 +757,7 @@
 
     <dialog id="toc-popup" class="p-0">
       <div class="header d-flex flex-row align-items-center justify-content-between">
-        <div class="label text-truncate py-2 ms-4">Hello World: Building This Blog</div>
+        <div class="label text-truncate py-2 ms-4">Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</div>
         <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
           <i class="fas fa-close"></i>
         </button>
@@ -756,48 +767,85 @@
   
 
   <div class="content">
-    <p>Every blog needs an obligatory first post about itself. This is that post.</p>
+    <p>With Ubuntu Server installed on WOPR, it’s time to lock it down before Joshua wakes up. This isn’t a comprehensive security guide, but it covers the basics that every internet-adjacent server should have. We don’t want any unauthorized players joining this game.</p>
 
-<h2 id="the-stack"><span class="me-2">The Stack</span><a href="#the-stack" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<h2 id="ssh-key-authentication"><span class="me-2">SSH Key Authentication</span><a href="#ssh-key-authentication" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>The site runs on a pretty straightforward setup:</p>
+<p>Password authentication is fine for initial setup, but keys are more secure and more convenient once configured.</p>
 
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Layer</th>
-      <th>Tool</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Static site generator</td>
-      <td><a href="https://jekyllrb.com/">Jekyll</a></td>
-    </tr>
-    <tr>
-      <td>Theme</td>
-      <td><a href="https://github.com/cotes2020/jekyll-theme-chirpy">Chirpy</a></td>
-    </tr>
-    <tr>
-      <td>Hosting</td>
-      <td>GitHub Pages</td>
-    </tr>
-    <tr>
-      <td>CI/CD</td>
-      <td>GitHub Actions</td>
-    </tr>
-    <tr>
-      <td>Writing</td>
-      <td>Markdown + VS Code</td>
-    </tr>
-  </tbody>
-</table></div>
+<p>Generate a key pair on your workstation (I’m using WSL):</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh-keygen <span class="nt">-t</span> ed25519 <span class="nt">-C</span> <span class="s2">"falken-wsl"</span>
+</pre></td></tr></tbody></table></code></div></div>
 
-<p>The Chirpy theme does a lot of heavy lifting: dark mode, table of contents, syntax highlighting, categories, tags, and search all work out of the box.</p>
+<p>Ed25519 is the modern choice - smaller keys, faster operations, no known weaknesses. Accept the default location and set a passphrase if you want an extra layer.</p>
 
-<h2 id="site-structure"><span class="me-2">Site Structure</span><a href="#site-structure" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>Copy the public key to WOPR:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh-copy-id lightman@192.168.2.89
+</pre></td></tr></tbody></table></code></div></div>
 
-<p>The repo has a slightly unconventional layout. The root serves a custom landing page, and the blog lives in a <code class="language-plaintext highlighter-rouge">/blog</code> subdirectory:</p>
+<p>Test that key auth works before disabling passwords:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>ssh lightman@192.168.2.89
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>If you get in without a password prompt, you’re good.</p>
+
+<h2 id="lock-down-ssh"><span class="me-2">Lock Down SSH</span><a href="#lock-down-ssh" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Edit the SSH daemon config:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>vim /etc/ssh/sshd_config
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Find and set these values:</p>
+<div file="/etc/ssh/sshd_config" class="language-plaintext highlighter-rouge"><div class="code-header">
+        <span data-label-text="/etc/ssh/sshd_config"><i class="far fa-file-code fa-fw"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>PasswordAuthentication no
+PermitRootLogin no
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Restart the service:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>systemctl restart ssh
+</pre></td></tr></tbody></table></code></div></div>
+
+<blockquote class="prompt-warning">
+  <p>Test from a new terminal before closing your current session. If you lock yourself out, you’ll need physical access to fix it. Unlike the movies, there’s no back door.</p>
+</blockquote>
+
+<h2 id="firewall"><span class="me-2">Firewall</span><a href="#firewall" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>Ubuntu includes <code class="language-plaintext highlighter-rouge">ufw</code> (Uncomplicated Firewall). Enable it with SSH allowed:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>ufw allow OpenSSH
+<span class="nb">sudo </span>ufw <span class="nb">enable</span>
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Check status:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>ufw status
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>You should see:</p>
 <div class="language-plaintext nolineno highlighter-rouge"><div class="code-header">
         <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
@@ -806,89 +854,93 @@
 4
 5
 6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre>.
-├── index.html         # Landing page at /
-├── styles.css         # Landing page styles
-├── assets/            # Shared assets
-├── blog/              # Jekyll blog at /blog
-│   ├── _config.yml
-│   ├── _posts/
-│   └── ...
-└── .github/workflows/deploy.yml
+</pre></td><td class="rouge-code"><pre>Status: active
+
+To                         Action      From
+--                         ------      ----
+OpenSSH                    ALLOW       Anywhere
+OpenSSH (v6)               ALLOW       Anywhere (v6)
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>This means <a href="https://gregstengel.com">gregstengel.com</a> shows a simple homepage, and <a href="https://gregstengel.com/blog">gregstengel.com/blog</a> is where the writing lives.</p>
+<p>As you add services later, open ports as needed with <code class="language-plaintext highlighter-rouge">sudo ufw allow &lt;port&gt;</code> or <code class="language-plaintext highlighter-rouge">sudo ufw allow &lt;service&gt;</code>.</p>
 
-<h2 id="the-pagination-problem"><span class="me-2">The Pagination Problem</span><a href="#the-pagination-problem" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<h2 id="automatic-security-updates"><span class="me-2">Automatic Security Updates</span><a href="#automatic-security-updates" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>This subdirectory setup broke Chirpy’s default home page. Posts appeared in archives, categories, and tags, but the main blog index was empty except for a ghost card that went nowhere.</p>
-
-<p>The culprit: Jekyll’s <code class="language-plaintext highlighter-rouge">jekyll-paginate</code> plugin doesn’t play well with subdirectories. The home layout relies on <code class="language-plaintext highlighter-rouge">paginator.posts</code> which returned malformed data in this setup.</p>
-
-<p>The fix was simple - replace the pagination logic in <code class="language-plaintext filepath highlighter-rouge">_layouts/home.html</code> with a direct loop through <code class="language-plaintext highlighter-rouge">site.posts</code>:</p>
-<div class="language-liquid nolineno highlighter-rouge"><div class="code-header">
-        <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
-      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'pin'</span><span class="p">,</span><span class="w"> </span><span class="s1">'true'</span><span class="w"> </span><span class="cp">%}</span>
-<span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where_exp</span><span class="p">:</span><span class="w"> </span><span class="s1">'item'</span><span class="p">,</span><span class="w"> </span><span class="s1">'item.pin != true and item.hidden != true'</span><span class="w"> </span><span class="cp">%}</span>
-
-<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="cp">%}</span>
-  &lt;!-- render post card --&gt;
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
-
-<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="cp">%}</span>
-  &lt;!-- render post card --&gt;
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
-</pre></td></tr></tbody></table></code></div></div>
-
-<p>No pagination means all posts render on one page. That’s fine for now - I can revisit when I have enough posts to need multiple pages.</p>
-
-<h2 id="the-workflow"><span class="me-2">The Workflow</span><a href="#the-workflow" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<p>The publishing process is about as simple as it gets:</p>
-
-<ol>
-  <li>Write a post in <code class="language-plaintext filepath highlighter-rouge">blog/_posts/</code></li>
-  <li>Commit and push to <code class="language-plaintext highlighter-rouge">main</code></li>
-  <li>GitHub Actions builds the site and deploys to <code class="language-plaintext highlighter-rouge">gh-pages</code></li>
-</ol>
-
-<p>No local Jekyll environment needed for quick posts. For previewing, I can spin up Jekyll locally, but most of the time I just push and let the automation handle it.</p>
+<p>For a box that should be boring and reliable, unattended security updates are essential:</p>
 <div class="language-bash nolineno highlighter-rouge"><div class="code-header">
         <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-3
-</pre></td><td class="rouge-code"><pre>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"New post: whatever"</span>
-git push origin main
+</pre></td><td class="rouge-code"><pre><span class="nb">sudo </span>apt <span class="nb">install </span>unattended-upgrades <span class="nt">-y</span>
+<span class="nb">sudo </span>dpkg-reconfigure <span class="nt">-plow</span> unattended-upgrades
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>A minute later, it’s live.</p>
+<p>Select “Yes” when prompted. This enables automatic installation of security updates. WOPR will check daily and apply patches without intervention.</p>
 
-<h2 id="what-to-expect"><span class="me-2">What to Expect</span><a href="#what-to-expect" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>You can verify it’s enabled:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">cat</span> /etc/apt/apt.conf.d/20auto-upgrades
+</pre></td></tr></tbody></table></code></div></div>
 
-<p>This blog will mostly cover homelab projects, cloud architecture (AWS primarily, some GCP and Azure), automation, and whatever else I’m tinkering with. Some posts will be polished, some will be quick notes for future-me.</p>
+<p>Should show:</p>
+<div class="language-plaintext nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>APT::Periodic::Update-Package-Lists "1";
+APT::Periodic::Unattended-Upgrade "1";
+</pre></td></tr></tbody></table></code></div></div>
 
-<p>A number of posts here are co-written with Claude. When that’s the case, I’ll note it in the authorship. It’s a useful forcing function for documenting what I’m actually doing as I’m doing it.</p>
+<h2 id="quick-reference"><span class="me-2">Quick Reference</span><a href="#quick-reference" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>Let’s see where this goes.</p>
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Task</th>
+      <th>Command</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Generate SSH key</td>
+      <td><code class="language-plaintext highlighter-rouge">ssh-keygen -t ed25519 -C "comment"</code></td>
+    </tr>
+    <tr>
+      <td>Copy key to server</td>
+      <td><code class="language-plaintext highlighter-rouge">ssh-copy-id user@host</code></td>
+    </tr>
+    <tr>
+      <td>Restart SSH</td>
+      <td><code class="language-plaintext highlighter-rouge">sudo systemctl restart ssh</code></td>
+    </tr>
+    <tr>
+      <td>Enable firewall</td>
+      <td><code class="language-plaintext highlighter-rouge">sudo ufw enable</code></td>
+    </tr>
+    <tr>
+      <td>Allow a port</td>
+      <td><code class="language-plaintext highlighter-rouge">sudo ufw allow &lt;port&gt;</code></td>
+    </tr>
+    <tr>
+      <td>Check firewall status</td>
+      <td><code class="language-plaintext highlighter-rouge">sudo ufw status</code></td>
+    </tr>
+    <tr>
+      <td>Enable auto-updates</td>
+      <td><code class="language-plaintext highlighter-rouge">sudo dpkg-reconfigure -plow unattended-upgrades</code></td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="next-up"><span class="me-2">Next Up</span><a href="#next-up" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>WOPR is now reasonably hardened for home use. Next post covers installing OpenClaw and getting Node.js set up. Time to start building Joshua.</p>
 
 <hr />
 
-<p><em>This post was co-written with Claude, who also happens to be helping me set up the AI assistant that will be the subject of the next several posts.</em></p>
+<p><em>This post was co-written with Claude, who patiently reminded me to test SSH before disabling password auth.</em></p>
 
   </div>
 
@@ -898,8 +950,8 @@ git push origin main
       <div class="post-meta mb-3">
         <i class="far fa-folder-open fa-fw me-1"></i>
         
-          <a href="/blog/categories/blogging/">Blogging</a>,
-          <a href="/blog/categories/meta/">Meta</a>
+          <a href="/blog/categories/homelab/">Homelab</a>,
+          <a href="/blog/categories/security/">Security</a>
       </div>
     
 
@@ -909,19 +961,29 @@ git push origin main
         <i class="fa fa-tags fa-fw me-1"></i>
         
           <a
-            href="/blog/tags/jekyll/"
+            href="/blog/tags/ubuntu/"
             class="post-tag no-text-decoration"
-          >jekyll</a>
+          >ubuntu</a>
         
           <a
-            href="/blog/tags/github-pages/"
+            href="/blog/tags/linux/"
             class="post-tag no-text-decoration"
-          >github-pages</a>
+          >linux</a>
         
           <a
-            href="/blog/tags/chirpy/"
+            href="/blog/tags/ssh/"
             class="post-tag no-text-decoration"
-          >chirpy</a>
+          >ssh</a>
+        
+          <a
+            href="/blog/tags/security/"
+            class="post-tag no-text-decoration"
+          >security</a>
+        
+          <a
+            href="/blog/tags/self-hosting/"
+            class="post-tag no-text-decoration"
+          >self-hosting</a>
         
       </div>
     
@@ -957,7 +1019,7 @@ git push origin main
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=Hello%20World:%20Building%20This%20Blog%20-%20Greg%20Stengel&url=https%3A%2F%2Fgregstengel.com%2Fblog%2Fposts%2Fhello-world-building-this-blog%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=Self-Hosting%20an%20AI%20Assistant:%20Part%202%20-%20Hardening%20a%20Headless%20Linux%20Server%20-%20Greg%20Stengel&url=https%3A%2F%2Fgregstengel.com%2Fblog%2Fposts%2Fself-hosting-ai-assistant-part-2-hardening-headless-server%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
@@ -1600,7 +1662,54 @@ git push origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
@@ -1610,6 +1719,99 @@ git push origin main
 
 
 
+
+
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770325200"
+  data-df="ll"
+  
+>
+  Feb  5, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</h4>
+              <div class="text-muted">
+                <p>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770390000"
+  data-df="ll"
+  
+>
+  Feb  6, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</h4>
+              <div class="text-muted">
+                <p>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770476400"
+  data-df="ll"
+  
+>
+  Feb  7, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 5 - Claude Authentication</h4>
+              <div class="text-muted">
+                <p>Giving Joshua a brain - connecting OpenClaw to Claude&#39;s API through OAuth token discovery.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
 
 
             
@@ -1621,18 +1823,22 @@ git push origin main
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Older">
-      <p>-</p>
-    </div>
+    <a
+      href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</p>
+    </a>
   
 
   
     <a
-      href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/"
+      href="/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/"
       class="btn btn-outline-primary"
       aria-label="Newer"
     >
-      <p>Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</p>
+      <p>Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</p>
     </a>
   
 </nav>

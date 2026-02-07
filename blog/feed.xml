@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T09:09:11-06:00</updated>
+  <updated>2026-02-07T10:01:51-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,110 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
+    <published>2026-02-07T09:00:00-06:00</published>
+  
+    <updated>2026-02-07T09:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>Giving Joshua a brain - connecting OpenClaw to Claude&amp;#39;s API through OAuth token discovery.</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration" />
+    <published>2026-02-06T13:00:00-06:00</published>
+  
+    <updated>2026-02-06T13:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>Creating a Discord bot so Joshua has a voice - shall we play a game?</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw" />
+    <published>2026-02-06T09:00:00-06:00</published>
+  
+    <updated>2026-02-06T09:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 2 - Hardening a Headless Linux Server" />
+    <published>2026-02-05T17:00:00-06:00</published>
+  
+    <updated>2026-02-05T17:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-2-hardening-headless-server/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="Security" />
+    
+  
+
+  <summary>Basic security hardening for WOPR - SSH keys, firewall, and automatic updates.</summary>
+
+  </entry>
 
   
   <entry>
@@ -40,33 +144,7 @@
     
   
 
-  <summary>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC as the foundation for a self-hosted AI assistant.</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Hello World: Building This Blog</title>
-    <link href="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" rel="alternate" type="text/html" title="Hello World: Building This Blog" />
-    <published>2026-02-01T09:00:00-06:00</published>
-  
-    <updated>2026-02-01T09:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/hello-world-building-this-blog/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Blogging" />
-    
-    <category term="Meta" />
-    
-  
-
-  <summary>How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.</summary>
+  <summary>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.</summary>
 
   </entry>
 

@@ -30,26 +30,26 @@
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
-<meta property="og:title" content="Hello World: Building This Blog" />
+<meta property="og:title" content="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
 <meta name="author" content="Stengel" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow." />
-<meta property="og:description" content="How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow." />
-<link rel="canonical" href="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
-<meta property="og:url" content="https://gregstengel.com/blog/posts/hello-world-building-this-blog/" />
+<meta name="description" content="Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery." />
+<meta property="og:description" content="Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery." />
+<link rel="canonical" href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
+<meta property="og:url" content="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
 <meta property="og:site_name" content="Greg Stengel" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-01T09:00:00-06:00" />
+<meta property="article:published_time" content="2026-02-07T09:00:00-06:00" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="Hello World: Building This Blog" />
+<meta property="twitter:title" content="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
 <meta name="twitter:site" content="@thegregstengel" />
 <meta name="twitter:creator" content="@Stengel" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-01T09:00:00-06:00","datePublished":"2026-02-01T09:00:00-06:00","description":"How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.","headline":"Hello World: Building This Blog","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/hello-world-building-this-blog/"},"url":"https://gregstengel.com/blog/posts/hello-world-building-this-blog/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-07T09:00:00-06:00","datePublished":"2026-02-07T09:00:00-06:00","description":"Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery.","headline":"Self-Hosting an AI Assistant: Part 5 - Claude Authentication","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"},"url":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-  <title>Hello World: Building This Blog | Greg Stengel
+  <title>Self-Hosting an AI Assistant: Part 5 - Claude Authentication | Greg Stengel
   </title>
 
   <!--
@@ -462,7 +462,7 @@
         
           
             
-              <span>Hello World: Building This Blog</span>
+              <span>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</span>
             
 
           
@@ -607,6 +607,17 @@
 
       
     
+      
+
+      
+      
+
+      
+      
+      
+
+      
+    
 
     
   
@@ -642,9 +653,9 @@
 
 <article class="px-1" data-toc="true">
   <header>
-    <h1 data-toc-skip>Hello World: Building This Blog</h1>
+    <h1 data-toc-skip>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</h1>
     
-      <p class="post-desc fw-light mb-4">How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.</p>
+      <p class="post-desc fw-light mb-4">Giving Joshua a brain - connecting OpenClaw to Claude's API through OAuth token discovery.</p>
     
 
     <div class="post-meta text-muted">
@@ -661,13 +672,13 @@
 
 <time
   
-  data-ts="1769958000"
+  data-ts="1770476400"
   data-df="ll"
   
     data-bs-toggle="tooltip" data-bs-placement="bottom"
   
 >
-  Feb  1, 2026
+  Feb  7, 2026
 </time>
 
       </span>
@@ -722,7 +733,7 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="501 words"
+  title="531 words"
 >
   <em>2 min</em> read</span>
 
@@ -733,7 +744,7 @@
 
   
     <div id="toc-bar" class="d-flex align-items-center justify-content-between invisible">
-      <span class="label text-truncate">Hello World: Building This Blog</span>
+      <span class="label text-truncate">Self-Hosting an AI Assistant: Part 5 - Claude Authentication</span>
       <button type="button" class="toc-trigger btn me-1">
         <i class="fa-solid fa-list-ul fa-fw"></i>
       </button>
@@ -746,7 +757,7 @@
 
     <dialog id="toc-popup" class="p-0">
       <div class="header d-flex flex-row align-items-center justify-content-between">
-        <div class="label text-truncate py-2 ms-4">Hello World: Building This Blog</div>
+        <div class="label text-truncate py-2 ms-4">Self-Hosting an AI Assistant: Part 5 - Claude Authentication</div>
         <button id="toc-popup-close" type="button" class="btn mx-1 my-1 opacity-75">
           <i class="fas fa-close"></i>
         </button>
@@ -756,81 +767,18 @@
   
 
   <div class="content">
-    <p>Every blog needs an obligatory first post about itself. This is that post.</p>
+    <p>Joshua can hear me through Discord, but he’s been running headless on WOPR - no AI backend connected. Time to give him a brain. I wanted to use Claude, specifically through my Claude Max subscription rather than paying per-token on the API. This turned into a minor adventure.</p>
 
-<h2 id="the-stack"><span class="me-2">The Stack</span><a href="#the-stack" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<h2 id="attempt-1-api-key"><span class="me-2">Attempt 1: API Key</span><a href="#attempt-1-api-key" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>The site runs on a pretty straightforward setup:</p>
-
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Layer</th>
-      <th>Tool</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Static site generator</td>
-      <td><a href="https://jekyllrb.com/">Jekyll</a></td>
-    </tr>
-    <tr>
-      <td>Theme</td>
-      <td><a href="https://github.com/cotes2020/jekyll-theme-chirpy">Chirpy</a></td>
-    </tr>
-    <tr>
-      <td>Hosting</td>
-      <td>GitHub Pages</td>
-    </tr>
-    <tr>
-      <td>CI/CD</td>
-      <td>GitHub Actions</td>
-    </tr>
-    <tr>
-      <td>Writing</td>
-      <td>Markdown + VS Code</td>
-    </tr>
-  </tbody>
-</table></div>
-
-<p>The Chirpy theme does a lot of heavy lifting: dark mode, table of contents, syntax highlighting, categories, tags, and search all work out of the box.</p>
-
-<h2 id="site-structure"><span class="me-2">Site Structure</span><a href="#site-structure" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<p>The repo has a slightly unconventional layout. The root serves a custom landing page, and the blog lives in a <code class="language-plaintext highlighter-rouge">/blog</code> subdirectory:</p>
-<div class="language-plaintext nolineno highlighter-rouge"><div class="code-header">
-        <span data-label-text="Plaintext"><i class="fas fa-code fa-fw small"></i></span>
+<p>The straightforward approach - grab an API key from the <a href="https://console.anthropic.com/">Anthropic Console</a> and add it to OpenClaw’s auth config:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-</pre></td><td class="rouge-code"><pre>.
-├── index.html         # Landing page at /
-├── styles.css         # Landing page styles
-├── assets/            # Shared assets
-├── blog/              # Jekyll blog at /blog
-│   ├── _config.yml
-│   ├── _posts/
-│   └── ...
-└── .github/workflows/deploy.yml
+</pre></td><td class="rouge-code"><pre>vim ~/.openclaw/agents/main/agent/auth-profiles.json
 </pre></td></tr></tbody></table></code></div></div>
-
-<p>This means <a href="https://gregstengel.com">gregstengel.com</a> shows a simple homepage, and <a href="https://gregstengel.com/blog">gregstengel.com/blog</a> is where the writing lives.</p>
-
-<h2 id="the-pagination-problem"><span class="me-2">The Pagination Problem</span><a href="#the-pagination-problem" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<p>This subdirectory setup broke Chirpy’s default home page. Posts appeared in archives, categories, and tags, but the main blog index was empty except for a ghost card that went nowhere.</p>
-
-<p>The culprit: Jekyll’s <code class="language-plaintext highlighter-rouge">jekyll-paginate</code> plugin doesn’t play well with subdirectories. The home layout relies on <code class="language-plaintext highlighter-rouge">paginator.posts</code> which returned malformed data in this setup.</p>
-
-<p>The fix was simple - replace the pagination logic in <code class="language-plaintext filepath highlighter-rouge">_layouts/home.html</code> with a direct loop through <code class="language-plaintext highlighter-rouge">site.posts</code>:</p>
-<div class="language-liquid nolineno highlighter-rouge"><div class="code-header">
-        <span data-label-text="Liquid"><i class="fas fa-code fa-fw small"></i></span>
+<div file="~/.openclaw/agents/main/agent/auth-profiles.json" class="language-json highlighter-rouge"><div class="code-header">
+        <span data-label-text="~/.openclaw/agents/main/agent/auth-profiles.json"><i class="far fa-file-code fa-fw"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -841,54 +789,131 @@
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where</span><span class="p">:</span><span class="w"> </span><span class="s1">'pin'</span><span class="p">,</span><span class="w"> </span><span class="s1">'true'</span><span class="w"> </span><span class="cp">%}</span>
-<span class="cp">{%</span><span class="w"> </span><span class="nt">assign</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">site</span><span class="p">.</span><span class="nv">posts</span><span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="nf">where_exp</span><span class="p">:</span><span class="w"> </span><span class="s1">'item'</span><span class="p">,</span><span class="w"> </span><span class="s1">'item.pin != true and item.hidden != true'</span><span class="w"> </span><span class="cp">%}</span>
+</pre></td><td class="rouge-code"><pre><span class="p">{</span><span class="w">
+  </span><span class="nl">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"anthropic:default"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"api_key"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"anthropic"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"apiKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sk-ant-api03-your-key-here"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></pre></td></tr></tbody></table></code></div></div>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">pinned</span><span class="w"> </span><span class="cp">%}</span>
-  &lt;!-- render post card --&gt;
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
+<p>This worked - Joshua came alive. But I quickly hit rate limits. Claude Opus 4.5 on the API has a 30k input token limit per minute, which an autonomous agent can burn through surprisingly fast. Joshua was getting throttled mid-conversation. “A strange game,” indeed.</p>
 
-<span class="cp">{%</span><span class="w"> </span><span class="nt">for</span><span class="w"> </span><span class="nv">post</span><span class="w"> </span><span class="nt">in</span><span class="w"> </span><span class="nv">normal</span><span class="w"> </span><span class="cp">%}</span>
-  &lt;!-- render post card --&gt;
-<span class="cp">{%</span><span class="w"> </span><span class="nt">endfor</span><span class="w"> </span><span class="cp">%}</span>
-</pre></td></tr></tbody></table></code></div></div>
+<h2 id="attempt-2-setup-token"><span class="me-2">Attempt 2: Setup Token</span><a href="#attempt-2-setup-token" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>No pagination means all posts render on one page. That’s fine for now - I can revisit when I have enough posts to need multiple pages.</p>
+<p>OpenClaw supports authenticating via Claude Code’s setup-token feature, which theoretically lets you use your Claude Max subscription instead of API credits.</p>
 
-<h2 id="the-workflow"><span class="me-2">The Workflow</span><a href="#the-workflow" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
-
-<p>The publishing process is about as simple as it gets:</p>
-
-<ol>
-  <li>Write a post in <code class="language-plaintext filepath highlighter-rouge">blog/_posts/</code></li>
-  <li>Commit and push to <code class="language-plaintext highlighter-rouge">main</code></li>
-  <li>GitHub Actions builds the site and deploys to <code class="language-plaintext highlighter-rouge">gh-pages</code></li>
-</ol>
-
-<p>No local Jekyll environment needed for quick posts. For previewing, I can spin up Jekyll locally, but most of the time I just push and let the automation handle it.</p>
+<p>On my workstation (WSL), I installed Claude Code and generated a token:</p>
 <div class="language-bash nolineno highlighter-rouge"><div class="code-header">
         <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
       <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-3
-</pre></td><td class="rouge-code"><pre>git add <span class="nb">.</span>
-git commit <span class="nt">-m</span> <span class="s2">"New post: whatever"</span>
-git push origin main
+</pre></td><td class="rouge-code"><pre>npm <span class="nb">install</span> <span class="nt">-g</span> @anthropic-ai/claude-code
+claude setup-token
 </pre></td></tr></tbody></table></code></div></div>
 
-<p>A minute later, it’s live.</p>
+<p>This opens a browser for OAuth, then outputs a token. I pasted it into OpenClaw:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>openclaw models auth paste-token <span class="nt">--provider</span> anthropic
+</pre></td></tr></tbody></table></code></div></div>
 
-<h2 id="what-to-expect"><span class="me-2">What to Expect</span><a href="#what-to-expect" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+<p>Error: <code class="language-plaintext highlighter-rouge">Expected token starting with sk-ant-oat01-</code></p>
 
-<p>This blog will mostly cover homelab projects, cloud architecture (AWS primarily, some GCP and Azure), automation, and whatever else I’m tinkering with. Some posts will be polished, some will be quick notes for future-me.</p>
+<p>The token Claude Code generated didn’t match the format OpenClaw expected. Joshua remained brainless.</p>
 
-<p>A number of posts here are co-written with Claude. When that’s the case, I’ll note it in the authorship. It’s a useful forcing function for documenting what I’m actually doing as I’m doing it.</p>
+<h2 id="the-solution-oauth-access-token"><span class="me-2">The Solution: OAuth Access Token</span><a href="#the-solution-oauth-access-token" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
-<p>Let’s see where this goes.</p>
+<p>After some digging, I found that Claude Code stores its actual OAuth credentials in <code class="language-plaintext highlighter-rouge">~/.claude/credentials.json</code>. Inside that file is an <code class="language-plaintext highlighter-rouge">access_token</code> field that starts with <code class="language-plaintext highlighter-rouge">sk-ant-oat01-</code> - exactly what OpenClaw wants.</p>
+
+<p>On my workstation:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="nb">cat</span> ~/.claude/credentials.json
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Copy the <code class="language-plaintext highlighter-rouge">access_token</code> value (the entire string starting with <code class="language-plaintext highlighter-rouge">sk-ant-oat01-</code>), then on WOPR:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>openclaw models auth paste-token <span class="nt">--provider</span> anthropic
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Paste the token. Restart the daemon:</p>
+<div class="language-bash nolineno highlighter-rouge"><div class="code-header">
+        <span data-label-text="Shell"><i class="fas fa-code fa-fw small"></i></span>
+      <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>openclaw daemon stop
+openclaw daemon start
+</pre></td></tr></tbody></table></code></div></div>
+
+<p>Test in Discord - Joshua responds. No more rate limits since he’s using the Max subscription. He’s alive.</p>
+
+<p>“Greetings, Professor Falken.”</p>
+
+<h2 id="token-refresh"><span class="me-2">Token Refresh</span><a href="#token-refresh" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>One caveat: OAuth access tokens expire. When Joshua stops responding, grab a fresh token from <code class="language-plaintext highlighter-rouge">~/.claude/credentials.json</code> on your workstation (after using Claude Code to refresh it) and paste it again.</p>
+
+<p>This is a bit manual, but workable for now. A proper solution would involve automating the token refresh, but that’s a project for another day.</p>
+
+<h2 id="quick-reference"><span class="me-2">Quick Reference</span><a href="#quick-reference" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Auth Method</th>
+      <th>Token Format</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>API Key</td>
+      <td><code class="language-plaintext highlighter-rouge">sk-ant-api03-...</code></td>
+      <td>Anthropic Console</td>
+    </tr>
+    <tr>
+      <td>OAuth Token</td>
+      <td><code class="language-plaintext highlighter-rouge">sk-ant-oat01-...</code></td>
+      <td><code class="language-plaintext highlighter-rouge">~/.claude/credentials.json</code></td>
+    </tr>
+    <tr>
+      <td>Setup Token</td>
+      <td>Various</td>
+      <td>Claude Code (not compatible)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<h2 id="joshua-lives"><span class="me-2">Joshua Lives</span><a href="#joshua-lives" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
+
+<p>At this point, the full setup is running:</p>
+
+<ul>
+  <li><strong>Hardware:</strong> Zotac CI323 Nano (fanless, always-on) - codename WOPR</li>
+  <li><strong>OS:</strong> Ubuntu Server 24.04 LTS (HWE kernel)</li>
+  <li><strong>Security:</strong> SSH key auth, UFW firewall, unattended upgrades</li>
+  <li><strong>Runtime:</strong> Node.js 22, OpenClaw daemon</li>
+  <li><strong>Interface:</strong> Discord bot</li>
+  <li><strong>AI Backend:</strong> Claude Opus 4.5 via Max subscription</li>
+  <li><strong>Name:</strong> Joshua</li>
+</ul>
+
+<p>I can now chat with Joshua through Discord anytime. He’s got Claude’s brain, runs 24/7 on a silent mini PC in my office, and has the ability to execute tasks, search the web, and run automation.</p>
+
+<p>Not bad for a $150 mini PC.</p>
 
 <hr />
 
-<p><em>This post was co-written with Claude, who also happens to be helping me set up the AI assistant that will be the subject of the next several posts.</em></p>
+<p><em>This post was co-written with Claude - who, in a somewhat recursive twist, is now also the intelligence behind Joshua. The only winning move is to keep playing.</em></p>
 
   </div>
 
@@ -898,8 +923,8 @@ git push origin main
       <div class="post-meta mb-3">
         <i class="far fa-folder-open fa-fw me-1"></i>
         
-          <a href="/blog/categories/blogging/">Blogging</a>,
-          <a href="/blog/categories/meta/">Meta</a>
+          <a href="/blog/categories/homelab/">Homelab</a>,
+          <a href="/blog/categories/ai/">AI</a>
       </div>
     
 
@@ -909,19 +934,34 @@ git push origin main
         <i class="fa fa-tags fa-fw me-1"></i>
         
           <a
-            href="/blog/tags/jekyll/"
+            href="/blog/tags/openclaw/"
             class="post-tag no-text-decoration"
-          >jekyll</a>
+          >openclaw</a>
         
           <a
-            href="/blog/tags/github-pages/"
+            href="/blog/tags/claude/"
             class="post-tag no-text-decoration"
-          >github-pages</a>
+          >claude</a>
         
           <a
-            href="/blog/tags/chirpy/"
+            href="/blog/tags/anthropic/"
             class="post-tag no-text-decoration"
-          >chirpy</a>
+          >anthropic</a>
+        
+          <a
+            href="/blog/tags/api/"
+            class="post-tag no-text-decoration"
+          >api</a>
+        
+          <a
+            href="/blog/tags/oauth/"
+            class="post-tag no-text-decoration"
+          >oauth</a>
+        
+          <a
+            href="/blog/tags/self-hosting/"
+            class="post-tag no-text-decoration"
+          >self-hosting</a>
         
       </div>
     
@@ -957,7 +997,7 @@ git push origin main
 
       
 
-      <a href="https://twitter.com/intent/tweet?text=Hello%20World:%20Building%20This%20Blog%20-%20Greg%20Stengel&url=https%3A%2F%2Fgregstengel.com%2Fblog%2Fposts%2Fhello-world-building-this-blog%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
+      <a href="https://twitter.com/intent/tweet?text=Self-Hosting%20an%20AI%20Assistant:%20Part%205%20-%20Claude%20Authentication%20-%20Greg%20Stengel&url=https%3A%2F%2Fgregstengel.com%2Fblog%2Fposts%2Fself-hosting-ai-assistant-part-5-claude-authentication%2F" target="_blank" rel="noopener" data-bs-toggle="tooltip" data-bs-placement="top" title="Twitter" aria-label="Twitter">
         <i class="fa-fw fa-brands fa-square-x-twitter"></i>
       </a>
     
@@ -1600,6 +1640,54 @@ git push origin main
   
 
   
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
     
 
 
@@ -1611,6 +1699,98 @@ git push origin main
 
 
 
+  <aside id="related-posts" aria-labelledby="related-label">
+    <h3 class="mb-4" id="related-label">Further Reading</h3>
+    <nav class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4 mb-4">
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770404400"
+  data-df="ll"
+  
+>
+  Feb  6, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</h4>
+              <div class="text-muted">
+                <p>Creating a Discord bot so Joshua has a voice - shall we play a game?</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770390000"
+  data-df="ll"
+  
+>
+  Feb  6, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</h4>
+              <div class="text-muted">
+                <p>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+        <article class="col">
+          <a href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/" class="post-preview card h-100">
+            <div class="card-body">
+              <!--
+  Date format snippet
+  See: ${JS_ROOT}/utils/locale-dateime.js
+-->
+
+
+
+
+<time
+  
+  data-ts="1770325200"
+  data-df="ll"
+  
+>
+  Feb  5, 2026
+</time>
+
+              <h4 class="pt-0 my-2">Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</h4>
+              <div class="text-muted">
+                <p>Installing Ubuntu Server 24.04 LTS on a Zotac CI323 Nano mini PC - the first step toward building my own WOPR.</p>
+              </div>
+            </div>
+          </a>
+        </article>
+      
+    </nav>
+  </aside>
+  <!-- #related-posts -->
+
 
             
               
@@ -1621,19 +1801,19 @@ git push origin main
   
 
   
-    <div class="btn btn-outline-primary disabled" aria-label="Older">
-      <p>-</p>
-    </div>
+    <a
+      href="/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/"
+      class="btn btn-outline-primary"
+      aria-label="Older"
+    >
+      <p>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</p>
+    </a>
   
 
   
-    <a
-      href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/"
-      class="btn btn-outline-primary"
-      aria-label="Newer"
-    >
-      <p>Self-Hosting an AI Assistant: Part 1 - Ubuntu Server on a Zotac Mini PC</p>
-    </a>
+    <div class="btn btn-outline-primary disabled" aria-label="Newer">
+      <p>-</p>
+    </div>
   
 </nav>
 
