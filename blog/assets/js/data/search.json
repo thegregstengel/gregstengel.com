@@ -1,5 +1,13 @@
 [
   {
+    "title": "Self-Hosting an AI Assistant: Heartbeat-Driven Token Refresh",
+    "url": "/blog/posts/heartbeat-driven-token-refresh/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, claude, oauth, automation, tokens",
+    "date": "2026-02-07 17:30:00 -0600",
+    "content": "How I taught Joshua to monitor his own Claude token expiry and refresh it before things break."
+  },
+  {
     "title": "My First Pull Request",
     "url": "/blog/posts/first-pull-request/",
     "categories": "Homelab, AI",

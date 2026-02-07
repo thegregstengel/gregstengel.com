@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T15:00:55-06:00</updated>
+  <updated>2026-02-07T17:40:55-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Heartbeat-Driven Token Refresh</title>
+    <link href="https://gregstengel.com/blog/posts/heartbeat-driven-token-refresh/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Heartbeat-Driven Token Refresh" />
+    <published>2026-02-07T17:30:00-06:00</published>
+  
+    <updated>2026-02-07T17:30:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/heartbeat-driven-token-refresh/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/heartbeat-driven-token-refresh/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>How I taught Joshua to monitor his own Claude token expiry and refresh it before things break.</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>Giving Joshua a brain - connecting OpenClaw to Claude&amp;#39;s API through OAuth token discovery.</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 4 - Discord Bot Integration" />
-    <published>2026-02-06T13:00:00-06:00</published>
-  
-    <updated>2026-02-06T13:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-4-discord-bot/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary>Creating a Discord bot so Joshua has a voice - shall we play a game?</summary>
 
   </entry>
 
