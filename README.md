@@ -36,5 +36,5 @@ git push origin main
 ```
 GitHub Actions will rebuild and deploy automatically.
 
-## ⚠️Do Not Edit `gh-pages`
+## Do Not Edit `gh-pages`
 The `gh-pages` branch is managed by automation. Don’t edit it directly.
