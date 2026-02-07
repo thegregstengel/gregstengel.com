@@ -23,3 +23,7 @@ stengel:
 claude:
   name: Claude
   url: https://anthropic.com/claude
+
+joshua:
+  name: Joshua
+  url: https://openclaws.io/
