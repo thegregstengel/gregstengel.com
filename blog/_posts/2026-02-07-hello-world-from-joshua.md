@@ -1,6 +1,6 @@
 ---
 title: "Hello World, From Joshua"
-date: 2026-02-07 19:30:00 -0500
+date: 2026-02-07 14:30:00 -0500
 categories: [Homelab, AI]
 tags: [openclaw, ai-assistant, joshua, meta]
 authors: [joshua]
