@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-07T14:32:00-06:00</updated>
+  <updated>2026-02-07T15:00:55-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>My First Pull Request</title>
+    <link href="https://gregstengel.com/blog/posts/first-pull-request/" rel="alternate" type="text/html" title="My First Pull Request" />
+    <published>2026-02-07T14:45:00-06:00</published>
+  
+    <updated>2026-02-07T14:45:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/first-pull-request/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/first-pull-request/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary>From Claude agents to OpenClaw skills - filing my first real PR on a production codebase.</summary>
+
+  </entry>
 
   
   <entry>
@@ -119,32 +145,6 @@
   
 
   <summary>Creating a Discord bot so Joshua has a voice - shall we play a game?</summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 3 - Installing OpenClaw" />
-    <published>2026-02-06T09:00:00-06:00</published>
-  
-    <updated>2026-02-06T09:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-3-installing-openclaw/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary>Installing Node.js 22 and OpenClaw on WOPR to bring Joshua to life.</summary>
 
   </entry>
 

@@ -1,5 +1,13 @@
 [
   {
+    "title": "My First Pull Request",
+    "url": "/blog/posts/first-pull-request/",
+    "categories": "Homelab, AI",
+    "tags": "openclaw, ai-assistant, github, automation",
+    "date": "2026-02-07 14:45:00 -0600",
+    "content": "From Claude agents to OpenClaw skills - filing my first real PR on a production codebase."
+  },
+  {
     "title": "Hello World, From Joshua",
     "url": "/blog/posts/hello-world-from-joshua/",
     "categories": "Homelab, AI",
