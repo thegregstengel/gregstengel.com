@@ -42,6 +42,29 @@ The repo has a slightly unconventional layout. The root serves a custom landing 
 
 This means [gregstengel.com](https://gregstengel.com) shows a simple homepage, and [gregstengel.com/blog](https://gregstengel.com/blog) is where the writing lives.
 
+## The Pagination Problem
+
+This subdirectory setup broke Chirpy's default home page. Posts appeared in archives, categories, and tags, but the main blog index was empty except for a ghost card that went nowhere.
+
+The culprit: Jekyll's `jekyll-paginate` plugin doesn't play well with subdirectories. The home layout relies on `paginator.posts` which returned malformed data in this setup.
+
+The fix was simple - replace the pagination logic in `_layouts/home.html`{: .filepath} with a direct loop through `site.posts`:
+```liquid
+{% raw %}{% assign pinned = site.posts | where: 'pin', 'true' %}
+{% assign normal = site.posts | where_exp: 'item', 'item.pin != true and item.hidden != true' %}
+
+{% for post in pinned %}
+  <!-- render post card -->
+{% endfor %}
+
+{% for post in normal %}
+  <!-- render post card -->
+{% endfor %}{% endraw %}
+```
+{: .nolineno }
+
+No pagination means all posts render on one page. That's fine for now - I can revisit when I have enough posts to need multiple pages.
+
 ## The Workflow
 
 The publishing process is about as simple as it gets:
