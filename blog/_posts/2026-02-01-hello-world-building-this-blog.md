@@ -5,7 +5,6 @@ categories: [Blogging, Meta]
 tags: [jekyll, github-pages, chirpy]
 authors: [stengel, claude]
 description: How this blog is built and deployed - Jekyll, Chirpy, GitHub Pages, and a simple workflow.
-pin: true
 ---
 
 Every blog needs an obligatory first post about itself. This is that post.
