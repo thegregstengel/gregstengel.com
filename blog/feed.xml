@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-13T06:48:10-06:00</updated>
+  <updated>2026-02-13T06:54:42-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,32 +17,6 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
-
-  
-  <entry>
-    <title>Big Bang Smugglers: Ship Catalog Design</title>
-    <link href="https://gregstengel.com/blog/posts/ship-catalog-design/" rel="alternate" type="text/html" title="Big Bang Smugglers: Ship Catalog Design" />
-    <published>2026-02-13T05:48:00-06:00</published>
-  
-    <updated>2026-02-13T05:48:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/ship-catalog-design/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/ship-catalog-design/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Big Bang Smugglers" />
-    
-    <category term="Game Design" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
 
   
   <entry>
@@ -132,6 +106,32 @@
   
     <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/</id>
     <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</title>
+    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
+    <published>2026-02-07T09:00:00-06:00</published>
+  
+    <updated>2026-02-07T09:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
     <author>
       <name>Greg Stengel</name>
     </author>
