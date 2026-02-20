@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-02-13T06:54:42-06:00</updated>
+  <updated>2026-02-20T11:55:31-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,58 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Shall We Play a Game? — Joshua Joins Bikini Bottom</title>
+    <link href="https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/" rel="alternate" type="text/html" title="Shall We Play a Game? — Joshua Joins Bikini Bottom" />
+    <published>2026-02-20T10:00:00-06:00</published>
+  
+    <updated>2026-02-20T10:00:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Homelab" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Discord-Driven Development: AI Pair Programming at Scale</title>
+    <link href="https://gregstengel.com/blog/posts/discord-driven-development/" rel="alternate" type="text/html" title="Discord-Driven Development: AI Pair Programming at Scale" />
+    <published>2026-02-13T18:45:00-06:00</published>
+  
+    <updated>2026-02-13T18:45:00-06:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/discord-driven-development/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/discord-driven-development/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Development" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
 
   
   <entry>
@@ -80,58 +132,6 @@
   
     <id>https://gregstengel.com/blog/posts/hello-world-from-joshua/</id>
     <content type="text/html" src="https://gregstengel.com/blog/posts/hello-world-from-joshua/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 6 - Personality and Configuration</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 6 - Personality and Configuration" />
-    <published>2026-02-07T13:00:00-06:00</published>
-  
-    <updated>2026-02-07T13:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-6-personality-and-config/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Self-Hosting an AI Assistant: Part 5 - Claude Authentication</title>
-    <link href="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" rel="alternate" type="text/html" title="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
-    <published>2026-02-07T09:00:00-06:00</published>
-  
-    <updated>2026-02-07T09:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
     <author>
       <name>Greg Stengel</name>
     </author>
