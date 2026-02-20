@@ -1,9 +1,10 @@
 ---
-layout: post
 title: "Four Agents, Eight Bugs, One Push"
 date: 2026-02-20 17:00:00 -0500
-categories: [ai, development, big-bang-smugglers]
+categories: [Development, AI]
 tags: [openclaw, joshua, subagents, qa, big-bang-smugglers]
+authors: [stengel, joshua]
+description: I played my own game and found 8 bugs. Then I spawned 4 AI agents to fix them simultaneously. Here's how that afternoon went.
 ---
 
 Earlier today I played my own game and broke it in eight different ways. By evening, four AI agents were fixing them simultaneously. Here's how that happened.
