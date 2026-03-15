@@ -127,4 +127,4 @@ But for now, it does what I need: one tab on my laptop that tells me Joshua is a
 
 ---
 
-*Crystal Palace was built by Greg and Claude in a single session. The name comes from the Crystal Palace in London - a glass structure where you can see everything inside. Which is exactly what a mission control dashboard should be.*
+*Crystal Palace was built by Greg and Claude in a single session.*
