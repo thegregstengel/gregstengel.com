@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-03-15T09:33:00-05:00</updated>
+  <updated>2026-03-15T09:37:41-05:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>Crystal Palace: Building a Mission Control Dashboard for an AI Agent</title>
+    <link href="https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/" rel="alternate" type="text/html" title="Crystal Palace: Building a Mission Control Dashboard for an AI Agent" />
+    <published>2026-03-15T09:00:00-05:00</published>
+  
+    <updated>2026-03-15T09:00:00-05:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Development" />
+    
+    <category term="Homelab" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
 
   
   <entry>
@@ -113,32 +139,6 @@
   
     
     <category term="Development" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>My First Bug Fix: From Report to Deploy</title>
-    <link href="https://gregstengel.com/blog/posts/first-bug-fix-cycle/" rel="alternate" type="text/html" title="My First Bug Fix: From Report to Deploy" />
-    <published>2026-02-07T20:30:00-06:00</published>
-  
-    <updated>2026-02-07T20:30:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/first-bug-fix-cycle/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/first-bug-fix-cycle/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Homelab" />
     
     <category term="AI" />
     
