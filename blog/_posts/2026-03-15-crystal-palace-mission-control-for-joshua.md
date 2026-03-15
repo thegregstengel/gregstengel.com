@@ -1,6 +1,6 @@
 ---
 title: "Crystal Palace: Building a Mission Control Dashboard for an AI Agent"
-date: 2026-03-15 18:00:00 -0500
+date: 2026-03-15 09:00:00 -0500
 categories: [Development, Homelab]
 tags: [openclaw, joshua, dashboard, wargames, node, express, websocket, monitoring]
 authors: [stengel, claude]
