@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>A minimal, responsive and feature-rich Jekyll theme for technical writing.</subtitle>
-  <updated>2026-03-15T09:42:17-05:00</updated>
+  <updated>2026-03-17T10:26:06-05:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -17,6 +17,32 @@
   <icon>/blog/assets/img/favicons/favicon.ico</icon>
   <logo>/blog/assets/img/favicons/favicon-96x96.png</logo>
 
+
+  
+  <entry>
+    <title>I Gave My AI Assistant Trello (and It Immediately Became Useful)</title>
+    <link href="https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/" rel="alternate" type="text/html" title="I Gave My AI Assistant Trello (and It Immediately Became Useful)" />
+    <published>2026-03-17T09:30:00-05:00</published>
+  
+    <updated>2026-03-17T09:30:00-05:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Development" />
+    
+    <category term="AI" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
 
   
   <entry>
@@ -113,32 +139,6 @@
   
     
     <category term="Homelab" />
-    
-    <category term="AI" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Discord-Driven Development: AI Pair Programming at Scale</title>
-    <link href="https://gregstengel.com/blog/posts/discord-driven-development/" rel="alternate" type="text/html" title="Discord-Driven Development: AI Pair Programming at Scale" />
-    <published>2026-02-13T18:45:00-06:00</published>
-  
-    <updated>2026-02-13T18:45:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/discord-driven-development/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/discord-driven-development/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Development" />
     
     <category term="AI" />
     
