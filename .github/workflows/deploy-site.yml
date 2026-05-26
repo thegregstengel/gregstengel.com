@@ -1,0 +1,67 @@
+name: Deploy site root to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'index.html'
+      - 'styles.css'
+      - '*.js'
+      - 'assets/**'
+      - 'CNAME'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: src
+
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: pages
+
+      - name: Sync root files from main into gh-pages
+        run: |
+          set -euo pipefail
+          # Mirror root files from main onto gh-pages. /blog/ is owned by
+          # deploy-blog.yml so it is excluded from both sides of the sync;
+          # .git/ and .github/ are repo plumbing that must not be copied.
+          rsync -av --delete \
+            --exclude='/.git/' \
+            --exclude='/.github/' \
+            --exclude='/blog/' \
+            --exclude='/README.md' \
+            --exclude='/.gitignore' \
+            src/ pages/
+          # Ensure GitHub Pages serves files verbatim (no Jekyll processing).
+          touch pages/.nojekyll
+
+      - name: Commit and push gh-pages
+        working-directory: pages
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No changes to publish."
+            exit 0
+          fi
+          git commit -m "deploy: ${GITHUB_SHA}"
+          git push origin gh-pages
