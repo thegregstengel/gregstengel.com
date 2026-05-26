@@ -31,17 +31,82 @@
 
 /* Body element - Sets up the page foundation */
 body {
-  /* Font stack - Uses system fonts for best performance and native feel */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Robbo, "Helvetica Neue", Arial, sans-serif;
-  
-  /* Apply color variables */
-  background-color: var(--background);  /* Uses the background variable */
-  color: var(--foreground);             /* Uses the text color variable */
-  
-  /* Background pattern setup */
-  background-image: url('assets/main_background_tile.png');  /* Tiled background image */
-  background-repeat: repeat;            /* Tiles the image across entire background */
-  background-size: 256px 256px;        /* Sets the size of each tile */
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* ========================================
+   DYNAMIC ICON BACKGROUND
+   ======================================== */
+
+.icon-background {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.icon-background::before,
+.icon-background::after {
+  /* Subtle radial vignette to keep edges calm and focus center */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.icon-background::before {
+  background: radial-gradient(ellipse at center,
+              transparent 0%,
+              transparent 40%,
+              var(--background) 110%);
+  opacity: 0.85;
+  z-index: 2;
+}
+
+.bg-icon {
+  position: absolute;
+  display: block;
+  width: var(--size, 56px);
+  height: var(--size, 56px);
+  opacity: 0;
+  filter: saturate(0.85);
+  animation:
+    bgIconFloat var(--float-duration, 28s) ease-in-out var(--float-delay, 0s) infinite,
+    bgIconFade var(--fade-duration, 14s) ease-in-out var(--fade-delay, 0s) infinite;
+  will-change: transform, opacity;
+}
+
+.bg-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+@keyframes bgIconFloat {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  50%  { transform: translate3d(var(--drift-x, 20px), var(--drift-y, -20px), 0) rotate(var(--drift-rot, 6deg)); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+@keyframes bgIconFade {
+  0%, 100% { opacity: 0; }
+  20%, 80% { opacity: var(--peak-opacity, 0.22); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-icon {
+    animation: none;
+    opacity: var(--peak-opacity, 0.18);
+  }
 }
 
 /* ========================================
@@ -50,12 +115,12 @@ body {
 
 /* Main container - Creates the centered layout using flexbox */
 .container {
-  min-height: 100vh;           /* Takes full viewport height (100vh = 100% of screen height) */
-  display: flex;               /* Enables flexbox layout */
-  align-items: center;         /* Centers content vertically */
-  justify-content: center;     /* Centers content horizontally */
-  position: relative;          /* Allows z-index positioning for child elements */
-  overflow: hidden;            /* Prevents any content from overflowing container */
+  min-height: 100vh;           /* Takes full viewport height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;                  /* Sits above .icon-background */
 }
 
 /* Content wrapper - Contains all the main content elements */
