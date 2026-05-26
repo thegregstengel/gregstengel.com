@@ -1,280 +1,785 @@
-/* ========================================
-   CSS CUSTOM PROPERTIES (VARIABLES)
-   ======================================== */
+/* =====================================================================
+   gregstengel.com — Nightshift
+   Aesthetic: a quiet, confident operator's workshop at night.
+   Stack: vanilla HTML/CSS/JS. No build step.
+   ===================================================================== */
 
-/* Light mode color scheme - Default appearance */
+/* ---------------------------------------------------------------------
+   1. Tokens
+   --------------------------------------------------------------------- */
+
 :root {
-  --background: hsl(0, 0%, 97%);        /* Light gray background */
-  --foreground: hsl(0, 0%, 0%);         /* Black text color */
-  --primary: hsl(0, 0%, 0%);            /* Black accent/hover color */
-  --profile-shadow: hsl(0, 0%, 0%, 0.1); /* Black shadow with 10% opacity */
-  --card-bg: hsla(0, 0%, 100%, 0.72);   /* Frosted white panel behind content */
-  --card-border: hsla(0, 0%, 100%, 0.55);
-  --card-shadow: 0 18px 50px hsla(0, 0%, 0%, 0.12), 0 2px 8px hsla(0, 0%, 0%, 0.06);
+  /* Color (dark default) */
+  --bg:           #0a0a0f;
+  --bg-elev-1:    rgba(255, 255, 255, 0.025);
+  --bg-elev-2:    rgba(255, 255, 255, 0.045);
+  --border:       rgba(255, 255, 255, 0.07);
+  --border-soft:  rgba(255, 255, 255, 0.04);
+
+  --text:         #f4f0e8;   /* warm white */
+  --text-soft:    #b8b0a4;
+  --text-mute:    #6f6a62;
+  --text-faint:   #4a463f;
+
+  --accent:       #ff8c42;   /* warm orange */
+  --accent-hi:    #ffb27a;
+  --accent-lo:    rgba(255, 140, 66, 0.18);
+  --signal:       #9bb37e;   /* sage for the "online" dot */
+  --signal-glow:  rgba(155, 179, 126, 0.55);
+
+  /* Type */
+  --font-sans: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  /* Rhythm */
+  --measure: 36rem;
+  --col:     min(56rem, 100% - 2.5rem);
+  --rhythm:  clamp(2rem, 5vw, 4rem);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --t-1: 220ms;
+  --t-2: 420ms;
+  --t-3: 700ms;
 }
 
-/* Dark mode override class - Can be toggled via JavaScript */
-.dark {
-  --background: hsl(220, 8%, 8%);       /* Very dark blue-gray background */
-  --foreground: hsl(220, 4%, 92%);      /* Light gray text for dark mode */
-  --primary: hsl(220, 4%, 92%);         /* Light gray accent for dark mode */
-  --profile-shadow: hsl(220, 4%, 92%, 0.1); /* Light shadow for dark mode */
-  --card-bg: hsla(220, 8%, 12%, 0.62);
-  --card-border: hsla(220, 4%, 92%, 0.10);
-  --card-shadow: 0 18px 50px hsla(0, 0%, 0%, 0.55), 0 2px 8px hsla(0, 0%, 0%, 0.35);
+[data-theme="light"] {
+  --bg:           #f7f4ec;
+  --bg-elev-1:    rgba(0, 0, 0, 0.025);
+  --bg-elev-2:    rgba(0, 0, 0, 0.04);
+  --border:       rgba(0, 0, 0, 0.08);
+  --border-soft:  rgba(0, 0, 0, 0.05);
+
+  --text:         #1b1814;
+  --text-soft:    #5a554c;
+  --text-mute:    #8c867b;
+  --text-faint:   #b8b1a3;
+
+  --accent:       #c25620;
+  --accent-hi:    #a9461a;
+  --accent-lo:    rgba(194, 86, 32, 0.14);
+  --signal:       #5d7242;
+  --signal-glow:  rgba(93, 114, 66, 0.4);
 }
 
-/* ========================================
-   GLOBAL RESET & BASE STYLES
-   ======================================== */
+/* ---------------------------------------------------------------------
+   2. Reset + base
+   --------------------------------------------------------------------- */
 
-/* Reset default browser margins, padding, and box model */
-* {
-  margin: 0;                    /* Remove default margins */
-  padding: 0;                   /* Remove default padding */
-  box-sizing: border-box;       /* Include padding/border in element width */
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-/* Body element - Sets up the page foundation */
+html { font-size: 16px; scroll-behavior: smooth; }
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Robbo, "Helvetica Neue", Arial, sans-serif;
-  background-color: var(--background);
-  color: var(--foreground);
+  font-family: var(--font-sans);
+  font-feature-settings: "ss01", "cv11", "tnum";
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: var(--text);
+  background: var(--bg);
   min-height: 100vh;
-  position: relative;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* ========================================
-   DYNAMIC ICON BACKGROUND
-   ======================================== */
+img, svg { max-width: 100%; display: block; }
 
-.icon-background {
+::selection { background: var(--accent); color: var(--bg); }
+
+/* Focus rings: warm orange halo */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+
+/* ---------------------------------------------------------------------
+   3. Atmosphere — slow drifting warm radial + faint film grain
+   --------------------------------------------------------------------- */
+
+.atmosphere {
   position: fixed;
-  inset: 0;
+  inset: -10vmax;
   z-index: 0;
-  overflow: hidden;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.icon-background::before,
-.icon-background::after {
-  /* Subtle radial vignette to keep edges calm and focus center */
-  content: "";
+.atmosphere-glow {
   position: absolute;
   inset: 0;
-  pointer-events: none;
+  background:
+    radial-gradient(circle at 18% 22%, var(--accent-lo) 0%, transparent 42%),
+    radial-gradient(circle at 82% 78%, rgba(255, 140, 66, 0.08) 0%, transparent 48%);
+  filter: blur(40px);
+  animation: glow-drift 32s ease-in-out infinite alternate;
+  will-change: transform;
 }
 
-.icon-background::before {
-  background: radial-gradient(ellipse at center,
-              transparent 0%,
-              transparent 40%,
-              var(--background) 110%);
-  opacity: 0.85;
-  z-index: 2;
+@keyframes glow-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(2vw, -2vh, 0) scale(1.08); }
 }
 
-.bg-icon {
+.atmosphere-grain {
   position: absolute;
-  display: block;
-  width: var(--size, 56px);
-  height: var(--size, 56px);
-  opacity: 0;
-  filter: saturate(0.85);
-  animation:
-    bgIconFloat var(--float-duration, 28s) ease-in-out var(--float-delay, 0s) infinite,
-    bgIconFade var(--fade-duration, 14s) ease-in-out var(--fade-delay, 0s) infinite;
-  will-change: transform, opacity;
+  inset: 0;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.06 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  opacity: 0.7;
+  mix-blend-mode: overlay;
 }
 
-.bg-icon img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: contain;
-  user-select: none;
-  -webkit-user-drag: none;
+[data-theme="light"] .atmosphere-grain { mix-blend-mode: multiply; opacity: 0.5; }
+
+/* ---------------------------------------------------------------------
+   4. Layout shell
+   --------------------------------------------------------------------- */
+
+.page,
+.topbar,
+.footer-inner {
+  width: var(--col);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
 }
 
-@keyframes bgIconFloat {
-  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
-  50%  { transform: translate3d(var(--drift-x, 20px), var(--drift-y, -20px), 0) rotate(var(--drift-rot, 6deg)); }
-  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
-}
+/* ---------------------------------------------------------------------
+   5. Topbar — status pill on the left, rev + theme on the right
+   --------------------------------------------------------------------- */
 
-@keyframes bgIconFade {
-  0%, 100% { opacity: 0; }
-  20%, 80% { opacity: var(--peak-opacity, 0.22); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bg-icon {
-    animation: none;
-    opacity: var(--peak-opacity, 0.18);
-  }
-}
-
-/* ========================================
-   LAYOUT CONTAINERS
-   ======================================== */
-
-/* Main container - Creates the centered layout using flexbox */
-.container {
-  min-height: 100vh;           /* Takes full viewport height */
+.topbar {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-top: clamp(1rem, 2.5vw, 1.75rem);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--text-soft);
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.75rem 0.35rem 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elev-1);
+  font-variant-numeric: tabular-nums;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--signal);
+  box-shadow: 0 0 0 0 var(--signal-glow);
+  animation: status-pulse 2.6s var(--ease-out) infinite;
+}
+
+@keyframes status-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 var(--signal-glow); }
+  50%      { box-shadow: 0 0 0 6px transparent; }
+}
+
+.status-text { color: var(--text); }
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.rev {
+  color: var(--text-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Theme toggle — tiny switch */
+.theme-toggle {
+  background: transparent;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-toggle-track {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 16px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elev-1);
+  transition: background var(--t-1), border-color var(--t-1);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--text);
+  transition: transform var(--t-2) var(--ease-out), background var(--t-1);
+}
+
+[data-theme="light"] .theme-toggle-thumb { transform: translateX(14px); background: var(--text); }
+
+.theme-toggle:hover .theme-toggle-track { border-color: var(--accent); }
+
+/* ---------------------------------------------------------------------
+   6. Hero
+   --------------------------------------------------------------------- */
+
+.hero {
+  padding-top: clamp(4rem, 12vw, 9rem);
+  padding-bottom: clamp(5rem, 14vw, 10rem);
+  min-height: calc(100vh - 5rem);
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  position: relative;
-  z-index: 1;                  /* Sits above .icon-background */
+  gap: clamp(1.25rem, 3vw, 2rem);
 }
 
-/* Content wrapper - Frosted card that keeps the title and links readable
-   over the dynamic icon background. */
-.content {
+.hero-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  animation: rise var(--t-3) var(--ease-out) 100ms forwards;
+}
+
+.hero-eyebrow-line {
+  width: 2rem;
+  height: 1px;
+  background: var(--text-mute);
+  display: inline-block;
+}
+
+.hero-name {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: clamp(3.5rem, 11vw, 8.5rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  color: var(--text);
   position: relative;
-  z-index: 10;
+  cursor: default;
+  font-feature-settings: "ss01";
+}
+
+.hero-name-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(14px);
+  animation: rise var(--t-3) var(--ease-out) forwards;
+}
+.hero-name-word:nth-child(1) { animation-delay: 220ms; }
+.hero-name-word:nth-child(2) { animation-delay: 340ms; color: var(--text-soft); }
+
+@keyframes rise {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Wry tooltip on the name — slides up on hover */
+.hero-name[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 0;
+  bottom: -1.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  color: var(--accent);
+  background: transparent;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity var(--t-2) var(--ease-out), transform var(--t-2) var(--ease-out);
+  pointer-events: none;
+}
+.hero-name[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 220ms;
+}
+
+.hero-tagline {
+  font-family: var(--font-sans);
+  font-size: clamp(1.15rem, 1.8vw, 1.4rem);
+  line-height: 1.5;
+  color: var(--text-soft);
+  max-width: 32rem;
+  margin-top: clamp(1rem, 2vw, 1.5rem);
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise var(--t-3) var(--ease-out) 500ms forwards;
+}
+.hero-tagline em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.hero-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  width: fit-content;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: rise var(--t-3) var(--ease-out) 700ms forwards;
+  padding: 0.4rem 0.2rem;
+  transition: color var(--t-1);
+}
+.hero-cue:hover { color: var(--text); }
+
+.hero-cue-arrow {
+  display: inline-block;
+  transition: transform var(--t-2) var(--ease-out);
+}
+.hero-cue:hover .hero-cue-arrow { transform: translateY(4px); }
+
+/* ---------------------------------------------------------------------
+   7. Chapters
+   --------------------------------------------------------------------- */
+
+.chapter {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(3rem, 7vw, 6rem) 0;
+  border-top: 1px solid var(--border-soft);
+}
+.chapter:first-of-type { border-top: 0; padding-top: 0; }
+
+.chapter-marker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.5rem;
+  font-family: var(--font-mono);
+  position: sticky;
+  top: clamp(2rem, 5vw, 4rem);
+  align-self: start;
+  height: fit-content;
+}
+
+.chapter-num {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--text-mute);
+  font-variant-numeric: tabular-nums;
+}
+
+.chapter-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+}
+
+.chapter-body { max-width: var(--measure); }
+
+.chapter-title {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 3.4vw, 2.4rem);
+  line-height: 1.15;
+  letter-spacing: -0.022em;
+  color: var(--text);
+  margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  /* fade-up on scroll */
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--t-3) var(--ease-out),
+              transform var(--t-3) var(--ease-out);
+}
+
+.chapter-prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-soft);
+}
+
+.chapter-prose p {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity var(--t-3) var(--ease-out),
+              transform var(--t-3) var(--ease-out);
+}
+.chapter-prose p:nth-child(2) { transition-delay: 120ms; }
+.chapter-prose p:nth-child(3) { transition-delay: 220ms; }
+
+.chapter.in-view .chapter-title,
+.chapter.in-view .chapter-prose p { opacity: 1; transform: translateY(0); }
+
+.chapter-prose strong {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.chapter-aside {
+  font-style: italic;
+  color: var(--text-mute);
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent);
+  margin-top: 0.5rem;
+}
+
+/* Inline AI/tech tokens — pill-light, mono, warm tint */
+.tool {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-weight: 500;
+  color: var(--text);
+  background: var(--accent-lo);
+  padding: 0.05em 0.45em 0.1em;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+/* ---------------------------------------------------------------------
+   8. Kit grid
+   --------------------------------------------------------------------- */
+
+.kit-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  /* fade up after the title */
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity var(--t-3) var(--ease-out) 200ms,
+              transform var(--t-3) var(--ease-out) 200ms;
+}
+.chapter.in-view .kit-grid { opacity: 1; transform: translateY(0); }
+
+.kit-card {
+  border: 1px solid var(--border);
+  background: var(--bg-elev-1);
+  border-radius: 12px;
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  transition: border-color var(--t-1), background var(--t-1), transform var(--t-2);
+}
+.kit-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-elev-2);
+  transform: translateY(-2px);
+}
+
+.kit-card--wide { grid-column: 1 / -1; }
+
+/* The AI card carries the warm accent on its label so the eye lands there first */
+.kit-card:first-child .kit-card-label { color: var(--accent); }
+.kit-card:first-child { border-color: rgba(255, 140, 66, 0.25); }
+
+.kit-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.kit-card-list {
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------------
+   9. Footer
+   --------------------------------------------------------------------- */
+
+.footer {
+  margin-top: clamp(4rem, 9vw, 7rem);
+  padding: clamp(3rem, 6vw, 5rem) 0 clamp(2rem, 5vw, 3rem);
+  border-top: 1px solid var(--border-soft);
+  position: relative;
+  z-index: 1;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+.footer-headline {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.reach {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.reach a {
+  display: grid;
+  grid-template-columns: 6.5rem 1fr;
+  gap: 1rem;
+  align-items: baseline;
+  padding: 0.25rem 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--t-1);
+}
+.reach a:hover { border-bottom-color: var(--accent); }
+
+.reach span {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.reach em {
+  font-style: normal;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  color: var(--text);
+}
+.reach a:hover em { color: var(--accent-hi); }
+
+.footer-right {
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-mute);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.footer-tag {
+  color: var(--text-soft);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: flex-end;
+}
+.footer-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px var(--accent-lo);
+}
+
+.footer-history { color: var(--text-faint); font-size: 0.72rem; }
+.footer-hint    { color: var(--text-mute); font-size: 0.72rem; }
+.footer-hint kbd {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-elev-1);
+  color: var(--text);
+}
+
+/* ---------------------------------------------------------------------
+   10. Hidden /whoami console
+   --------------------------------------------------------------------- */
+
+.console {
+  position: fixed;
+  inset: 0;
+  background: rgba(5, 5, 8, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 100;
+  display: grid;
+  place-items: center;
+  padding: var(--rhythm);
+  animation: con-bg var(--t-1) var(--ease-out);
+}
+.console[hidden] { display: none; }
+
+@keyframes con-bg { from { opacity: 0; } to { opacity: 1; } }
+
+.console-frame {
+  width: min(40rem, 100%);
+  background: linear-gradient(180deg, #0e0e15 0%, #0a0a10 100%);
+  color: var(--accent-hi);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 1px var(--border-soft),
+    0 40px 100px rgba(0, 0, 0, 0.7),
+    0 0 80px var(--accent-lo);
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+  line-height: 1.6;
+  animation: con-in 260ms var(--ease-out);
+  overflow: hidden;
+}
+
+@keyframes con-in {
+  from { transform: translateY(12px) scale(0.985); opacity: 0; }
+  to   { transform: translateY(0) scale(1);        opacity: 1; }
+}
+
+.console-head {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.7rem 0.9rem;
+  border-bottom: 1px solid var(--border-soft);
+  background: rgba(255, 140, 66, 0.04);
+}
+
+.console-dots {
+  display: inline-flex;
+  gap: 0.35rem;
+}
+.console-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+.console-dots span:first-child { background: var(--accent); }
+
+.console-title {
+  flex: 1;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--text-soft);
   text-align: center;
-  padding: 2.5rem 3rem 2rem;
-  border-radius: 1.5rem;
-  background: var(--card-bg);
-  border: 1px solid var(--card-border);
-  box-shadow: var(--card-shadow);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
 }
 
-/* Narrower padding on small screens so the card doesn't crowd the viewport */
-@media (max-width: 640px) {
-  .content {
-    padding: 2rem 1.5rem 1.5rem;
-    border-radius: 1.25rem;
+.console-close {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.15rem 0.55rem;
+  cursor: pointer;
+  transition: color var(--t-1), border-color var(--t-1);
+}
+.console-close:hover { color: var(--accent); border-color: var(--accent); }
+
+.console-body {
+  padding: 1.1rem 1.2rem 1.4rem;
+  white-space: pre-wrap;
+  min-height: 11rem;
+  color: var(--accent-hi);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+}
+
+.console-cursor {
+  display: inline-block;
+  width: 0.55em;
+  height: 1em;
+  background: var(--accent);
+  vertical-align: -2px;
+  animation: blink 1.05s steps(2, start) infinite;
+}
+@keyframes blink { to { background: transparent; } }
+
+/* ---------------------------------------------------------------------
+   11. Responsive
+   --------------------------------------------------------------------- */
+
+@media (max-width: 760px) {
+  .chapter { grid-template-columns: 1fr; gap: 1rem; }
+  .chapter-marker {
+    position: static;
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.85rem;
   }
+  .kit-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-right { text-align: left; }
+  .footer-tag { justify-content: flex-start; }
 }
 
-/* ========================================
-   PROFILE SECTION
-   ======================================== */
-
-/* Profile image container */
-.profile-section {
-  margin-bottom: 1.5rem;      /* Adds space below the profile image (1.5rem = ~24px) */
+@media (max-width: 520px) {
+  .topbar { font-size: 0.72rem; flex-wrap: wrap; gap: 0.75rem; }
+  .hero-name { letter-spacing: -0.035em; }
+  .reach a { grid-template-columns: 5rem 1fr; gap: 0.65rem; }
 }
 
-/* Profile image styling */
-.profile-image {
-  width: 8rem;                 /* Image width (8rem = ~128px) */
-  height: 8rem;                /* Image height (8rem = ~128px) */
-  border-radius: 50%;          /* Makes image perfectly circular */
-  box-shadow: 0 10px 30px var(--profile-shadow); /* Soft shadow using shadow variable */
-  display: block;              /* Makes image a block element */
-  margin: 0 auto;              /* Centers image horizontally (0 top/bottom, auto left/right) */
-}
+/* ---------------------------------------------------------------------
+   12. Motion-sensitive users
+   --------------------------------------------------------------------- */
 
-/* ========================================
-   TYPOGRAPHY
-   ======================================== */
-
-/* Main heading text */
-.main-text {
-  font-size: 1.5rem;           /* Text size (1.5rem = ~24px) */
-  font-weight: 300;            /* Light font weight */
-  letter-spacing: 0.025em;     /* Slightly increased spacing between letters */
-  margin-bottom: 2rem;         /* Space below heading (2rem = ~32px) */
-  color: var(--foreground);    /* Uses the text color variable */
-}
-
-/* ========================================
-   SOCIAL MEDIA LINKS
-   ======================================== */
-
-/* Social links container - Arranges icons in a horizontal row */
-.social-links {
-  display: flex;               /* Enables flexbox for horizontal layout */
-  justify-content: center;     /* Centers the group of icons horizontally */
-  gap: 1.5rem;                /* Space between each icon (1.5rem = ~24px) */
-}
-
-/* Individual social media link styling */
-.social-link {
-  color: var(--foreground);    /* Uses the text color variable for icon color */
-  text-decoration: none;       /* Removes underline from links */
-  transition: color 0.3s ease; /* Smooth color change on hover (0.3 seconds) */
-}
-
-/* Social link hover effect */
-.social-link:hover {
-  color: var(--primary);       /* Changes to primary color on hover */
-}
-
-/* SVG icon styling inside social links */
-.social-link svg {
-  display: block;              /* Makes SVG a block element for consistent sizing */
-}
-
-/* ========================================
-   RESPONSIVE DESIGN - MOBILE DEVICES
-   ======================================== */
-
-/* Styles for screens smaller than 640px wide (mobile phones) */
-@media (max-width: 640px) {
-  
-  /* Smaller profile image on mobile */
-  .profile-image {
-    width: 6rem;               /* Reduced width (6rem = ~96px) */
-    height: 6rem;              /* Reduced height (6rem = ~96px) */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
   }
-  
-  /* Smaller text on mobile */
-  .main-text {
-    font-size: 1.25rem;        /* Reduced font size (1.25rem = ~20px) */
+  .hero-eyebrow,
+  .hero-name-word,
+  .hero-tagline,
+  .hero-cue,
+  .chapter-title,
+  .chapter-prose p,
+  .kit-grid {
+    opacity: 1 !important;
+    transform: none !important;
   }
-  
-  /* Tighter spacing between social icons on mobile */
-  .social-links {
-    gap: 1rem;                 /* Reduced gap (1rem = ~16px) */
-  }
+  .atmosphere-glow { animation: none; }
 }
-
-/* ========================================
-   DARK MODE SUPPORT
-   ======================================== */
-
-/* 
-  Automatically applies dark mode when user's system is set to dark mode
-  This overrides the light mode variables defined at the top
-*/
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: hsl(220, 8%, 8%);     /* Dark background for dark mode */
-    --foreground: hsl(0, 0%, 0%);       /* Still black text (you may want to change this) */
-    --primary: hsl(0, 0%, 0%);          /* Still black accent (you may want to change this) */
-    --profile-shadow: hsl(0, 0%, 0%, 0.1); /* Black shadow for dark mode */
-  }
-}
-
-/* ========================================
-   CUSTOMIZATION NOTES
-   ======================================== */
-
-/*
-  TO CHANGE COLORS:
-  - Edit the CSS variables at the top of this file
-  - --foreground controls text and icon colors
-  - --background controls the page background color
-  - --primary controls hover/accent colors
-  
-  TO CHANGE SPACING:
-  - Look for margin and padding values
-  - rem units: 1rem = ~16px
-  - Adjust gap values to change spacing between elements
-  
-  TO CHANGE SIZES:
-  - Profile image: edit width/height in .profile-image
-  - Text size: edit font-size in .main-text
-  - Mobile breakpoint: change 640px in @media query
-  
-  TO ADD NEW SOCIAL ICONS:
-  - Add new <a> tag with .social-link class in HTML
-  - No CSS changes needed - styling will apply automatically
-*/
