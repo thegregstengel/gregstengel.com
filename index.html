@@ -1,66 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Greg Stengel - All the things.</title>
-  <meta name="description" content="Greg Stengel - All the things." />
+  <title>Greg Stengel</title>
+  <meta name="description" content="Operator, builder, lifer. Currently shipping software with AI agents from Palm City, FL." />
   <meta name="author" content="Greg Stengel" />
+  <meta name="theme-color" content="#0a0a0f" />
 
-  <meta property="og:title" content="Greg Stengel - All the things." />
-  <meta property="og:description" content="Greg Stengel - All the things." />
-  <link rel="stylesheet" href="styles.css">
+  <meta property="og:title" content="Greg Stengel" />
+  <meta property="og:description" content="Operator, builder, lifer. Currently shipping software with AI agents." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gregstengel.com/" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <div class="icon-background" aria-hidden="true"></div>
-  <div class="container">
-    <div class="content">
-      <div class="profile-section">
-        <img src="assets/main_profile_pic.jpg" alt="Profile" class="profile-image" />
-      </div>
+  <!-- ============================================================
+       Atmosphere — a single slowly-drifting warm radial that breathes
+       behind everything. Nothing else. No floating logos.
+       ============================================================ -->
+  <div class="atmosphere" aria-hidden="true">
+    <div class="atmosphere-glow"></div>
+    <div class="atmosphere-grain"></div>
+  </div>
 
-      <h1 class="main-text">
-        All the things.
+  <!-- ============================================================
+       NAV — minimal, top right. Just the status + theme toggle.
+       ============================================================ -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <span class="status" aria-label="Currently active">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span class="status-text">Shipping</span>
+      </span>
+    </div>
+    <div class="topbar-right">
+      <span class="rev">Rev. 2026.05</span>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="true">
+        <span class="theme-toggle-track" aria-hidden="true">
+          <span class="theme-toggle-thumb"></span>
+        </span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <!-- ============================================================
+         HERO — full viewport. The name does the work.
+         ============================================================ -->
+    <section class="hero" aria-labelledby="hero-name">
+      <p class="hero-eyebrow">
+        <span class="hero-eyebrow-line"></span>
+        <span>A standing document · Palm City, FL</span>
+      </p>
+      <h1 class="hero-name" id="hero-name" data-tooltip="Shall we play a game?">
+        <span class="hero-name-word">Greg</span>
+        <span class="hero-name-word">Stengel</span>
       </h1>
+      <p class="hero-tagline">
+        Operator. Builder. Lifer.
+        <br />
+        Currently shipping software <em>with</em> AI, mostly so the AI doesn't ship without me.
+      </p>
+      <a class="hero-cue" href="#now" aria-label="Scroll to first section">
+        <span>Read on</span>
+        <span class="hero-cue-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
 
-      <div class="social-links">
-        <a href="https://github.com/thegregstengel" class="social-link" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-            <path d="M9 18c-4.51 2-5-2-7-2" />
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/gregstengel" class="social-link" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect width="4" height="12" x="2" y="9" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/thegregstengel" class="social-link" aria-label="Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-            <path d="m16 11.37 A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-          </svg>
-        </a>
-        <a href="https://x.com/thegregstengel" class="social-link" aria-label="X">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-          </svg>
-        </a>
+    <!-- ============================================================
+         01 — NOW
+         ============================================================ -->
+    <section class="chapter" id="now" aria-labelledby="now-title">
+      <div class="chapter-marker">
+        <span class="chapter-num">01</span>
+        <span class="chapter-label">Now</span>
+      </div>
+      <div class="chapter-body">
+        <h2 class="chapter-title" id="now-title">
+          The seam where cloud meets agents.
+        </h2>
+        <div class="chapter-prose">
+          <p>
+            Day to day that&rsquo;s
+            <span class="tool">Claude Code</span> in one window,
+            <span class="tool">Codex</span> in another,
+            <span class="tool">Cursor</span> when I want a second opinion,
+            and <span class="tool">Paperclip</span> keeping the agents honest.
+          </p>
+          <p>
+            Twenty-five years of operating real systems turns out to be useful
+            when you&rsquo;re deciding which of three AI suggestions
+            actually wouldn&rsquo;t take prod down.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         02 — FIELD
+         ============================================================ -->
+    <section class="chapter" id="field" aria-labelledby="field-title">
+      <div class="chapter-marker">
+        <span class="chapter-num">02</span>
+        <span class="chapter-label">Field</span>
+      </div>
+      <div class="chapter-body">
+        <h2 class="chapter-title" id="field-title">
+          About 25 years of production infrastructure.
+        </h2>
+        <div class="chapter-prose">
+          <p>
+            A long Splunk run rolled into a long AWS run rolled into
+            observability, FinOps, platforms, and the leadership that
+            quietly attaches itself to all of that.
+          </p>
+          <p>
+            Currently at <strong>Unchained</strong>. The titles get longer over time;
+            the job mostly stays the same &mdash; figure out what&rsquo;s about
+            to break, and either prevent it or be useful when it does.
+          </p>
+          <p class="chapter-aside">
+            This isn&rsquo;t a resume. Resumes are CSVs of obligations.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================
+         03 — KIT
+         ============================================================ -->
+    <section class="chapter chapter--kit" id="kit" aria-labelledby="kit-title">
+      <div class="chapter-marker">
+        <span class="chapter-num">03</span>
+        <span class="chapter-label">Kit</span>
+      </div>
+      <div class="chapter-body">
+        <h2 class="chapter-title" id="kit-title">
+          What&rsquo;s actually in daily rotation.
+        </h2>
+
+        <ul class="kit-grid" role="list">
+          <li class="kit-card">
+            <span class="kit-card-label">AI work</span>
+            <p class="kit-card-list">
+              Claude Code · Codex · Cursor · Paperclip · Anthropic API · OpenAI API
+            </p>
+          </li>
+          <li class="kit-card">
+            <span class="kit-card-label">Cloud</span>
+            <p class="kit-card-list">AWS · Azure · GCP</p>
+          </li>
+          <li class="kit-card">
+            <span class="kit-card-label">Platform</span>
+            <p class="kit-card-list">Kubernetes · Terraform · Docker</p>
+          </li>
+          <li class="kit-card">
+            <span class="kit-card-label">Data + Ops</span>
+            <p class="kit-card-list">Splunk · Datadog · Python · Bash</p>
+          </li>
+          <li class="kit-card kit-card--wide">
+            <span class="kit-card-label">Everyday</span>
+            <p class="kit-card-list">
+              VS Code · Vim · Obsidian · WSL · Linux · Discord · Tailscale · TrueNAS
+            </p>
+          </li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============================================================
+       FOOTER — reach links + doc history
+       ============================================================ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <p class="footer-headline">Find me</p>
+        <ul class="reach" role="list">
+          <li><a href="mailto:gregstengel@gmail.com"><span>Email</span><em>gregstengel@gmail.com</em></a></li>
+          <li><a href="https://github.com/thegregstengel"><span>GitHub</span><em>@thegregstengel</em></a></li>
+          <li><a href="https://www.linkedin.com/in/gregstengel/"><span>LinkedIn</span><em>/in/gregstengel</em></a></li>
+          <li><a href="https://x.com/thegregstengel"><span>X</span><em>@thegregstengel</em></a></li>
+          <li><a href="https://www.instagram.com/thegregstengel"><span>Instagram</span><em>@thegregstengel</em></a></li>
+          <li><a href="/blog/"><span>Writing</span><em>/blog</em></a></li>
+        </ul>
+      </div>
+      <div class="footer-right">
+        <p class="footer-tag">
+          <span class="footer-dot"></span>
+          Made by hand, mostly, in Palm City, FL.
+        </p>
+        <p class="footer-history">
+          Doc history · v0.1 2024-07 · v1.0 2025-07 · v3.0 2026-05
+        </p>
+        <p class="footer-hint">
+          Press <kbd>?</kbd> for a closer look.
+        </p>
       </div>
     </div>
+  </footer>
+
+  <!-- ============================================================
+       Hidden /whoami console — restyled to match the new theme
+       ============================================================ -->
+  <div class="console" id="console" hidden role="dialog" aria-modal="true"
+       aria-labelledby="console-title" aria-describedby="console-body">
+    <div class="console-frame">
+      <header class="console-head">
+        <span class="console-dots" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </span>
+        <h2 class="console-title" id="console-title">whoami</h2>
+        <button class="console-close" type="button" aria-label="Close console">Esc</button>
+      </header>
+      <pre class="console-body" id="console-body"></pre>
+    </div>
   </div>
-  <script src="background.js"></script>
+
+  <script src="site.js" defer></script>
 </body>
 
 </html>
