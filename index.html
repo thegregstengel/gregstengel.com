@@ -5,16 +5,16 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <title>Greg Stengel — cloud by day, homelab by night</title>
+  <title>Greg Stengel — infrastructure, cloud &amp; observability</title>
   <meta name="description"
-    content="Greg Stengel. Cloud architect by trade, homelabber by compulsion. Builds, breaks, and documents it in public." />
+    content="Greg Stengel — staff infrastructure engineer. Two decades across AWS, Kubernetes, observability, and identity. Remote, based in Palm City, FL." />
   <meta name="author" content="Greg Stengel" />
 
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://gregstengel.com/" />
-  <meta property="og:title" content="Greg Stengel — cloud by day, homelab by night" />
+  <meta property="og:title" content="Greg Stengel — infrastructure, cloud &amp; observability" />
   <meta property="og:description"
-    content="Cloud architect by trade, homelabber by compulsion. Builds, breaks, and documents it in public." />
+    content="Two decades making other people's clouds behave. AWS, Kubernetes, observability, identity — and the AI agents helping run it all." />
   <meta property="og:image" content="https://gregstengel.com/assets/main_profile_pic.jpg" />
   <meta name="twitter:card" content="summary" />
 
@@ -33,22 +33,192 @@
   <div class="icon-background" aria-hidden="true"></div>
 
   <main class="panel">
-    <!-- IDENTITY / HERO -->
+    <!-- ===== HERO ===== -->
     <section class="tile tile--hero">
       <p class="kicker"><span class="prompt">greg@stengel</span>:<span class="path">~</span>$ whoami</p>
-      <h1 class="headline">
-        The cloud is just someone<br />else&rsquo;s computer.
-        <span class="headline-accent">Mine lives in the basement.</span>
-      </h1>
+      <h1 class="hero-name" data-tooltip="Shall we play a game?">Greg Stengel</h1>
+      <p class="hero-role">Staff Infrastructure Engineer · Remote · Palm City, FL</p>
+      <p class="headline">
+        Two decades making other people&rsquo;s
+        <span class="headline-accent">clouds behave.</span>
+      </p>
       <p class="subhead">
-        Cloud architect by trade, homelabber by compulsion. I build things that probably
-        shouldn&rsquo;t run at home &mdash; then write down how they broke.
+        AWS, Kubernetes, observability, and the identity plumbing nobody thanks you for
+        &mdash; and lately, the AI agents helping run it all.
       </p>
     </section>
 
-    <!-- NOW RUNNING -->
+    <!-- ===== CERTS ===== -->
+    <section class="tile tile--certs" aria-labelledby="certs-h">
+      <h2 class="tile-label" id="certs-h">// certified</h2>
+      <ul class="cert-list">
+        <li><span class="cert-badge">SPLK</span> Enterprise Certified Architect</li>
+        <li><span class="cert-badge">SPLK</span> Core Certified Consultant</li>
+        <li><span class="cert-badge">SPLK</span> Enterprise Certified Admin</li>
+      </ul>
+    </section>
+
+    <!-- ===== ERAS ===== -->
+    <section class="tile tile--eras" aria-labelledby="eras-h">
+      <h2 class="tile-label" id="eras-h">// the arc</h2>
+      <ol class="era-list">
+        <li class="era">
+          <span class="era-num">01</span>
+          <div class="era-body">
+            <h3 class="era-name">Foundations</h3>
+            <p class="era-desc">
+              Datacenters, colo, and a few hundred web servers that didn&rsquo;t care about your
+              feelings. Apache, WebSphere, IIS, RHEL, VMware &mdash; keep it up, keep it patched,
+              write down what broke.
+            </p>
+          </div>
+        </li>
+        <li class="era">
+          <span class="era-num">02</span>
+          <div class="era-body">
+            <h3 class="era-name">Observability</h3>
+            <p class="era-desc">
+              Fell into Splunk and stayed for years. Multi-datacenter deployments into the
+              thousands of nodes, automated rollout, and the dashboards that turn noise into
+              something a human can read. Later, the same story in Elastic.
+            </p>
+          </div>
+        </li>
+        <li class="era">
+          <span class="era-num">03</span>
+          <div class="era-body">
+            <h3 class="era-name">Managed cloud</h3>
+            <p class="era-desc">
+              AWS &mdash; plus Azure and GCP &mdash; as an architect, then leading the teams doing
+              it. Infrastructure as code, automated backups and compliance, recurring costs killed
+              by trading third-party tooling for native services.
+            </p>
+          </div>
+        </li>
+        <li class="era">
+          <span class="era-num">04</span>
+          <div class="era-body">
+            <h3 class="era-name">Platform &amp; identity</h3>
+            <p class="era-desc">
+              Multi-account landing zones, Kubernetes across regions, GitOps with ArgoCD, and the
+              identity plumbing nobody thanks you for: Identity Center on Okta, Vault, KMS, and
+              least-privilege guardrails.
+            </p>
+          </div>
+        </li>
+        <li class="era">
+          <span class="era-num">05</span>
+          <div class="era-body">
+            <h3 class="era-name">Cloud meets agents</h3>
+            <p class="era-desc">
+              Now: the seam where infrastructure meets AI agents &mdash; using them to take delivery
+              from weeks to days, and keeping them honest enough to trust near prod.
+            </p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== SKILLS ===== -->
+    <section class="tile tile--skills" aria-labelledby="skills-h">
+      <h2 class="tile-label" id="skills-h">// the toolkit</h2>
+      <div class="cluster-grid">
+        <div class="cluster">
+          <h3 class="cluster-label">Cloud</h3>
+          <p class="cluster-items">AWS <span class="home">home turf</span> · Azure · GCP</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">Observability</h3>
+          <p class="cluster-items">Splunk · Elastic · Prometheus + Grafana · Datadog</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">IaC &amp; GitOps</h3>
+          <p class="cluster-items">Terraform / Terragrunt · CloudFormation · ArgoCD · GitLab / GitHub / Jenkins CI</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">Containers &amp; Platform</h3>
+          <p class="cluster-items">Kubernetes / EKS · Helm · ingress</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">Security &amp; Identity</h3>
+          <p class="cluster-items">IAM Identity Center · Okta · Vault · KMS · AWS Config · least-privilege</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">Automation &amp; Code</h3>
+          <p class="cluster-items">Python · Bash · Lambda / EventBridge · SSM</p>
+        </div>
+        <div class="cluster">
+          <h3 class="cluster-label">Foundations</h3>
+          <p class="cluster-items">Linux / RHEL · VMware · Puppet / Ansible</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SIGNATURE PROJECTS ===== -->
+    <section class="tile tile--projects" aria-labelledby="proj-h">
+      <h2 class="tile-label" id="proj-h">// signature builds</h2>
+      <ol class="project-list">
+        <li class="project">
+          <h3 class="project-name">Multi-datacenter Splunk platform</h3>
+          <p class="project-desc">2,500+ nodes across three datacenters; Puppet-automated forwarder rollout; scripted index config.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Clustered Splunk-in-AWS monitoring</h3>
+          <p class="project-desc">Per-customer apps with 50+ dashboards each; custom TAs and sourcetypes; summary indexing for cross-resource correlation.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Backup &amp; compliance automation</h3>
+          <p class="project-desc">CloudFormation + AWS Config + SNS + tagging standards; Cloud Custodian guardrails; native AWS Backup replacing third-party tools (thousands in recurring cost removed).</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Hybrid file-sync pipeline</h3>
+          <p class="project-desc">Lambda / S3 / DynamoDB mapping SFTP&harr;SMB; automated sync between AWS and on-prem.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Public-IP consolidation</h3>
+          <p class="project-desc">Automation to migrate and consolidate public IPs, cutting per-application IP cost.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Identity modernization</h3>
+          <p class="project-desc">Legacy IAM &rarr; Identity Center on Okta; permission sets, customer-managed policies, reusable Terraform / Terragrunt modules via GitLab CI.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">Multi-region EKS access path</h3>
+          <p class="project-desc">Identity Center &rarr; k8s RBAC &rarr; ArgoCD, with Vault secrets and ingress, across three regions.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- ===== RECOMMENDATIONS ===== -->
+    <section class="tile tile--recs" aria-labelledby="recs-h">
+      <h2 class="tile-label" id="recs-h">// on the record</h2>
+      <div class="rec-grid">
+        <figure class="rec">
+          <blockquote>One of the most talented engineers I&rsquo;ve ever worked with &mdash; instrumental in building key automation and reporting systems, and always willing to teach others.</blockquote>
+          <figcaption>&mdash; DevOps / SRE team lead</figcaption>
+        </figure>
+        <figure class="rec">
+          <blockquote>He automated the entire Splunk setup for thousands of servers, self-taught, and documented it so well it was still in use two years later.</blockquote>
+          <figcaption>&mdash; former manager</figcaption>
+        </figure>
+        <figure class="rec">
+          <blockquote>Detail-oriented with a broad set of technical skills &mdash; always eager to learn, and never backs down from a challenge.</blockquote>
+          <figcaption>&mdash; VP, managed services</figcaption>
+        </figure>
+        <figure class="rec">
+          <blockquote>In-depth knowledge of the Splunk platform, including clustering, with strong automation instincts.</blockquote>
+          <figcaption>&mdash; cloud architect</figcaption>
+        </figure>
+        <figure class="rec">
+          <blockquote>Dove into technologies he had no background in &mdash; Splunk, Python, cloud &mdash; and quickly became the person the team relied on.</blockquote>
+          <figcaption>&mdash; project manager</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== NOW RUNNING (homelab) ===== -->
     <section class="tile tile--status" aria-labelledby="status-h">
-      <h2 class="tile-label" id="status-h">// now running</h2>
+      <h2 class="tile-label" id="status-h">// after hours</h2>
       <ul class="status-list">
         <li><span class="dot" aria-hidden="true"></span><span class="svc">WOPR</span><span class="state">online</span></li>
         <li><span class="dot" aria-hidden="true"></span><span class="svc">TrueNAS</span><span class="state">0 errors</span></li>
@@ -56,10 +226,10 @@
         <li><span class="dot" aria-hidden="true"></span><span class="svc">Paperclip</span><span class="state">shipping</span></li>
         <li><span class="dot" aria-hidden="true"></span><span class="svc">Crystal Palace</span><span class="state">up</span></li>
       </ul>
-      <p class="status-foot">all green <span class="cursor" aria-hidden="true">&#9608;</span></p>
+      <p class="status-foot">homelab · all green <span class="cursor" aria-hidden="true">&#9608;</span></p>
     </section>
 
-    <!-- BLOG -->
+    <!-- ===== BLOG ===== -->
     <section class="tile tile--blog" aria-labelledby="blog-h">
       <h2 class="tile-label" id="blog-h">// read the receipts</h2>
       <ul class="post-list" id="post-list" aria-live="polite">
@@ -68,16 +238,16 @@
       <a class="blog-cta" href="/blog/">the blog <span aria-hidden="true">&rarr;</span></a>
     </section>
 
-    <!-- STACK CAPTION -->
+    <!-- ===== STACK CAPTION ===== -->
     <section class="tile tile--stack">
       <h2 class="tile-label">// the stack</h2>
       <p class="stack-note">
-        It&rsquo;s the wall drifting behind all this. Hover a logo to name it.
-        Cloud, containers, observability, a closet full of Linux.
+        It&rsquo;s the wall drifting behind all this. Hover a logo to name it &mdash;
+        cloud, containers, observability, and a closet full of Linux.
       </p>
     </section>
 
-    <!-- CONNECT -->
+    <!-- ===== CONNECT ===== -->
     <section class="tile tile--connect" aria-labelledby="connect-h">
       <h2 class="tile-label" id="connect-h">// find me</h2>
       <div class="social-links">
@@ -114,10 +284,30 @@
         </a>
       </div>
     </section>
+
+    <!-- ===== FOOT ===== -->
+    <footer class="panel-foot">
+      <span>Remote · Palm City, FL · built by hand</span>
+      <span class="foot-hint">press <kbd>?</kbd> for a closer look</span>
+    </footer>
   </main>
+
+  <!-- Hidden /whoami console — opens on `?`, closes on Esc. The 5% fun. -->
+  <div class="console" id="console" hidden role="dialog" aria-modal="true"
+       aria-labelledby="console-title" aria-describedby="console-body">
+    <div class="console-frame">
+      <header class="console-head">
+        <span class="console-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+        <h2 class="console-title" id="console-title">whoami</h2>
+        <button class="console-close" type="button" aria-label="Close console">Esc</button>
+      </header>
+      <pre class="console-body" id="console-body"></pre>
+    </div>
+  </div>
 
   <script src="background.js"></script>
   <script src="posts.js"></script>
+  <script src="console.js"></script>
 </body>
 
 </html>
