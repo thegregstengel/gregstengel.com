@@ -14,6 +14,24 @@ redirects it toward an opinionated, dense, alive control-panel of a person.
   the blog, the homelab, the work — and that reads as a person with a point of
   view, not a résumé.
 
+## v2 — content weighting & the anti-resume rule
+
+The control-panel *aesthetic* holds; v2 loads it with real career substance and
+re-weights the mix:
+
+- **~75% professional · 20% homelab · 5% fun/easter eggs.** Professional leads;
+  the homelab (after-hours tiles) and the hidden `?` console are the smaller human
+  layers.
+- **Anti-resume rule (non-negotiable):** **no employer names, no dates, no
+  tenure.** Experience is chunked into generalized **chronological eras**
+  (`01 Foundations` → `05 Cloud meets agents`); **signature projects** are
+  described by what was built; **recommendations** are anonymized pull-quotes with
+  relationship-only tags. Source material was the LinkedIn export — anonymized on
+  the way in.
+- Skills are **grouped into clusters** (the "toolkit" tile).
+- The page is no longer single-viewport; it's a **taller, scrolling** bento to
+  hold the added tiles.
+
 ## The four axis selections
 
 1. **Tone Register — Provocative.** First-person, opinionated, willing to take a
