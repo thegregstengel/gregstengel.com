@@ -9,3 +9,90 @@
 ';
 
 /* append your custom style below */
+
+/* ============================================================
+   gregstengel.com — "control panel" retint
+   Matches the landing page (phosphor green on near-black, Space
+   Grotesk + JetBrains Mono). Append-only: this overrides Chirpy's
+   dark CSS variables without touching the theme source, so it's
+   fully reversible (delete this block) and won't conflict with
+   `upstream` theme updates. Fonts are loaded in
+   `_includes/metadata-hook.html`. The blog is already dark-only
+   (`theme_mode: "dark"`), so there's no light mode to retint.
+   ============================================================ */
+
+$cp-acc: #6cff5a;          // phosphor green accent
+$cp-line: rgba(108, 255, 90, 0.14);
+
+/* Same selectors Chirpy uses for dark vars (_sass/base/_base.scss),
+   appended after the theme so these win on source order. */
+html[data-mode='dark'],
+html:not([data-mode]) {
+  /* Framework */
+  --main-bg: #0a0c0a;
+  --mask-bg: #14181a;
+  --main-border-color: #{$cp-line};
+
+  /* Text */
+  --text-color: #c2cbc2;
+  --text-muted-color: #8a948a;
+  --text-muted-highlight-color: #aeb6ae;
+  --heading-color: #e8ece8;
+  --label-color: #9aa39a;
+  --blockquote-border-color: rgba(108, 255, 90, 0.28);
+  --blockquote-text-color: #8a948a;
+  --link-color: #{$cp-acc};
+  --link-underline-color: rgba(108, 255, 90, 0.4);
+
+  /* Buttons / cards */
+  --button-bg: #12160f;
+  --btn-border-color: rgba(108, 255, 90, 0.18);
+  --card-bg: #11140f;
+  --card-hovor-bg: #1a1f18;
+  --card-header-bg: #141813;
+  --card-shadow: rgba(0, 0, 0, 0.6) 0 6px 18px 0, rgba(108, 255, 90, 0.08) 0 0 0 1px;
+
+  /* Sidebar */
+  --site-title-color: #e8ece8;
+  --site-subtitle-color: #8a948a;
+  --sidebar-bg: #0c0f0c;
+  --sidebar-border-color: rgba(108, 255, 90, 0.1);
+  --sidebar-muted-color: #8a948a;
+  --sidebar-active-color: #{$cp-acc};
+  --sidebar-hover-bg: rgba(108, 255, 90, 0.08);
+  --sidebar-btn-bg: #12160f;
+  --sidebar-btn-color: #8a948a;
+
+  /* Topbar / search */
+  --topbar-bg: rgba(10, 12, 10, 0.7);
+  --search-border-color: rgba(108, 255, 90, 0.18);
+  --input-focus-border-color: #{$cp-acc};
+
+  /* Posts / tags / misc */
+  --toc-highlight: #{$cp-acc};
+  --tag-hover: rgba(108, 255, 90, 0.14);
+  --tag-border: rgba(108, 255, 90, 0.32);
+  --checkbox-checked-color: #{$cp-acc};
+  --btn-share-hover-color: #{$cp-acc};
+  --categories-border: rgba(108, 255, 90, 0.14);
+  --timeline-node-bg: #{$cp-acc};
+  --btn-paginator-hover-color: #1a1f18;
+
+  /* Code */
+  --language-border-color: rgba(108, 255, 90, 0.14);
+  --highlight-bg-color: #0c100c;
+  --inline-code-bg: rgba(108, 255, 90, 0.08);
+  --code-color: #c2cbc2;
+  --filepath-text-color: #cfd6cf;
+}
+
+/* Fonts — match the landing page. Headings in Space Grotesk; code in
+   JetBrains Mono. Body stays a readable sans for long-form posts. */
+h1, h2, h3, h4, h5, h6,
+.post-title, .site-title, #site-title, .site-subtitle {
+  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+code, pre, kbd, samp, tt,
+.highlight, .code-header, .filepath {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
