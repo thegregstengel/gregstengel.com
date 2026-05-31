@@ -4,7 +4,7 @@
 
 Personal site for Greg Stengel. Two distinct parts:
 
-1. **Landing page** -- custom HTML/CSS at site root (`/`)
+1. **Landing page** -- custom HTML/CSS/JS at site root (`/`), the "Nightshift" design
 2. **Blog** -- Jekyll with Chirpy theme at `/blog/`
 
 Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
@@ -15,14 +15,15 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 - Chirpy theme (dark mode, TOC, syntax highlighting, search, categories, tags)
 - GitHub Pages (hosting)
 - GitHub Actions (CI/CD, auto-deploys on push to `main`)
-- Custom HTML/CSS (landing page, not managed by Jekyll)
+- Custom HTML/CSS/JS (landing page, not managed by Jekyll; vanilla, no build step)
 
 ## Repo structure
 
 ```
 .
-├── index.html                # Landing page at /
+├── index.html                # Landing page at / ("Nightshift")
 ├── styles.css                # Landing page styles
+├── site.js                   # Landing page JS (theme toggle, scroll reveal, console)
 ├── assets/                   # Shared assets
 ├── blog/                     # Jekyll blog at /blog
 │   ├── _config.yml           # Jekyll and Chirpy configuration
@@ -36,11 +37,53 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 └── CLAUDE.md                 # This file
 ```
 
-## Landing page
+## Landing page ("Nightshift")
 
-- `index.html` and `styles.css` at the repo root
-- Standalone HTML/CSS, not processed by Jekyll
+- `index.html`, `styles.css`, and `site.js` at the repo root
+- Standalone HTML/CSS/JS, not processed by Jekyll; vanilla, no build step
 - Any changes here are purely frontend work
+
+### Design
+
+- A dark, warm, long-form "standing document" / anti-resume -- not a one-screen
+  splash. Reads as an operator's workshop at night.
+- **Dark by default**, single warm-orange accent. A `data-theme` attribute on
+  `<html>` (`dark` | `light`) drives the palette; both themes are full token sets
+  in `styles.css`.
+- **Type:** Inter Tight (display/body) + JetBrains Mono (labels/console), loaded
+  from Google Fonts.
+- **Background:** a single slowly-drifting warm radial glow plus faint film
+  grain (`.atmosphere`). No floating logos.
+
+### Structure
+
+- **Topbar:** "Shipping" status dot, `Rev. 2026.05`, and a theme toggle button.
+- **Hero:** eyebrow ("A standing document · Palm City, FL"), the name, a tagline,
+  and a "Read on" scroll cue.
+- **Chapters:** numbered sections that scroll-reveal into view -- `01 Now`,
+  `02 Field`, `03 Kit` (Kit is a card grid of the current tool rotation).
+- **Footer:** "Find me" reach links (email, GitHub, LinkedIn, X, Instagram,
+  `/blog/`) plus a doc-history line.
+
+### Behavior (`site.js`)
+
+- **Theme toggle:** dark default, persisted in `localStorage` (`gs-theme`);
+  honors an explicit OS `prefers-color-scheme: light` on first visit.
+- **Scroll reveal:** chapters fade in via `IntersectionObserver` (falls back to
+  visible if unsupported).
+- **Hidden `/whoami` console:** press <kbd>?</kbd> to open a typed terminal
+  easter egg, <kbd>Esc</kbd> (or click-outside) to close. It's a `role="dialog"`
+  modal; copy lives in the `SESSION` array in `site.js`.
+
+### Editing notes
+
+- The landing page voice is first-person, dry, anti-resume ("Resumes are CSVs of
+  obligations"). Match it when touching copy.
+- The hero name carries a `data-tooltip="Shall we play a game?"`; the console and
+  several lines lean on the same WarGames/operator register -- keep that in mind
+  before "fixing" them.
+- Bump the `Rev. YYYY.MM` in the topbar and the `Doc history` line in the footer
+  when the page changes meaningfully.
 
 ## Blog
 
