@@ -156,6 +156,30 @@ description: Short description for previews and SEO.
 - Jekyll pagination (`jekyll-paginate`) does not work correctly in subdirectory setups
 - The home layout (`_layouts/home.html`) was patched to loop through `site.posts` directly instead of relying on `paginator.posts`
 - Posts with `pin: true` display at the top of the home page
+- **The blog is theme-vendored Chirpy**, not a plain gem install: the full theme
+  source lives in `blog/` (`_sass/`, `_layouts`, `jekyll-theme-chirpy.gemspec`),
+  tracked against an `upstream` remote for updates. `theme_mode: "dark"` forces
+  dark mode.
+- **"Control panel" retint:** the blog is restyled to match the landing page via
+  an **append-only** block in `blog/assets/css/jekyll-theme-chirpy.scss` (Chirpy's
+  reserved customization file) plus a font `<link>` in
+  `blog/_includes/metadata-hook.html`. It only overrides dark CSS variables +
+  fonts — no theme source edited, fully reversible (delete the block), and
+  upstream-update-safe. Don't move these into `_sass/themes/_dark.scss`.
+
+### Build / CI gotchas (learned the hard way)
+
+- **CI needs Ruby ≥ 3.4.** `deploy-blog.yml` pins Ruby 3.4 on purpose: on 3.1 the
+  bundled RubyGems was too old to recognize `sass-embedded`'s newer
+  `x86_64-linux-gnu` platform tag, so Bundler fell back to the source gem and the
+  native build failed at `bundle install`. Don't downgrade it.
+- **`blog/Gemfile.lock` is committed** (not gitignored) for reproducible builds —
+  it pins the prebuilt `sass-embedded` linux gem so CI never tries to compile it.
+  Regenerate it in the CI Ruby version if deps change (e.g. via `bundle lock`);
+  the committed lock's `PLATFORMS` already covers linux gnu/musl + macOS.
+- `deploy-blog.yml` triggers on `blog/**` **and** its own workflow path; the blog
+  only deploys from `main`, and a failed build leaves the previous `gh-pages`
+  output live (no downtime).
 
 ## Conventions
 
