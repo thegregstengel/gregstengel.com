@@ -3,7 +3,7 @@
 {
   "name": "Greg Stengel",
   "short_name": "Greg Stengel",
-  "description": "A minimal, responsive and feature-rich Jekyll theme for technical writing.",
+  "description": "Cloud infrastructure, homelab experiments, and AI assistants. Notes from building, breaking, and fixing all the things.",
   "icons": [
     {
       "src": "/blog/assets/img/favicons/web-app-manifest-192x192.png",
