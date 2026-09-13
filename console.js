@@ -8,7 +8,9 @@
   const consoleEl = document.getElementById("console");
   const consoleBody = document.getElementById("console-body");
   const consoleClose = document.querySelector(".console-close");
-  if (!consoleEl || !consoleBody) return;
+  const consoleOpen = document.querySelector(".foot-hint");
+  const panel = document.querySelector(".panel");
+  if (!consoleEl || !consoleBody || !consoleClose) return;
 
   const SESSION = [
     { prompt: "$ ", cmd: "whoami" },
@@ -18,7 +20,7 @@
     { prompt: "$ ", cmd: "uptime" },
     { out: "~20 years in production · load average: caffeinated" },
     { prompt: "$ ", cmd: "ls ~/after-hours" },
-    { out: "wopr/  truenas/  joshua/  paperclip/  the-blog/" },
+    { out: "wopr/  truenas/  joshua/  the-blog/" },
     { prompt: "$ ", cmd: "echo $PURPOSE" },
     { out: "all the things." },
   ];
@@ -67,6 +69,7 @@
     if (!consoleEl.hidden) return;
     lastFocus = document.activeElement;
     consoleEl.hidden = false;
+    if (panel) panel.inert = true;
     runSession();
     if (consoleClose) consoleClose.focus({ preventScroll: true });
   }
@@ -75,12 +78,19 @@
     if (consoleEl.hidden) return;
     typeAbort = true;
     consoleEl.hidden = true;
+    if (panel) panel.inert = false;
     if (lastFocus && typeof lastFocus.focus === "function") {
       lastFocus.focus({ preventScroll: true });
     }
   }
 
   document.addEventListener("keydown", (e) => {
+    // The close button is the console's only interactive control.
+    if (e.key === "Tab" && !consoleEl.hidden) {
+      e.preventDefault();
+      consoleClose.focus({ preventScroll: true });
+      return;
+    }
     const t = e.target;
     const tag = t && t.tagName;
     if (tag === "INPUT" || tag === "TEXTAREA" || (t && t.isContentEditable)) return;
@@ -94,6 +104,7 @@
     }
   });
 
+  if (consoleOpen) consoleOpen.addEventListener("click", openConsole);
   if (consoleClose) consoleClose.addEventListener("click", closeConsole);
   consoleEl.addEventListener("click", (e) => {
     if (e.target === consoleEl) closeConsole();
