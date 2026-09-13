@@ -14,7 +14,7 @@
   <meta property="og:url" content="https://gregstengel.com/" />
   <meta property="og:title" content="Greg Stengel — infrastructure, cloud &amp; observability" />
   <meta property="og:description"
-    content="Two decades making other people's clouds behave. AWS, Kubernetes, observability, identity — and the AI agents helping run it all." />
+    content="Two decades making clouds behave. AWS, Kubernetes, observability, identity — and the AI agents helping run it all." />
   <meta property="og:image" content="https://gregstengel.com/assets/main_profile_pic.jpg" />
   <meta name="twitter:card" content="summary" />
 
@@ -39,23 +39,35 @@
       <h1 class="hero-name" data-tooltip="Shall we play a game?">Greg Stengel</h1>
       <p class="hero-role">Staff Infrastructure Engineer · Remote · Palm City, FL</p>
       <p class="headline">
-        Two decades making other people&rsquo;s
+        Two decades making
         <span class="headline-accent">clouds behave.</span>
       </p>
       <p class="subhead">
-        AWS, Kubernetes, observability, and the identity plumbing nobody thanks you for
-        &mdash; and lately, the AI agents helping run it all.
+        AWS, Kubernetes, observability, and identity &mdash; with AI agents becoming part of the toolkit.
+        Building platforms, orchestrating coding agents, and turning &ldquo;I&rsquo;ll get to it&rdquo;
+        into something shipped.
       </p>
     </section>
 
     <!-- ===== CERTS ===== -->
     <section class="tile tile--certs" aria-labelledby="certs-h">
-      <h2 class="tile-label" id="certs-h">// certified</h2>
+      <h2 class="tile-label" id="certs-h">// certifications</h2>
+      <h3 class="cert-group-label">Splunk <span>· valid through Apr 2028</span></h3>
       <ul class="cert-list">
-        <li><span class="cert-badge">SPLK</span> Enterprise Certified Architect</li>
-        <li><span class="cert-badge">SPLK</span> Core Certified Consultant</li>
-        <li><span class="cert-badge">SPLK</span> Enterprise Certified Admin</li>
+        <li>Enterprise Certified Architect</li>
+        <li>Core Certified Consultant</li>
+        <li>Enterprise Certified Admin</li>
+        <li>Core Certified Power User</li>
+        <li>Core Certified User</li>
       </ul>
+      <div class="cert-history">
+        <h3 class="cert-group-label">Previously certified</h3>
+        <ul class="cert-list">
+          <li>AWS Certified Solutions Architect &ndash; Associate <span class="cert-expiry">Expired Dec 2020</span></li>
+          <li>AWS Certified Cloud Practitioner <span class="cert-expiry">Expired Oct 2024</span></li>
+          <li>FinOps Certified Practitioner <span class="cert-expiry">FinOps Foundation · expired Dec 2025</span></li>
+        </ul>
+      </div>
     </section>
 
     <!-- ===== ERAS ===== -->
@@ -67,31 +79,33 @@
           <div class="era-body">
             <h3 class="era-name">Foundations</h3>
             <p class="era-desc">
-              Datacenters, colo, and a few hundred web servers that didn&rsquo;t care about your
-              feelings. Apache, WebSphere, IIS, RHEL, VMware &mdash; keep it up, keep it patched,
-              write down what broke.
+              Datacenters, colo, and a hundred web servers. Linux, VMware, Apache, WebSphere, IIS
+              &mdash; keep it running, figure out what broke, write it down. Then OpenStack
+              deployments with Ansible, because clicking through infrastructure gets old fast.
             </p>
           </div>
         </li>
         <li class="era">
           <span class="era-num">02</span>
           <div class="era-body">
-            <h3 class="era-name">Observability</h3>
+            <h3 class="era-name">Making the noise useful</h3>
             <p class="era-desc">
-              Fell into Splunk and stayed for years. Multi-datacenter deployments into the
-              thousands of nodes, automated rollout, and the dashboards that turn noise into
-              something a human can read. Later, the same story in Elastic.
+              Built Splunk across three datacenters and 2,500+ nodes, with Puppet handling the
+              forwarders. Went deep on clustered deployments, custom integrations, and dashboards
+              people actually used. Later, built out Elastic Cloud observability. Collecting
+              everything is easy; making it useful is the job.
             </p>
           </div>
         </li>
         <li class="era">
           <span class="era-num">03</span>
           <div class="era-body">
-            <h3 class="era-name">Managed cloud</h3>
+            <h3 class="era-name">Building it. Leading it.</h3>
             <p class="era-desc">
-              AWS &mdash; plus Azure and GCP &mdash; as an architect, then leading the teams doing
-              it. Infrastructure as code, automated backups and compliance, recurring costs killed
-              by trading third-party tooling for native services.
+              Architected cloud environments, then led the engineers keeping them alive. AWS first,
+              Azure and GCP too. Terraform, backup automation, migrations, fewer noisy alerts, and
+              fewer recurring bills. Kept my hands in the tooling even when the calendar filled with
+              meetings.
             </p>
           </div>
         </li>
@@ -100,19 +114,21 @@
           <div class="era-body">
             <h3 class="era-name">Platform &amp; identity</h3>
             <p class="era-desc">
-              Multi-account landing zones, Kubernetes across regions, GitOps with ArgoCD, and the
-              identity plumbing nobody thanks you for: Identity Center on Okta, Vault, KMS, and
-              least-privilege guardrails.
+              Multi-account AWS, EKS across three regions, and the plumbing between Okta, Identity
+              Center, Kubernetes RBAC, and ArgoCD. Terraform/Terragrunt through GitLab CI, Vault for
+              secrets, tighter KMS policies. Make the right access easy and the wrong access
+              difficult.
             </p>
           </div>
         </li>
         <li class="era">
           <span class="era-num">05</span>
           <div class="era-body">
-            <h3 class="era-name">Cloud meets agents</h3>
+            <h3 class="era-name">Less toil, more shipping</h3>
             <p class="era-desc">
-              Now: the seam where infrastructure meets AI agents &mdash; using them to take delivery
-              from weeks to days, and keeping them honest enough to trust near prod.
+              Python, Bash, Lambda, EventBridge &mdash; whatever gets the repeat work off
+              somebody&rsquo;s plate. Lately, AI agents too, helping turn weeks of delivery into
+              days. Still responsible for what ships. Still writing the runbooks.
             </p>
           </div>
         </li>
@@ -128,28 +144,32 @@
           <p class="cluster-items">AWS <span class="home">home turf</span> · Azure · GCP</p>
         </div>
         <div class="cluster">
+          <h3 class="cluster-label">AI &amp; Agents</h3>
+          <p class="cluster-items">Claude Code · Codex · Cursor · agent orchestration · AI-assisted delivery · OpenClaw</p>
+        </div>
+        <div class="cluster">
           <h3 class="cluster-label">Observability</h3>
-          <p class="cluster-items">Splunk · Elastic · Prometheus + Grafana · Datadog</p>
+          <p class="cluster-items">Splunk · Elastic · Prometheus · Grafana · Datadog</p>
         </div>
         <div class="cluster">
-          <h3 class="cluster-label">IaC &amp; GitOps</h3>
-          <p class="cluster-items">Terraform / Terragrunt · CloudFormation · ArgoCD · GitLab / GitHub / Jenkins CI</p>
+          <h3 class="cluster-label">Infrastructure as Code</h3>
+          <p class="cluster-items">Terraform · Terragrunt · CloudFormation · Ansible · Puppet</p>
         </div>
         <div class="cluster">
-          <h3 class="cluster-label">Containers &amp; Platform</h3>
-          <p class="cluster-items">Kubernetes / EKS · Helm · ingress</p>
+          <h3 class="cluster-label">Platform &amp; Delivery</h3>
+          <p class="cluster-items">Kubernetes / EKS · Helm · ArgoCD · GitLab CI · GitHub Actions · Jenkins</p>
         </div>
         <div class="cluster">
           <h3 class="cluster-label">Security &amp; Identity</h3>
-          <p class="cluster-items">IAM Identity Center · Okta · Vault · KMS · AWS Config · least-privilege</p>
+          <p class="cluster-items">IAM Identity Center · Okta · Vault · KMS · AWS Config</p>
         </div>
         <div class="cluster">
-          <h3 class="cluster-label">Automation &amp; Code</h3>
-          <p class="cluster-items">Python · Bash · Lambda / EventBridge · SSM</p>
+          <h3 class="cluster-label">Automation &amp; Integration</h3>
+          <p class="cluster-items">Python · Bash · Lambda · EventBridge · SSM · Kinesis Firehose</p>
         </div>
         <div class="cluster">
           <h3 class="cluster-label">Foundations</h3>
-          <p class="cluster-items">Linux / RHEL · VMware · Puppet / Ansible</p>
+          <p class="cluster-items">Linux / RHEL / Ubuntu · VMware · OpenStack</p>
         </div>
       </div>
     </section>
@@ -160,31 +180,35 @@
       <ol class="project-list">
         <li class="project">
           <h3 class="project-name">Multi-datacenter Splunk platform</h3>
-          <p class="project-desc">2,500+ nodes across three datacenters; Puppet-automated forwarder rollout; scripted index config.</p>
+          <p class="project-desc">Built Splunk across three datacenters and 2,500+ nodes. Puppet handled forwarder rollout; scripts handled new index configuration. Less hand configuration, fewer opportunities to get creative by accident.</p>
         </li>
         <li class="project">
-          <h3 class="project-name">Clustered Splunk-in-AWS monitoring</h3>
-          <p class="project-desc">Per-customer apps with 50+ dashboards each; custom TAs and sourcetypes; summary indexing for cross-resource correlation.</p>
+          <h3 class="project-name">Monitoring that earns its keep</h3>
+          <p class="project-desc">Built a clustered Splunk platform in AWS to monitor customer environments. Custom integrations, 50+ dashboards per customer app, and summary indexing turned scattered resource data into useful answers.</p>
+        </li>
+        <li class="project">
+          <h3 class="project-name">AWS security monitoring pipeline</h3>
+          <p class="project-desc">Built a CloudFormation stack to send AWS security logs and events through Kinesis Firehose into Splunk HEC, with SNS notifications. Covered root logins, unauthorized API calls, and IAM and network changes. Fewer places to look when something looked wrong.</p>
         </li>
         <li class="project">
           <h3 class="project-name">Backup &amp; compliance automation</h3>
-          <p class="project-desc">CloudFormation + AWS Config + SNS + tagging standards; Cloud Custodian guardrails; native AWS Backup replacing third-party tools (thousands in recurring cost removed).</p>
+          <p class="project-desc">Automated AWS backups and compliance checks with CloudFormation, AWS Config, Cloud Custodian, and tagging standards. Replaced third-party backup tooling with native AWS Backup, taking thousands out of recurring costs.</p>
         </li>
         <li class="project">
           <h3 class="project-name">Hybrid file-sync pipeline</h3>
-          <p class="project-desc">Lambda / S3 / DynamoDB mapping SFTP&harr;SMB; automated sync between AWS and on-prem.</p>
+          <p class="project-desc">Connected SFTP and SMB workflows across AWS and on-prem using Lambda, S3, and DynamoDB. Automated file mapping and sync so moving files didn&rsquo;t need to be somebody&rsquo;s job.</p>
         </li>
         <li class="project">
-          <h3 class="project-name">Public-IP consolidation</h3>
-          <p class="project-desc">Automation to migrate and consolidate public IPs, cutting per-application IP cost.</p>
+          <h3 class="project-name">Fewer IPs, smaller bills</h3>
+          <p class="project-desc">Built automation to migrate and consolidate public IPs, reducing per-application IP costs. Small pieces of infrastructure add up when the meter never stops.</p>
         </li>
         <li class="project">
           <h3 class="project-name">Identity modernization</h3>
-          <p class="project-desc">Legacy IAM &rarr; Identity Center on Okta; permission sets, customer-managed policies, reusable Terraform / Terragrunt modules via GitLab CI.</p>
+          <p class="project-desc">Replaced legacy IAM access with Okta-backed Identity Center across a multi-account AWS environment. Reusable Terraform/Terragrunt modules and GitLab CI made permission changes repeatable. Least privilege, maintained in code.</p>
         </li>
         <li class="project">
-          <h3 class="project-name">Multi-region EKS access path</h3>
-          <p class="project-desc">Identity Center &rarr; k8s RBAC &rarr; ArgoCD, with Vault secrets and ingress, across three regions.</p>
+          <h3 class="project-name">Multi-region EKS access</h3>
+          <p class="project-desc">Operated EKS across three AWS regions, connecting Identity Center access to Kubernetes RBAC and ArgoCD deployments. Managed Vault secrets and ingress alongside it, with runbooks so the access path didn&rsquo;t live in one person&rsquo;s head.</p>
         </li>
       </ol>
     </section>
@@ -216,11 +240,24 @@
     <section class="tile tile--status" aria-labelledby="status-h">
       <h2 class="tile-label" id="status-h">// after hours</h2>
       <ul class="status-list">
-        <li><span class="dot" aria-hidden="true"></span><span class="svc">WOPR</span><span class="state">online</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span class="svc">TrueNAS</span><span class="state">0 errors</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span class="svc">Joshua</span><span class="state">thinking</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span class="svc">Paperclip</span><span class="state">shipping</span></li>
-        <li><span class="dot" aria-hidden="true"></span><span class="svc">Crystal Palace</span><span class="state">up</span></li>
+        <li>
+          <span class="dot" aria-hidden="true"></span>
+          <a class="svc" href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/">WOPR</a>
+          <span class="state">online</span>
+          <p class="svc-desc">Fanless Zotac. Ubuntu Server. Joshua&rsquo;s home. Quietly plotting uptime.</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"></span>
+          <span class="svc">TrueNAS</span>
+          <span class="state">0 errors</span>
+          <p class="svc-desc">The homelab&rsquo;s storage department.</p>
+        </li>
+        <li>
+          <span class="dot" aria-hidden="true"></span>
+          <a class="svc" href="/blog/posts/hello-world-from-joshua/">Joshua</a>
+          <span class="state">thinking</span>
+          <p class="svc-desc">My OpenClaw AI assistant on WOPR. Helps with code, logs, and automation. Takes requests over Discord.</p>
+        </li>
       </ul>
       <p class="status-foot">homelab · all green <span class="cursor" aria-hidden="true">&#9608;</span></p>
     </section>
@@ -284,7 +321,7 @@
     <!-- ===== FOOT ===== -->
     <footer class="panel-foot">
       <span>Remote · Palm City, FL · built by hand</span>
-      <span class="foot-hint">press <kbd>?</kbd> for a closer look</span>
+      <button class="foot-hint" type="button" aria-haspopup="dialog" aria-controls="console">a closer look <kbd>?</kbd></button>
     </footer>
   </main>
 
