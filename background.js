@@ -17,7 +17,7 @@
     "windows-terminal"
   ];
 
-  const ICON_PATH = "assets/icons/";
+  const ICON_PATH = "/assets/icons/";
 
   // Human-readable names so the wall is hover-to-name, not just decoration.
   const LABELS = {

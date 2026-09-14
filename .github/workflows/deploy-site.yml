@@ -6,10 +6,17 @@ on:
       - main
     paths:
       - 'index.html'
+      - '404.html'
       - 'styles.css'
       - '*.js'
       - 'assets/**'
       - 'CNAME'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'sitemap-pages.xml'
+      - 'site.webmanifest'
+      - 'favicon.ico'
+      - 'apple-touch-icon.png'
       - '.github/workflows/deploy-site.yml'
   workflow_dispatch:
 
@@ -41,12 +48,18 @@ jobs:
           set -euo pipefail
           # Mirror root files from main onto gh-pages. /blog/ is owned by
           # deploy-blog.yml so it is excluded from both sides of the sync;
-          # .git/ and .github/ are repo plumbing that must not be copied.
+          # .git/, .github/, .claude/ and scripts/ are repo plumbing, and the markdown
+          # working docs (README, CLAUDE.md, BRIEF.md) are not site content --
+          # none of them belong on the live site.
           rsync -av --delete \
             --exclude='/.git/' \
             --exclude='/.github/' \
+            --exclude='/.claude/' \
+            --exclude='/scripts/' \
             --exclude='/blog/' \
             --exclude='/README.md' \
+            --exclude='/CLAUDE.md' \
+            --exclude='/BRIEF.md' \
             --exclude='/.gitignore' \
             src/ pages/
           # Ensure GitHub Pages serves files verbatim (no Jekyll processing).
