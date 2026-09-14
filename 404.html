@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#0a0c0a" />
+  <meta name="robots" content="noindex" />
+  <title>404 — not found · Greg Stengel</title>
+  <meta name="description"
+    content="That page doesn't exist on gregstengel.com. Head back to the control panel or over to the blog." />
+
+  <!-- GitHub Pages serves this file for every missing URL on the domain, at any
+       path depth, so every asset reference here must be absolute. -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" type="image/svg+xml" href="/assets/favicons/favicon.svg" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="/styles.css" />
+  <style>
+    /* Single-tile layout on top of the shared control-panel styles. */
+    .panel--404 {
+      min-height: 100vh;
+      align-content: center;
+      grid-template-columns: 1fr;
+      grid-template-areas: "hero" "foot";
+    }
+    .tile--404 { max-width: 720px; width: 100%; justify-self: center; }
+    .kicker--err { color: var(--hot); }
+    .headline--404 { font-size: clamp(3.2rem, 12vw, 6.5rem); line-height: 0.95; }
+    .headline--404 .headline-accent { font-size: clamp(1.4rem, 4vw, 2.2rem); margin-top: 0.5rem; }
+    .notfound-hint { display: none; }
+    .notfound-hint.is-visible { display: block; }
+    .notfound-links { display: flex; flex-wrap: wrap; gap: 0.4rem 1.6rem; margin-top: 0.4rem; }
+    .notfound-links .blog-cta { margin-top: 0.6rem; }
+    .panel--404 .panel-foot { justify-content: center; }
+  </style>
+</head>
+
+<body>
+  <div class="icon-background" aria-hidden="true"></div>
+
+  <main class="panel panel--404">
+    <section class="tile tile--hero tile--404">
+      <p class="kicker"><span class="prompt">greg@stengel</span>:<span class="path">~</span>$ cat <span
+          class="req-path">this-page</span></p>
+      <p class="kicker kicker--err">cat: <span class="req-path">this-page</span>: No such file or directory</p>
+      <p class="headline headline--404">
+        404
+        <span class="headline-accent">Nothing at this address.</span>
+      </p>
+      <p class="subhead">
+        Wrong URL, moved page, or it never existed. Nothing&rsquo;s on fire &mdash; pick an exit.
+      </p>
+      <p class="subhead notfound-hint" id="blog-hint">
+        That looks like a blog link. Posts live under <code>/blog/posts/&hellip;</code>; the archives list every one.
+      </p>
+      <nav class="notfound-links" aria-label="Where to next">
+        <a class="blog-cta" href="/">&larr; the control panel</a>
+        <a class="blog-cta" href="/blog/">the blog &rarr;</a>
+        <a class="blog-cta" href="/blog/archives/">the archives &rarr;</a>
+      </nav>
+    </section>
+
+    <footer class="panel-foot">
+      <span>exit code 1 &middot; gregstengel.com</span>
+    </footer>
+  </main>
+
+  <script>
+    // Echo the missing path into the terminal line. textContent only -- never
+    // markup -- so a crafted URL can't inject anything.
+    (function () {
+      var path = location.pathname || "/";
+      if (path.length > 80) path = path.slice(0, 77) + "…";
+      var spans = document.querySelectorAll(".req-path");
+      for (var i = 0; i < spans.length; i++) spans[i].textContent = path;
+      if (/^\/blog\//.test(location.pathname)) {
+        document.getElementById("blog-hint").classList.add("is-visible");
+      }
+    })();
+  </script>
+  <script src="/background.js"></script>
+</body>
+
+</html>

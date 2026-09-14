@@ -1,7 +1,9 @@
 ---
 title: "About Me"
 layout: page
-permalink: /blog/about/
+icon: fas fa-info-circle
+order: 4
+description: Who Greg Stengel is -- cloud architect by day, homelab tinkerer and AI-assistant wrangler by night.
 ---
 I'm a cloud architect who worked across multiple organizations as a cloud service provider. Which means I get to see how a lot of different teams build, break, and rebuild their infrastructure. Most of my depth is in AWS, but sometimes I dabble in the Azure and GCP clouds. 
 
