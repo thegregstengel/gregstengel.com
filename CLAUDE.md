@@ -26,6 +26,7 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 ├── styles.css                # Landing page styles
 ├── background.js             # Animated tech-icon "stack wall" (hover-to-name)
 ├── posts.js                  # Fetches latest blog posts from /blog/feed.xml
+├── music.js                  # Sound control (bottom-left soundtrack toggle)
 ├── BRIEF.md                  # Creative direction for the landing page
 ├── robots.txt                # Allow-all + points at /sitemap.xml
 ├── sitemap.xml               # Sitemap INDEX -> sitemap-pages.xml + blog/sitemap.xml
@@ -34,6 +35,7 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 ├── assets/                   # Shared assets (incl. assets/icons/ for the wall,
 │                             #   assets/favicons/ for the SVG/PNG icon set)
 ├── scripts/gen-favicons.js   # Regenerates both favicon sets from favicon.svg
+├── scripts/gen-music.py      # Spectrum JSON for the soundtrack (+ placeholder loop/art)
 ├── blog/                     # Jekyll blog at /blog
 │   ├── _config.yml           # Jekyll and Chirpy configuration
 │   ├── _posts/               # Blog posts (markdown)
@@ -48,8 +50,8 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 
 ## Landing page ("Control panel")
 
-- `index.html`, `styles.css`, `background.js`, `posts.js`, and `console.js` at the
-  repo root
+- `index.html`, `styles.css`, `background.js`, `posts.js`, `console.js`, and
+  `music.js` at the repo root
 - Standalone HTML/CSS/JS, not processed by Jekyll; vanilla, no build step
 - Creative direction is captured in `BRIEF.md` at the repo root -- read it before
   touching copy or design (axes: Edge / Provocative / Expressive Maximalist /
@@ -110,6 +112,30 @@ Fun (~5%):
 - **`console.js`:** the hidden `/whoami` console (`role="dialog"` modal). Opens on
   `?`, closes on `Esc`/click-outside, types out a short session (the `SESSION`
   array), respects `prefers-reduced-motion`, and restores focus on close.
+- **`music.js`:** the sound control (fixed bottom-left pill, `#music`), modelled
+  on omarchy.org's. The soundtrack is conceptually *always playing* from page
+  load on a virtual clock; un-muting joins it in progress, muting ramps a
+  GainNode to zero so the position stays live. Four EQ bars run off a live
+  `AnalyserNode` when sounding and off a **precomputed spectrum**
+  (`assets/music/<slug>.json`) while muted, so they move before any audio is
+  fetched. Progress bar + invisible range input for seeking; hovering the seek
+  strip swaps artist for `m:ss / m:ss`. Toggle via the art button, the `m` key,
+  or the `sound` foot hint. Never autoplays; only the ~9 KB JSON loads up
+  front. Hidden under 640px (the foot hint still works). Track metadata lives
+  in `TRACK` at the top of the file.
+  - **Track:** *Newer Wave* by Kevin MacLeod, **CC BY 4.0** from incompetech.com.
+    Attribution is required and lives in three places: the artist link in the
+    pill (`index.html`, with the full credit in its `title`), the HTML comment
+    above the control, and the Credits section of `README.md`. Keep all three
+    if the track changes. Required wording: `"Newer Wave" Kevin MacLeod
+    (incompetech.com) Licensed under Creative Commons: By Attribution 4.0
+    https://creativecommons.org/licenses/by/4.0/`.
+  - **Assets:** `assets/music/<slug>.{mp3,png,json}`. To swap tracks: drop
+    `<slug>.mp3` + square `<slug>.png` art into `assets/music/`, run
+    `python3 scripts/gen-music.py --analyze <slug>` for the spectrum JSON, and
+    update `TRACK` in `music.js` plus the title/artist/art in `index.html`.
+    Running the script with no args regenerates the synth placeholder loop
+    (*Phosphor Idle*) for testing without a licensed track.
 
 ### Site-wide plumbing (404, favicons, robots, sitemap)
 
