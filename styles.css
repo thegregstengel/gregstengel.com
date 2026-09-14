@@ -688,3 +688,199 @@ a.svc:hover { color: var(--acc); }
   .bg-icon { animation: none; opacity: var(--peak-opacity, 0.18); }
   .cursor, .dot, .console-cursor { animation: none; }
 }
+
+/* ========================================
+   SOUND CONTROL — fixed bottom-left, see music.js
+   ======================================== */
+
+.music {
+  position: fixed;
+  left: 1.25rem;
+  bottom: 1.25rem;
+  z-index: 40;                          /* under the /whoami console (50) */
+  display: flex;
+  align-items: stretch;
+  height: 46px;
+  border: 1px solid var(--line-2);
+  border-radius: 10px;
+  background: hsla(96, 10%, 8%, 0.85);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  box-shadow: 0 10px 30px hsla(0, 0%, 0%, 0.45);
+  overflow: hidden;
+  font-family: var(--mono);
+  user-select: none;
+}
+.music[hidden] { display: none; }
+
+.music-toggle {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  align-self: center;
+  border: 0;
+  border-right: 1px solid var(--line);
+  background-color: var(--bg-2);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  cursor: pointer;
+  padding: 0;
+  touch-action: manipulation;
+}
+.music-ring {
+  position: absolute;
+  inset: -1px;
+  border: 1px solid var(--acc);
+  pointer-events: none;
+  animation: music-ring 1.8s ease-in-out infinite;
+}
+.music.is-touched .music-ring { display: none; }
+@keyframes music-ring {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.3; }
+}
+.music-icon {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: hsla(0, 0%, 0%, 0.45);
+  transition: opacity 0.15s ease;
+}
+.music-icon svg {
+  width: 18px;
+  height: 18px;
+  filter: drop-shadow(0 1px 2px hsla(0, 0%, 0%, 0.7));
+}
+.music-icon .icon-on  { display: none; }
+.music[data-state="playing"] .music-icon .icon-on,
+.music[data-state="loading"] .music-icon .icon-on  { display: block; }
+.music[data-state="playing"] .music-icon .icon-off,
+.music[data-state="loading"] .music-icon .icon-off { display: none; }
+/* While sounding, the art shows through until you hover or focus. */
+.music[data-state="playing"] .music-icon,
+.music[data-state="loading"] .music-icon { opacity: 0; }
+.music[data-state="playing"]:hover .music-icon,
+.music[data-state="loading"]:hover .music-icon,
+.music:has(:focus-visible) .music-icon { opacity: 1; }
+@media (pointer: coarse) {
+  .music[data-state="playing"] .music-icon,
+  .music[data-state="loading"] .music-icon { opacity: 1; }
+}
+.music[data-state="loading"] .music-icon svg { animation: blink 0.8s step-end infinite; }
+
+.music-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 1rem 0 0.75rem;
+  line-height: 1.2;
+  min-width: 0;
+}
+.music-title {
+  font-family: var(--display);
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text);
+  white-space: nowrap;
+}
+.music-sub {
+  position: relative;
+  margin-top: 2px;
+  font-size: 0.68rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.music-time {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+.music-artist {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: opacity 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.music-artist:hover { color: var(--acc); border-bottom-color: var(--acc-dim); }
+/* Hovering or dragging the seek strip swaps the artist for the time readout. */
+.music:has(.music-seek:hover) .music-artist,
+.music:has(.music-seek:focus-visible) .music-artist,
+.music:has(.music-seek:active) .music-artist { opacity: 0; }
+.music:has(.music-seek:hover) .music-time,
+.music:has(.music-seek:focus-visible) .music-time,
+.music:has(.music-seek:active) .music-time { opacity: 1; }
+.music[data-state="failed"] .music-sub { color: var(--hot); }
+
+.music-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 18px;
+  height: 12px;
+  margin-right: 0.85rem;
+  align-self: center;
+  flex: none;
+}
+.music-bars i {
+  display: block;
+  width: 3px;
+  height: 2px;
+  background: var(--acc);
+  box-shadow: 0 0 6px var(--acc-dim);
+  transition: height 0.05s linear;
+}
+
+.music-progress {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--acc);
+  transform-origin: left;
+  transform: scaleX(0);
+  transition: height 0.15s ease;
+  pointer-events: none;
+}
+.music:hover .music-progress,
+.music:has(:focus-visible) .music-progress { height: 4px; }
+
+.music-seek {
+  position: absolute;
+  left: 0; right: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 14px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  touch-action: none;
+}
+.music-seek:focus-visible { outline: none; }
+.music-seek::-webkit-slider-runnable-track { background: transparent; height: 14px; }
+.music-seek::-moz-range-track { background: transparent; height: 14px; }
+.music-seek::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 1px; height: 14px; border: 0; background: transparent; }
+.music-seek::-moz-range-thumb { width: 1px; height: 14px; border: 0; border-radius: 0; background: transparent; }
+
+.music-toggle:focus-visible { outline: 2px solid var(--acc); outline-offset: -2px; }
+
+.foot-hints { display: flex; align-items: center; gap: 0.25rem; }
+.foot-hint[aria-pressed="true"] { color: var(--acc); }
+
+/* The control needs a pointer and some room; phones get the foot toggle only.
+   On wider screens, give the page foot room to clear the fixed pill. */
+@media (max-width: 640px) {
+  .music { display: none; }
+}
+@media (min-width: 641px) {
+  .panel { padding-bottom: calc(clamp(1.25rem, 4vw, 3rem) + 3.5rem); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .music-ring { animation: none; }
+  .music[data-state="loading"] .music-icon svg { animation: none; }
+}

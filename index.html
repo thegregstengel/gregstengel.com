@@ -349,9 +349,44 @@
     <!-- ===== FOOT ===== -->
     <footer class="panel-foot">
       <span>Remote · Palm City, FL · built by hand</span>
-      <button class="foot-hint" type="button" aria-haspopup="dialog" aria-controls="console">a closer look <kbd>?</kbd></button>
+      <span class="foot-hints">
+        <button class="foot-hint" type="button" aria-pressed="false" data-music-toggle><span class="music-foot-label">sound off</span> <kbd>m</kbd></button>
+        <button class="foot-hint" type="button" aria-haspopup="dialog" aria-controls="console">a closer look <kbd>?</kbd></button>
+      </span>
     </footer>
   </main>
+
+  <!-- Sound control — the soundtrack is always "playing"; this un-mutes it. See music.js.
+       Music: "Newer Wave" Kevin MacLeod (incompetech.com)
+       Licensed under Creative Commons: By Attribution 4.0  https://creativecommons.org/licenses/by/4.0/ -->
+  <div class="music" id="music" hidden data-state="muted">
+    <button class="music-toggle" type="button" aria-pressed="false" aria-label="Turn the sound on" title="Sound on"
+            style="background-image: url('/assets/music/newer-wave.png')">
+      <span class="music-ring" aria-hidden="true"></span>
+      <span class="music-icon" aria-hidden="true">
+        <svg class="icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">
+          <path d="M2 8h4l6-4v16l-6-4H2z" />
+          <path d="M17 9l5 5M22 9l-5 5" />
+        </svg>
+        <svg class="icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="square">
+          <path d="M2 8h4l6-4v16l-6-4H2z" />
+          <path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" />
+        </svg>
+      </span>
+    </button>
+    <span class="music-meta">
+      <span class="music-title">Newer Wave</span>
+      <span class="music-sub">
+        <a class="music-artist" href="https://incompetech.com/music/royalty-free/index.html?isrc=USUAN2000024"
+           target="_blank" rel="noopener license"
+           title="&quot;Newer Wave&quot; Kevin MacLeod (incompetech.com). Licensed under Creative Commons: By Attribution 4.0 — https://creativecommons.org/licenses/by/4.0/">Kevin MacLeod · CC BY 4.0</a>
+        <span class="music-time" aria-hidden="true"></span>
+      </span>
+    </span>
+    <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+    <span class="music-progress" aria-hidden="true"></span>
+    <input class="music-seek" type="range" min="0" max="1000" step="5" value="0" aria-label="Position in the track" />
+  </div>
 
   <!-- Hidden /whoami console — opens on `?`, closes on Esc. The 5% fun. -->
   <div class="console" id="console" hidden role="dialog" aria-modal="true"
@@ -369,6 +404,7 @@
   <script src="background.js"></script>
   <script src="posts.js"></script>
   <script src="console.js"></script>
+  <script src="music.js"></script>
 </body>
 
 </html>
