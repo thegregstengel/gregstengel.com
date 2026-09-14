@@ -14,11 +14,14 @@
 (() => {
   "use strict";
 
+  // "Newer Wave" Kevin MacLeod (incompetech.com)
+  // Licensed under Creative Commons: By Attribution 4.0
+  // https://creativecommons.org/licenses/by/4.0/
   const TRACK = {
-    title: "Phosphor Idle",
-    artist: "placeholder synth",
-    src: "/assets/music/phosphor-idle.mp3",
-    meta: "/assets/music/phosphor-idle.json",
+    title: "Newer Wave",
+    artist: "Kevin MacLeod",
+    src: "/assets/music/newer-wave.mp3",
+    meta: "/assets/music/newer-wave.json",
   };
   const BARS = 4;             // EQ bars in the control
   const BAR_MAX = 12;         // px, tallest bar

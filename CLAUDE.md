@@ -35,7 +35,7 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 ├── assets/                   # Shared assets (incl. assets/icons/ for the wall,
 │                             #   assets/favicons/ for the SVG/PNG icon set)
 ├── scripts/gen-favicons.js   # Regenerates both favicon sets from favicon.svg
-├── scripts/gen-music.py      # Placeholder soundtrack + cover art + spectrum JSON
+├── scripts/gen-music.py      # Spectrum JSON for the soundtrack (+ placeholder loop/art)
 ├── blog/                     # Jekyll blog at /blog
 │   ├── _config.yml           # Jekyll and Chirpy configuration
 │   ├── _posts/               # Blog posts (markdown)
@@ -123,12 +123,19 @@ Fun (~5%):
   or the `sound` foot hint. Never autoplays; only the ~9 KB JSON loads up
   front. Hidden under 640px (the foot hint still works). Track metadata lives
   in `TRACK` at the top of the file.
-  - **Assets:** `assets/music/<slug>.{mp3,png,json}`. The current track,
-    *Phosphor Idle*, is a **generated placeholder** (synth loop from
-    `scripts/gen-music.py`) until a real, licensed track is chosen. To swap:
-    drop `<slug>.mp3` + `<slug>.png` (square art) into `assets/music/`, run
-    `python3 scripts/gen-music.py --analyze <slug>` for the JSON, and update
-    `TRACK` in `music.js` plus the title/artist/art in `index.html`.
+  - **Track:** *Newer Wave* by Kevin MacLeod, **CC BY 4.0** from incompetech.com.
+    Attribution is required and lives in three places: the artist link in the
+    pill (`index.html`, with the full credit in its `title`), the HTML comment
+    above the control, and the Credits section of `README.md`. Keep all three
+    if the track changes. Required wording: `"Newer Wave" Kevin MacLeod
+    (incompetech.com) Licensed under Creative Commons: By Attribution 4.0
+    https://creativecommons.org/licenses/by/4.0/`.
+  - **Assets:** `assets/music/<slug>.{mp3,png,json}`. To swap tracks: drop
+    `<slug>.mp3` + square `<slug>.png` art into `assets/music/`, run
+    `python3 scripts/gen-music.py --analyze <slug>` for the spectrum JSON, and
+    update `TRACK` in `music.js` plus the title/artist/art in `index.html`.
+    Running the script with no args regenerates the synth placeholder loop
+    (*Phosphor Idle*) for testing without a licensed track.
 
 ### Site-wide plumbing (404, favicons, robots, sitemap)
 

@@ -38,3 +38,8 @@ GitHub Actions will rebuild and deploy automatically.
 
 ## Do Not Edit `gh-pages`
 The `gh-pages` branch is managed by automation. Don’t edit it directly.
+
+## 🎵 Credits
+Landing page soundtrack: "Newer Wave" Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 4.0
+https://creativecommons.org/licenses/by/4.0/

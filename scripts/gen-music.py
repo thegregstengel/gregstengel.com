@@ -1,16 +1,19 @@
 #!/usr/bin/env python3
-"""Generate the landing page's placeholder music assets.
+"""Music assets for the landing page's sound control (music.js).
 
-    python3 scripts/gen-music.py            # needs numpy + ffmpeg (libmp3lame)
+    python3 scripts/gen-music.py --analyze <slug>   # the normal use
+    python3 scripts/gen-music.py                    # placeholder loop + art
 
-Writes into assets/music/:
-  phosphor-idle.mp3   ~43 s seamless synth loop (placeholder until a real track lands)
-  phosphor-idle.png   176x176 cover art (the `>_` mark on a scanlined tile)
-  phosphor-idle.json  precomputed spectrum so music.js can animate the EQ bars
-                      while the sound is muted (see "Muted visualizer" in music.js)
+Needs numpy + ffmpeg (libmp3lame).
 
-To use a real track instead: drop <slug>.mp3 + <slug>.png here, update TRACK in
-music.js, then run this script with `--analyze <slug>` to produce the JSON.
+`--analyze <slug>` reads assets/music/<slug>.mp3 and writes <slug>.json: a
+precomputed spectrum (8 log bands, 20 fps, uint8, base64) so music.js can
+animate the EQ bars while the sound is muted, before any audio is fetched.
+
+With no arguments it synthesizes "Phosphor Idle", a ~43 s seamless loop, plus
+176x176 cover art (the `>_` mark on a scanlined tile) and its JSON -- a
+stand-in for testing when no licensed track is available. The cover art
+routine is also what produced the current track's art.
 """
 import base64, json, struct, subprocess, sys, wave, zlib
 from pathlib import Path
