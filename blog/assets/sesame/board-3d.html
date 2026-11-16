@@ -1,0 +1,1061 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sesame Robot build model</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@600&display=swap">
+<style>
+  /* Color tokens. Palette comes from the part itself: solder mask, tin, copper, bench mat. */
+  :root {
+    box-sizing: border-box;
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    --bench: #e7ebe8;      /* page background */
+    --mat: #d5dbd7;        /* 3D viewport background */
+    --ink: #15211a;        /* text */
+    --ink-soft: #4d5b52;   /* secondary text */
+    --mask: #1f6b3a;       /* solder mask green, used as the accent */
+    --copper: #a8561a;     /* highlight and warnings */
+    --line: #b9c2bc;       /* rules and borders */
+    --panel: #f3f5f3;      /* list surface */
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bench: #171b19; --mat: #22282a; --ink: #e4ebe6; --ink-soft: #9aa8a0;
+      --mask: #58c27d; --copper: #e39a5a; --line: #38423d; --panel: #1e2421;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bench: #171b19; --mat: #22282a; --ink: #e4ebe6; --ink-soft: #9aa8a0;
+    --mask: #58c27d; --copper: #e39a5a; --line: #38423d; --panel: #1e2421;
+  }
+  *, *::before, *::after { box-sizing: inherit; }
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    margin: 0; background: var(--bench); color: var(--ink);
+    font-family: "Barlow", "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: 16px; line-height: 1.45;
+  }
+  main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+  h1, h2 {
+    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif;
+    font-weight: 600; margin: 0; letter-spacing: 0.01em;
+  }
+  h1 { font-size: 1.75rem; line-height: 1.1; }
+  h2 { font-size: 1.25rem; }
+  .sub { color: var(--ink-soft); margin: 2px 0 12px; }
+
+  /* Viewport */
+  #stage {
+    position: relative; width: 100%; height: 56vh; min-height: 300px; max-height: 640px;
+    background: var(--mat); border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+  }
+  #stage canvas { display: block; width: 100%; height: 100%; touch-action: none; cursor: grab; }
+  #stage canvas:active { cursor: grabbing; }
+  #readout {
+    position: absolute; left: 10px; bottom: 10px; padding: 4px 10px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+    font-size: 0.9rem; color: var(--ink-soft); pointer-events: none;
+  }
+  #readout b { color: var(--copper); font-weight: 600; }
+  #side {
+    position: absolute; right: 10px; top: 10px; padding: 2px 10px;
+    font-family: "Barlow Condensed", "Arial Narrow", Arial, sans-serif; font-weight: 600;
+    background: var(--mask); color: var(--bench); border-radius: 4px; pointer-events: none;
+  }
+
+  /* Toolbar */
+  .bar { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 20px; }
+  button {
+    font: inherit; font-weight: 500; color: var(--ink); background: var(--panel);
+    border: 1px solid var(--line); border-radius: 4px; padding: 8px 14px; cursor: pointer;
+  }
+  button:hover { border-color: var(--mask); }
+  button:focus-visible, input:focus-visible { outline: 2px solid var(--mask); outline-offset: 2px; }
+
+  /* Checklists */
+  .lists { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+  .list-head { display: flex; align-items: baseline; justify-content: space-between; border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+  .list-head button { padding: 2px 8px; font-size: 0.85rem; }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { border-bottom: 1px solid var(--line); }
+  li label { display: flex; gap: 12px; align-items: flex-start; padding: 10px 2px; cursor: pointer; }
+  li input { width: 20px; height: 20px; margin-top: 2px; accent-color: var(--mask); flex: none; }
+  li .name { font-weight: 500; }
+  li .note { display: block; color: var(--ink-soft); font-size: 0.9rem; }
+  .empty { color: var(--ink-soft); padding: 12px 2px; }
+  .spec { margin-top: 24px; color: var(--ink-soft); font-size: 0.95rem; max-width: 70ch; }
+  .spec b { color: var(--ink); font-weight: 600; }
+  .tbl-head { margin-top: 24px; border-bottom: 2px solid var(--ink); padding-bottom: 4px; }
+  .scroll { overflow-x: auto; }
+  table { border-collapse: collapse; width: 100%; max-width: 640px; font-size: 0.95rem; }
+  th, td { text-align: left; padding: 6px 10px 6px 2px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  th { color: var(--ink-soft); font-weight: 500; }
+  td:first-child { color: var(--copper); font-weight: 600; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Sesame Robot build model</h1>
+  <p class="sub">Revision 16. Step 7 of the build: power switch added in the battery positive wire. All parts are now placed. Flip to the solder side to follow the wires. Drag to rotate, pinch or scroll to zoom, two fingers or right-drag to pan.</p>
+
+  <div id="stage">
+    <div id="side">Top side</div>
+    <div id="readout">Tap a hole to read its coordinate</div>
+  </div>
+
+  <div class="bar">
+    <button id="btnFlip" type="button">Flip to solder side</button>
+    <button id="btnTop" type="button">Look straight down</button>
+    <button id="btnReset" type="button">Reset view</button>
+  </div>
+
+  <div class="lists">
+    <section>
+      <div class="list-head"><h2>Components</h2><button type="button" data-all="components">Show all</button></div>
+      <ul id="list-components"></ul>
+    </section>
+    <section>
+      <div class="list-head"><h2>Solder points</h2><button type="button" data-all="solder">Show all</button></div>
+      <ul id="list-solder"></ul>
+    </section>
+    <section>
+      <div class="list-head"><h2>Wires</h2><button type="button" data-all="wires">Show all</button></div>
+      <ul id="list-wires"></ul>
+      <p class="empty" id="wires-empty">No wires yet. They show up here after the components are placed.</p>
+    </section>
+  </div>
+
+  <p class="spec"><b>Board as modeled:</b> 70 x 30 x 1.6 mm, double-sided, 24 x 10 plated holes (columns A to X, rows 01 to 10) on a 2.54 mm pitch, 8 edge pads on each short side, four 2.2 mm mounting holes. All pads are treated as isolated.</p>
+  <h2 class="tbl-head">Pin map</h2>
+  <p class="spec"><b>Firmware pins for this board</b> (replaces the S2 Mini lines in sesame-firmware-main.ino): <code>const int servoPins[8] = {44, 7, 4, 3, 9, 8, 2, 1};</code> with <code>#define I2C_SDA 5</code> and <code>#define I2C_SCL 6</code>. Array order is R1, R2, L1, L2, R4, R3, L3, L4.</p>
+  <div class="scroll"><table id="pinmap"><thead><tr><th>Hole</th><th>Pin</th><th>GPIO</th><th>Planned use (provisional)</th></tr></thead><tbody></tbody></table></div>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  // ---------------------------------------------------------------------
+  // Board constants, all in millimeters. One scene unit equals 1 mm.
+  // ---------------------------------------------------------------------
+  var BOARD = { w: 70, d: 30, t: 1.6, cols: 24, rows: 10, pitch: 2.54,
+                drill: 0.5, padR: 0.95, mountR: 1.1, mountX: 32.6, mountZ: 12.6 };
+  var COLS = "ABCDEFGHIJKLMNOPQRSTUVWX";
+
+  // Convert a grid address to board coordinates. col is 0..23 (A..X), row is 1..10.
+  // Row 10 sits on the far edge (negative Z), row 01 on the near edge, as printed on the board.
+  // Every component placed later uses this function so pins always land on real holes.
+  function holeXZ(col, row) {
+    var x = (col - (BOARD.cols - 1) / 2) * BOARD.pitch;
+    var z = ((BOARD.rows + 1) / 2 - row) * BOARD.pitch;
+    return { x: x, z: z };
+  }
+
+  // ---------------------------------------------------------------------
+  // Scene setup
+  // ---------------------------------------------------------------------
+  var stage = document.getElementById("stage");
+  var renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputEncoding = THREE.sRGBEncoding;
+  stage.insertBefore(renderer.domElement, stage.firstChild);
+  var canvas = renderer.domElement;
+
+  var scene = new THREE.Scene();
+  var camera = new THREE.PerspectiveCamera(35, 1, 1, 2000);
+
+  scene.add(new THREE.HemisphereLight(0xffffff, 0x556055, 0.95));
+  var sun = new THREE.DirectionalLight(0xffffff, 0.7);
+  sun.position.set(40, 90, 60);
+  scene.add(sun);
+  var fill = new THREE.DirectionalLight(0xffffff, 0.45);   // lights the solder side
+  fill.position.set(-30, -90, -40);
+  scene.add(fill);
+
+  var needsRender = true;
+  function invalidate() { needsRender = true; }
+
+  // Read the viewport background from the CSS token so light and dark themes both work.
+  function applyTheme() {
+    var c = getComputedStyle(document.documentElement).getPropertyValue("--mat").trim() || "#d5dbd7";
+    scene.background = new THREE.Color(c);
+    invalidate();
+  }
+  applyTheme();
+  if (window.matchMedia) {
+    var mq = window.matchMedia("(prefers-color-scheme: dark)");
+    if (mq.addEventListener) { mq.addEventListener("change", applyTheme); }
+  }
+  new MutationObserver(applyTheme).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
+  // ---------------------------------------------------------------------
+  // Materials
+  // ---------------------------------------------------------------------
+  var matMask = new THREE.MeshStandardMaterial({ color: 0x1d7a3e, roughness: 0.45, metalness: 0.05 });
+  var matTin = new THREE.MeshStandardMaterial({ color: 0xd9dde0, roughness: 0.35, metalness: 0.35, side: THREE.DoubleSide });
+
+  // ---------------------------------------------------------------------
+  // Board substrate with real drilled holes (extruded outline with hole paths)
+  // ---------------------------------------------------------------------
+  function buildSubstrate() {
+    var hw = BOARD.w / 2, hd = BOARD.d / 2, r = 1.0;   // r is the corner radius
+    var s = new THREE.Shape();
+    s.moveTo(-hw + r, -hd);
+    s.lineTo(hw - r, -hd); s.absarc(hw - r, -hd + r, r, -Math.PI / 2, 0, false);
+    s.lineTo(hw, hd - r);  s.absarc(hw - r, hd - r, r, 0, Math.PI / 2, false);
+    s.lineTo(-hw + r, hd); s.absarc(-hw + r, hd - r, r, Math.PI / 2, Math.PI, false);
+    s.lineTo(-hw, -hd + r); s.absarc(-hw + r, -hd + r, r, Math.PI, Math.PI * 1.5, false);
+
+    function drill(x, y, rad) {
+      var p = new THREE.Path();
+      p.absarc(x, y, rad, 0, Math.PI * 2, true);
+      s.holes.push(p);
+    }
+    for (var c = 0; c < BOARD.cols; c++) {
+      for (var rw = 1; rw <= BOARD.rows; rw++) {
+        var h = holeXZ(c, rw);
+        drill(h.x, -h.z, BOARD.drill);     // shape Y maps to -Z after the rotation below
+      }
+    }
+    [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(function (m) {
+      drill(m[0] * BOARD.mountX, m[1] * BOARD.mountZ, BOARD.mountR);
+    });
+
+    var g = new THREE.ExtrudeGeometry(s, { depth: BOARD.t, bevelEnabled: false, curveSegments: 10 });
+    g.rotateX(-Math.PI / 2);               // lay the board flat, thickness along +Y
+    g.translate(0, -BOARD.t / 2, 0);       // center the thickness on Y = 0
+    return new THREE.Mesh(g, matMask);
+  }
+
+  // ---------------------------------------------------------------------
+  // Plated through-hole pads: a ring on each face plus a barrel, instanced for speed
+  // ---------------------------------------------------------------------
+  function buildPads() {
+    var group = new THREE.Group();
+    var n = BOARD.cols * BOARD.rows;
+    var ringGeo = new THREE.RingGeometry(BOARD.drill, BOARD.padR, 24);
+    ringGeo.rotateX(-Math.PI / 2);
+    var barrelGeo = new THREE.CylinderGeometry(BOARD.drill, BOARD.drill, BOARD.t, 16, 1, true);
+
+    var top = new THREE.InstancedMesh(ringGeo, matTin, n);
+    var bot = new THREE.InstancedMesh(ringGeo, matTin, n);
+    var barrel = new THREE.InstancedMesh(barrelGeo, matTin, n);
+    var m = new THREE.Matrix4(), i = 0, eps = 0.02;   // eps lifts copper off the mask to avoid z-fighting
+    for (var c = 0; c < BOARD.cols; c++) {
+      for (var rw = 1; rw <= BOARD.rows; rw++) {
+        var h = holeXZ(c, rw);
+        m.makeTranslation(h.x, BOARD.t / 2 + eps, h.z);  top.setMatrixAt(i, m);
+        m.makeTranslation(h.x, -BOARD.t / 2 - eps, h.z); bot.setMatrixAt(i, m);
+        m.makeTranslation(h.x, 0, h.z);                  barrel.setMatrixAt(i, m);
+        i++;
+      }
+    }
+    group.add(top, bot, barrel);
+    return group;
+  }
+
+  // ---------------------------------------------------------------------
+  // Edge pads: 8 stadium-shaped solder pads on each short side, rows 02 to 09, both faces
+  // ---------------------------------------------------------------------
+  function buildEdgePads() {
+    var len = 3.3, wid = 1.9, r = wid / 2, hx = len / 2 - r;
+    var s = new THREE.Shape();
+    s.moveTo(-hx, -r); s.lineTo(hx, -r); s.absarc(hx, 0, r, -Math.PI / 2, Math.PI / 2, false);
+    s.lineTo(-hx, r);  s.absarc(-hx, 0, r, Math.PI / 2, Math.PI * 1.5, false);
+    var g = new THREE.ShapeGeometry(s, 8);
+    g.rotateX(-Math.PI / 2);
+    var mesh = new THREE.InstancedMesh(g, matTin, 32);
+    var m = new THREE.Matrix4(), i = 0, x = BOARD.w / 2 - 2.4, eps = 0.02;
+    for (var rw = 2; rw <= 9; rw++) {
+      var z = holeXZ(0, rw).z;
+      [-x, x].forEach(function (px) {
+        [1, -1].forEach(function (face) {
+          m.makeTranslation(px, face * (BOARD.t / 2 + eps), z);
+          mesh.setMatrixAt(i++, m);
+        });
+      });
+    }
+    return mesh;
+  }
+
+  // ---------------------------------------------------------------------
+  // Silkscreen grid labels, drawn to a canvas texture. One plane per face.
+  // The solder side labels are laid out so they read correctly when viewed from below.
+  // ---------------------------------------------------------------------
+  function buildLabels() {
+    var group = new THREE.Group();
+    var PX = 20;   // texture pixels per millimeter
+    function face(isTop) {
+      var cv = document.createElement("canvas");
+      cv.width = BOARD.w * PX; cv.height = BOARD.d * PX;
+      var ctx = cv.getContext("2d");
+      ctx.fillStyle = isTop ? "rgba(190,240,200,0.9)" : "rgba(190,240,200,0.6)";
+      ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      // Map board X/Z to canvas pixels. Canvas top edge is the far edge on the top face
+      // and the near edge on the bottom face (see plane rotations below).
+      function cx(x) { return (x + BOARD.w / 2) * PX; }
+      function cy(z) { return (isTop ? (z + BOARD.d / 2) : (BOARD.d / 2 - z)) * PX; }
+      ctx.font = "600 30px Arial, sans-serif";
+      for (var c = 0; c < BOARD.cols; c++) {
+        var x = holeXZ(c, 1).x;
+        ctx.fillText(COLS[c], cx(x), cy(-13.6));
+        ctx.fillText(COLS[c], cx(x), cy(13.6));
+      }
+      ctx.font = "600 24px Arial, sans-serif";
+      for (var rw = 1; rw <= BOARD.rows; rw++) {
+        var z = holeXZ(0, rw).z;
+        var txt = (rw < 10 ? "0" : "") + rw;
+        ctx.fillText(txt, cx(-30.9), cy(z + (isTop ? 1.27 : -1.27)));
+        ctx.fillText(txt, cx(30.9), cy(z + (isTop ? 1.27 : -1.27)));
+      }
+      var tex = new THREE.CanvasTexture(cv);
+      tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+      tex.encoding = THREE.sRGBEncoding;
+      var plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(BOARD.w, BOARD.d),
+        new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false })
+      );
+      plane.rotation.x = isTop ? -Math.PI / 2 : Math.PI / 2;
+      plane.position.y = (isTop ? 1 : -1) * (BOARD.t / 2 + 0.01);
+      return plane;
+    }
+    group.add(face(true), face(false));
+    return group;
+  }
+
+  // ---------------------------------------------------------------------
+  // Layer registry. Everything the user can show or hide goes through addLayer.
+  // Later steps add servo headers, the CPU, converter, screen, battery, and each wire here.
+  // ---------------------------------------------------------------------
+  var layers = [];
+  function addLayer(section, label, note, object) {
+    scene.add(object);
+    var li = document.createElement("li");
+    var lab = document.createElement("label");
+    var box = document.createElement("input");
+    box.type = "checkbox"; box.checked = true;
+    box.addEventListener("change", function () { object.visible = box.checked; invalidate(); });
+    var txt = document.createElement("span");
+    txt.innerHTML = '<span class="name"></span><span class="note"></span>';
+    txt.children[0].textContent = label;
+    txt.children[1].textContent = note;
+    lab.appendChild(box); lab.appendChild(txt); li.appendChild(lab);
+    document.getElementById("list-" + section).appendChild(li);
+    if (section === "wires") { document.getElementById("wires-empty").style.display = "none"; }
+    layers.push({ section: section, object: object, box: box });
+  }
+
+  addLayer("components", "Perfboard", "70 x 30 mm, 1.6 mm thick, four mounting holes", buildSubstrate());
+  addLayer("components", "Through-hole pads", "240 plated holes, A to X by 01 to 10, 2.54 mm pitch", buildPads());
+  addLayer("components", "Edge pads", "8 per short side, both faces, handy for power and ground", buildEdgePads());
+  addLayer("components", "Grid labels", "Column letters and row numbers, mirrored for the solder side", buildLabels());
+
+
+  // ---------------------------------------------------------------------
+  // Shared helpers for components
+  // ---------------------------------------------------------------------
+  var holeInfo = {};   // "B02" -> text shown in the readout when that hole is tapped
+  function holeName(col, row) { return COLS[col] + (row < 10 ? "0" : "") + row; }
+
+  // Small text tag that always faces the camera. Used for pin names on both board sides.
+  function makeTag(text, bg) {
+    var cv = document.createElement("canvas");
+    cv.width = 128; cv.height = 64;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = bg || "#10151a";
+    ctx.fillRect(2, 6, 124, 52);
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "bold 40px Arial, sans-serif";
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.fillText(text, 64, 34);
+    var tex = new THREE.CanvasTexture(cv);
+    tex.encoding = THREE.sRGBEncoding;
+    var sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true }));
+    sp.scale.set(2.4, 1.2, 1);
+    return sp;
+  }
+  function box(w, h, d, mat, x, y, z) {
+    var m = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), mat);
+    m.position.set(x, y, z);
+    return m;
+  }
+
+  var matSolder = new THREE.MeshStandardMaterial({ color: 0xffa126, emissive: 0x552a00, roughness: 0.4 });
+  var matPlastic = new THREE.MeshStandardMaterial({ color: 0x232323, roughness: 0.6 });
+  var matGold = new THREE.MeshStandardMaterial({ color: 0xd8b25a, roughness: 0.35, metalness: 0.4 });
+
+  // ---------------------------------------------------------------------
+  // CPU: Seeed Studio XIAO ESP32-S3, 21 x 17.8 mm, 2 x 7 header, rows 15.24 mm apart.
+  // Placement: USB-C faces the left board edge. Pin 1 of each row sits in column A.
+  //   Row 02 (near edge): D0 D1 D2 D3 D4 D5 D6      in A02..G02
+  //   Row 08 (far side) : 5V GND 3V3 D10 D9 D8 D7   in A08..G08
+  // To move the module, change col0, rowNear, and rowFar only.
+  // ---------------------------------------------------------------------
+  var XIAO = {
+    col0: 0, rowNear: 2, rowFar: 8,
+    near: [["D0", 1], ["D1", 2], ["D2", 3], ["D3", 4], ["D4", 5], ["D5", 6], ["D6", 43]],
+    far:  [["5V", null], ["GND", null], ["3V3", null], ["D10", 9], ["D9", 8], ["D8", 7], ["D7", 44]],
+    use: { "D7": "R1 servo signal, to I07", "D8": "R2 servo signal, to J07", "D9": "R3 servo signal, to K07", "D10": "R4 servo signal, to L07",
+           "D3": "L1 servo signal, to M07", "D2": "L2 servo signal, to N07", "D1": "L3 servo signal, to O07", "D0": "L4 servo signal, to P07",
+           "D4": "Screen SDA, to I02", "D5": "Screen SCL, to J02", "D6": "Spare, prints boot log",
+           "5V": "5 V in from converter", "GND": "Common ground", "3V3": "3.3 V out to screen, to K02" }
+  };
+  function buildXiao() {
+    var top = BOARD.t / 2, standoff = 2.54, pcbT = 1.0;
+    var pcbY = top + standoff + pcbT / 2, pcbTop = pcbY + pcbT / 2;
+    var cx = (holeXZ(XIAO.col0, 1).x + holeXZ(XIAO.col0 + 6, 1).x) / 2;
+    var zN = holeXZ(0, XIAO.rowNear).z, zF = holeXZ(0, XIAO.rowFar).z, cz = (zN + zF) / 2;
+
+    var body = new THREE.Group(), pins = new THREE.Group(), joints = new THREE.Group(), tags = new THREE.Group();
+
+    // Module PCB, shield can, USB-C, buttons, antenna connector
+    body.add(box(21, pcbT, 17.8, new THREE.MeshStandardMaterial({ color: 0x15151c, roughness: 0.5 }), cx, pcbY, cz));
+    var matCan = new THREE.MeshStandardMaterial({ color: 0xc9cdd2, roughness: 0.3, metalness: 0.45 });
+    body.add(box(12, 2.0, 10.5, matCan, cx + 1.5, pcbTop + 1.0, cz));
+    body.add(box(7.4, 3.2, 8.9, matCan, cx - 8.3, pcbTop + 1.6, cz));
+    body.add(box(0.1, 1.8, 7.0, matPlastic, cx - 12.02, pcbTop + 1.6, cz));          // USB-C mouth
+    body.add(box(1.8, 0.8, 1.4, matCan, cx - 9.4, pcbTop + 0.4, cz + 6.0));          // reset button
+    body.add(box(1.8, 0.8, 1.4, matCan, cx - 9.4, pcbTop + 0.4, cz - 6.0));          // boot button
+    var ufl = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 1.2, 20), matGold);
+    ufl.position.set(cx + 8.8, pcbTop + 0.6, cz + 2.2);
+    body.add(ufl);
+
+    // Printed label on the shield can. Text reads the same way as on the real part (top toward USB).
+    var cv = document.createElement("canvas"); cv.width = 400; cv.height = 460;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#f4f4f2"; ctx.fillRect(0, 0, 400, 460);
+    ctx.fillStyle = "#1c1c28"; ctx.textAlign = "center";
+    ctx.font = "bold 58px Arial, sans-serif"; ctx.fillText("seeed studio", 200, 150);
+    ctx.font = "38px Arial, sans-serif"; ctx.fillText("XIAO-ESP32-S3", 200, 230);
+    ctx.font = "bold 44px Arial, sans-serif"; ctx.fillText("CPU", 200, 340);
+    var ltex = new THREE.CanvasTexture(cv); ltex.encoding = THREE.sRGBEncoding;
+    ltex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+    var lg = new THREE.PlaneGeometry(9.6, 11.0); lg.rotateX(-Math.PI / 2);
+    var label = new THREE.Mesh(lg, new THREE.MeshBasicMaterial({ map: ltex }));
+    label.rotation.y = Math.PI / 2;                 // turn the text so its top points at the USB end
+    label.position.set(cx + 1.5, pcbTop + 2.02, cz);
+    body.add(label);
+
+    // Header strips, pins, solder joints, tags, and the tap-to-read lookup
+    var pinLen = (pcbTop + 0.9) - (-top - 2.5);
+    var pinGeo = new THREE.BoxGeometry(0.64, pinLen, 0.64);
+    var jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+    var tbody = document.querySelector("#pinmap tbody");
+    [[XIAO.near, XIAO.rowNear, 1], [XIAO.far, XIAO.rowFar, -1]].forEach(function (side) {
+      var list = side[0], row = side[1], outward = side[2], z = holeXZ(0, row).z;
+      pins.add(box(7 * BOARD.pitch, standoff, BOARD.pitch, matPlastic, cx, top + standoff / 2, z));
+      list.forEach(function (pin, i) {
+        var col = XIAO.col0 + i, x = holeXZ(col, row).x;
+        body.add(box(1.9, 0.06, 2.3, matGold, x, pcbTop + 0.03, z + outward * 0.3));   // castellated pad
+        var p = new THREE.Mesh(pinGeo, matGold);
+        p.position.set(x, (pcbTop + 0.9 + (-top - 2.5)) / 2, z);
+        pins.add(p);
+        var j = new THREE.Mesh(jointGeo, matSolder);                                      // joint on the solder side
+        j.position.set(x, -top - 0.65, z);
+        joints.add(j);
+        var isPower = pin[1] === null;
+        var t1 = makeTag(pin[0], isPower ? "#8a2f12" : "#10151a"); t1.position.set(x, pcbTop + 2.0, z + outward * 1.6);
+        var t2 = makeTag(pin[0], isPower ? "#8a2f12" : "#10151a"); t2.position.set(x, -top - 3.6, z);
+        tags.add(t1, t2);
+        var use = XIAO.use[pin[0]] || "Servo signal, assigned later";
+        holeInfo[holeName(col, row)] = "CPU " + pin[0] + (isPower ? "" : " (GPIO" + pin[1] + ")");
+        var tr = document.createElement("tr");
+        [holeName(col, row), pin[0], isPower ? "" : "GPIO" + pin[1], use].forEach(function (v) {
+          var td = document.createElement("td"); td.textContent = v; tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+    });
+    return { body: body, pins: pins, joints: joints, tags: tags };
+  }
+  var xiao = buildXiao();
+  addLayer("components", "CPU: Seeed XIAO ESP32-S3", "USB-C faces the left edge, module sits 2.5 mm above the board", xiao.body);
+  addLayer("components", "CPU header pins", "2 x 7 male header in A02 to G02 and A08 to G08", xiao.pins);
+  addLayer("components", "CPU pin names", "Tags above the module and below the board, power pins in red", xiao.tags);
+  addLayer("solder", "CPU header, 14 joints", "Solder side, A02 to G02 and A08 to G08, shown in amber", xiao.joints);
+
+
+  // ---------------------------------------------------------------------
+  // Helper: round wire or lead between two points. Reused later for all hookup wires.
+  // ---------------------------------------------------------------------
+  function tube(a, b, r, mat) {
+    var dir = new THREE.Vector3().subVectors(b, a), len = dir.length();
+    var m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 10), mat);
+    m.position.copy(a).addScaledVector(dir, 0.5);
+    m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir.normalize());
+    return m;
+  }
+
+  // ---------------------------------------------------------------------
+  // Power converter: fixed 5 V, 3 A mini buck module, about 20 x 11 mm.
+  // Measured corner hole spacing is 7 x 3.5 grid pitches, so it cannot sit on rigid header pins.
+  // Mounting: foam tape under the module, plus four solid wire leads (22 AWG or resistor leg offcuts).
+  // Each lead runs from a module corner hole, splays outward 0.6 mm, and drops into the grid hole.
+  //   OUT+ Q09, OUT- Q05, IN+ X09, IN- X05   (7 columns by 4 rows apart on the perfboard)
+  // To move it, change colOut and rowNeg only.
+  // ---------------------------------------------------------------------
+  var BUCK = { colOut: 16, rowNeg: 5 };
+  function buildBuck() {
+    var top = BOARD.t / 2, tape = 1.0, pcbT = 1.2;
+    var pcbY = top + tape + pcbT / 2, pcbTop = pcbY + pcbT / 2;
+    var colIn = BUCK.colOut + 7, rowPos = BUCK.rowNeg + 4;
+    var cx = (holeXZ(BUCK.colOut, 1).x + holeXZ(colIn, 1).x) / 2;
+    var cz = (holeXZ(0, BUCK.rowNeg).z + holeXZ(0, rowPos).z) / 2;
+    var halfZ = 3.5 * BOARD.pitch / 2;                       // real module hole spacing across the short side
+    var body = new THREE.Group(), leads = new THREE.Group(), joints = new THREE.Group(), tags = new THREE.Group();
+
+    var matPcb = new THREE.MeshStandardMaterial({ color: 0x14141a, roughness: 0.5 });
+    var matInd = new THREE.MeshStandardMaterial({ color: 0x8d8f92, roughness: 0.7 });
+    var matCap = new THREE.MeshStandardMaterial({ color: 0xb98a4a, roughness: 0.5 });
+    var matTape = new THREE.MeshStandardMaterial({ color: 0xe9e6dc, roughness: 0.9 });
+    body.add(box(15, tape, 7.5, matTape, cx, top + tape / 2, cz));              // insulating foam tape
+    body.add(box(20, pcbT, 11, matPcb, cx, pcbY, cz));
+    body.add(box(6.6, 3.0, 6.6, matInd, cx - 3.6, pcbTop + 1.5, cz - 0.6));     // inductor, output side
+    body.add(box(4.0, 1.5, 5.0, matPlastic, cx + 3.4, pcbTop + 0.75, cz));      // regulator IC
+    body.add(box(1.6, 1.2, 3.0, matCap, cx + 8.0, pcbTop + 0.6, cz));           // input capacitor
+    body.add(box(1.4, 1.0, 2.6, matCap, cx - 8.4, pcbTop + 0.5, cz - 1.5));     // output capacitors
+    body.add(box(1.4, 1.0, 2.6, matCap, cx - 8.4, pcbTop + 0.5, cz + 1.5));
+
+    var cv = document.createElement("canvas"); cv.width = 256; cv.height = 256;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#8d8f92"; ctx.fillRect(0, 0, 256, 256);
+    ctx.fillStyle = "#15151a"; ctx.textAlign = "center"; ctx.font = "bold 72px Arial, sans-serif";
+    ctx.fillText("5V", 128, 110); ctx.fillText("BUCK", 128, 200);
+    var tex = new THREE.CanvasTexture(cv); tex.encoding = THREE.sRGBEncoding;
+    var lg = new THREE.PlaneGeometry(6.4, 6.4); lg.rotateX(-Math.PI / 2);
+    var lab = new THREE.Mesh(lg, new THREE.MeshBasicMaterial({ map: tex }));
+    lab.position.set(cx - 3.6, pcbTop + 3.02, cz - 0.6);
+    body.add(lab);
+
+    var jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+    var blobGeo = new THREE.SphereGeometry(0.8, 12, 8);
+    var tbody = document.querySelector("#pinmap tbody");
+    [["OUT+", BUCK.colOut, rowPos, "5 V rail: servos and CPU 5V"],
+     ["OUT-", BUCK.colOut, BUCK.rowNeg, "Ground rail"],
+     ["IN+", colIn, rowPos, "Battery positive, through the switch"],
+     ["IN-", colIn, BUCK.rowNeg, "Battery negative"]].forEach(function (d) {
+      var h = holeXZ(d[1], d[2]), pos = d[0].indexOf("+") > 0;
+      var matLead = new THREE.MeshStandardMaterial({ color: pos ? 0xd0301c : 0x1b1b1f, roughness: 0.55 });
+      var mz = cz + (pos ? -halfZ : halfZ);                  // true position of the module corner hole
+      body.add(box(2.4, 0.06, 2.4, matTin, h.x + (d[1] === colIn ? -0.2 : 0.2), pcbTop + 0.03, mz + (pos ? 0.3 : -0.3)));
+      // Lead: straight through the perfboard hole, then angled in to the module corner hole
+      leads.add(tube(new THREE.Vector3(h.x, -top - 2.0, h.z), new THREE.Vector3(h.x, top + 0.3, h.z), 0.45, matLead));
+      leads.add(tube(new THREE.Vector3(h.x, top + 0.3, h.z), new THREE.Vector3(h.x, pcbTop + 0.5, mz), 0.45, matLead));
+      var blob = new THREE.Mesh(blobGeo, matSolder);         // joint on top of the module pad
+      blob.position.set(h.x, pcbTop + 0.35, mz); blob.scale.y = 0.6;
+      joints.add(blob);
+      var j = new THREE.Mesh(jointGeo, matSolder);           // joint on the solder side of the perfboard
+      j.position.set(h.x, -top - 0.65, h.z);
+      joints.add(j);
+      var bg = pos ? "#8a2f12" : "#10151a";
+      var t1 = makeTag(d[0], bg); t1.position.set(h.x, pcbTop + 2.6, h.z + (pos ? -1.0 : 1.0));
+      var t2 = makeTag(d[0], bg); t2.position.set(h.x, -top - 3.6, h.z);
+      t1.scale.set(3.0, 1.5, 1); t2.scale.set(3.0, 1.5, 1);
+      tags.add(t1, t2);
+      holeInfo[holeName(d[1], d[2])] = "Converter " + d[0];
+      var tr = document.createElement("tr");
+      [holeName(d[1], d[2]), d[0], "", d[3]].forEach(function (v) {
+        var td = document.createElement("td"); td.textContent = v; tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    return { body: body, leads: leads, joints: joints, tags: tags };
+  }
+  var buck = buildBuck();
+  addLayer("components", "Power converter: 5 V, 3 A buck", "Sits on foam tape, input faces the right edge", buck.body);
+  addLayer("components", "Converter wire leads", "Solid wire, red positive and black negative, down to Q05, Q09, X05, X09", buck.leads);
+  addLayer("components", "Converter pin names", "IN and OUT tags, positive in red", buck.tags);
+  addLayer("solder", "Converter, 8 joints", "4 on the module pads (top), 4 on the solder side at Q05, Q09, X05, X09", buck.joints);
+
+
+  // ---------------------------------------------------------------------
+  // Helper: flexible wire drawn as a smooth tube through a list of [x, y, z] points
+  // ---------------------------------------------------------------------
+  function wire(points, r, color) {
+    var curve = new THREE.CatmullRomCurve3(points.map(function (p) { return new THREE.Vector3(p[0], p[1], p[2]); }));
+    var g = new THREE.TubeGeometry(curve, 48, r, 8, false);
+    return new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: color, roughness: 0.6 }));
+  }
+  function addPinRow(hole, pin, use) {
+    var tr = document.createElement("tr");
+    [hole, pin, "", use].forEach(function (v) { var td = document.createElement("td"); td.textContent = v; tr.appendChild(td); });
+    document.querySelector("#pinmap tbody").appendChild(tr);
+  }
+
+  // ---------------------------------------------------------------------
+  // Battery: 2S Li-ion pack, two 18500 cells side by side, 7.4 V 900 mAh, about 52 x 37 x 19 mm.
+  // It lives off the board and plugs in through an SM 3-pin connector pair.
+  //   Red   (pack positive, 7.4 V)  -> X10, solder bridge to X09 (converter IN+)
+  //   Black (pack negative)          -> X04, solder bridge to X05 (converter IN-)
+  //   Blue  (cell midpoint, 3.7 V)   -> NOT connected. Cut short and cap with heat shrink.
+  // ---------------------------------------------------------------------
+  function buildBattery() {
+    var top = BOARD.t / 2;
+    var pack = new THREE.Group(), conn = new THREE.Group(), joints = new THREE.Group();
+    var matWrap = new THREE.MeshStandardMaterial({ color: 0xc9ccc8, roughness: 0.55 });
+    var S = 35;                                                   // extra pigtail length in mm, raise or lower to taste
+    var bx = 66 + S + 30, by = -top + 9.25, bz = 2;              // pack center, resting at bench level
+    [-9.25, 9.25].forEach(function (dx) {
+      var c = new THREE.Mesh(new THREE.CylinderGeometry(9.25, 9.25, 52, 28), matWrap);
+      c.rotation.x = Math.PI / 2; c.position.set(bx + dx, by, bz);
+      pack.add(c);
+    });
+    pack.add(box(18.5, 18.5, 52, matWrap, bx, by, bz));           // shrink wrap spanning the two cells
+    var cv = document.createElement("canvas"); cv.width = 512; cv.height = 256;
+    var ctx = cv.getContext("2d");
+    ctx.fillStyle = "#c9ccc8"; ctx.fillRect(0, 0, 512, 256);
+    ctx.fillStyle = "#1a1a22"; ctx.textAlign = "center"; ctx.font = "bold 54px Arial, sans-serif";
+    ctx.fillText("Li-ion 2S 7.4V", 256, 110); ctx.fillText("900mAh", 256, 190);
+    var tex = new THREE.CanvasTexture(cv); tex.encoding = THREE.sRGBEncoding;
+    var lg = new THREE.PlaneGeometry(36, 18); lg.rotateX(-Math.PI / 2);
+    var lab = new THREE.Mesh(lg, new THREE.MeshBasicMaterial({ map: tex }));
+    lab.rotation.y = Math.PI / 2; lab.position.set(bx, by + 9.27, bz);
+    pack.add(lab);
+
+    // SM 3-pin connector pair between pack and board, plus the pack-side leads
+    var cy = 5, czc = -12;
+    conn.add(box(10, 6, 8.5, matPlastic, 50 + S, cy, czc));          // pack-side housing
+    conn.add(box(10, 5.4, 7.8, new THREE.MeshStandardMaterial({ color: 0x3a3a3a, roughness: 0.6 }), 40 + S, cy, czc));  // board-side housing
+    var zoff = { red: -2.4, blue: 0, black: 2.4 }, col = { red: 0xd0301c, blue: 0x2346c8, black: 0x1b1b1f };
+    ["red", "blue", "black"].forEach(function (k) {
+      conn.add(wire([[55 + S, cy, czc + zoff[k]], [62 + S, cy + 3, czc - 4 + zoff[k]], [(55 + S + bx) / 2, 9, -21 + zoff[k]], [bx - 4 + zoff[k], 12, -22], [bx - 3 + zoff[k], 12, -24]], 0.7, col[k]));
+    });
+
+    // Board-side pigtail wires. Each is its own layer in the Wires list.
+    var xX = holeXZ(23, 1).x, zPos = holeXZ(0, 10).z, zNeg = holeXZ(0, 4).z;
+    // Power switch: KCD1 mini rocker, SPST, panel mount (19.2 x 12.7 mm cutout), wired in series with battery positive.
+    var swGroup = new THREE.Group(), swx = 52, swz = -36;
+    swGroup.add(box(19, 14, 12.7, matPlastic, swx, 10, swz));                         // body
+    swGroup.add(box(21, 2, 15, matPlastic, swx, 18, swz));                            // panel flange
+    var rocker = box(14, 3, 10, new THREE.MeshStandardMaterial({ color: 0x2c2c30, roughness: 0.35 }), swx, 19.6, swz);
+    rocker.rotation.z = 0.16; swGroup.add(rocker);
+    [-6, 6].forEach(function (dx) { swGroup.add(box(0.8, 6, 4.8, matGold, swx + dx, 0.5, swz)); });   // two blade terminals
+    var wRedA = wire([[35 + S, cy, czc - 2.4], [66, cy + 1, czc - 9], [60, 2, swz + 6], [swx + 6, -1.5, swz + 1.5], [swx + 6, -1.5, swz]], 0.7, col.red);
+    var wRed = wire([[swx - 6, -1.5, swz], [swx - 6, -1.5, swz + 2], [40, 2, -24], [33, cy, -15], [xX, 4.5, zPos], [xX, -top - 1.8, zPos]], 0.7, col.red);
+    var wBlk = wire([[35 + S, cy, czc + 2.4], [54, cy + 2.5, czc + 2], [40, cy + 1.5, -8], [33.2, cy + 1, -5], [32, 5.5, 0], [30.2, 5, 3.2], [xX, 3.5, zNeg], [xX, -top - 1.8, zNeg]], 0.7, col.black);
+    var wBlu = new THREE.Group();
+    wBlu.add(wire([[35 + S, cy, czc], [33 + S, cy + 1.5, czc + 0.5], [31.5 + S, cy + 3.5, czc + 1]], 0.7, col.blue));
+    var cap = new THREE.Mesh(new THREE.CylinderGeometry(1.0, 1.0, 3, 12), matPlastic);   // heat shrink cap
+    cap.position.set(31.2 + S, cy + 4.0, czc + 1.1); cap.rotation.z = 0.7;
+    wBlu.add(cap);
+
+    // Solder side: two joints plus two short bridges to the converter input leads
+    var jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+    [[zPos, holeXZ(0, 9).z], [zNeg, holeXZ(0, 5).z]].forEach(function (pr) {
+      var j = new THREE.Mesh(jointGeo, matSolder); j.position.set(xX, -top - 0.65, pr[0]); joints.add(j);
+      joints.add(box(1.1, 0.5, Math.abs(pr[0] - pr[1]), matSolder, xX, -top - 0.3, (pr[0] + pr[1]) / 2));
+    });
+    holeInfo["X10"] = "Battery positive (red), bridged to X09";
+    holeInfo["X04"] = "Battery negative (black), bridged to X05";
+    addPinRow("X10", "BAT+", "Red battery wire, 7.4 V, bridge to X09");
+    addPinRow("X04", "BAT-", "Black battery wire, bridge to X05");
+    return { pack: pack, conn: conn, joints: joints, sw: swGroup, redA: wRedA, red: wRed, black: wBlk, blue: wBlu };
+  }
+  var bat = buildBattery();
+  addLayer("components", "Battery: 7.4 V 2S Li-ion, 900 mAh", "Off the board, about 52 x 37 x 19 mm", bat.pack);
+  addLayer("components", "Battery connector pair", "SM 3-pin, pack side plugs into the pigtail soldered to the board", bat.conn);
+  addLayer("components", "Power switch: mini rocker, SPST", "Off the board, snaps into a 19.2 x 12.7 mm cutout in the cover", bat.sw);
+  addLayer("wires", "Battery positive to switch", "Red pigtail wire to either switch terminal", bat.redA);
+  addLayer("wires", "Switch to X10", "Other switch terminal to X10, then bridged to converter IN+ at X09", bat.red);
+  addLayer("wires", "Battery negative, black", "Pigtail to X04, then bridged to converter IN- at X05", bat.black);
+  addLayer("wires", "Cell midpoint, blue: do not connect", "Sits at 3.7 V. Cut short and cap with heat shrink", bat.blue);
+  addLayer("solder", "Battery pigtail, 2 joints and 2 bridges", "Solder side, X10 to X09 and X04 to X05", bat.joints);
+
+
+  // ---------------------------------------------------------------------
+  // Servo headers: three 8-pin strips in columns I to P, color matched to the servo plug.
+  //   Row 07 yellow strip = signal, row 06 red strip = 5 V, row 05 black strip = ground.
+  // A servo plug drops onto one column: yellow wire toward row 07, brown wire toward row 05.
+  // ---------------------------------------------------------------------
+  var SERVO = { col0: 8, rowSig: 7, row5V: 6, rowGnd: 5,
+                // servo number -> CPU pin and the hole that pin lives in
+                map: [["D7", "G08"], ["D8", "F08"], ["D9", "E08"], ["D10", "D08"], ["D3", "D02"], ["D2", "C02"], ["D1", "B02"], ["D0", "A02"]],
+                // leg name per column I..P, from the Sesame reference configuration (R = right, L = left,
+                // 1 and 2 = hip servos in the body, 3 and 4 = the outer leg servos)
+                legs: ["R1", "R2", "R3", "R4", "L1", "L2", "L3", "L4"],
+                colors: [0xf2c21a, 0xf28c1a, 0x3fae49, 0x2a7de1, 0x8a4fd0, 0xe8e8e8, 0x19b5b0, 0xe0569a] };
+  // Grid point (fractional column index and row allowed) to a 3D point on the solder side
+  function gp(col, row, y) { return [(col - (BOARD.cols - 1) / 2) * BOARD.pitch, y, ((BOARD.rows + 1) / 2 - row) * BOARD.pitch]; }
+  // Insulated wire on the solder side. pts is a list of [col, row]. Corners stay tight.
+  function underWire(pts, color, depth, r) {
+    var y = -BOARD.t / 2 - depth, list = [];
+    list.push(gp(pts[0][0], pts[0][1], -BOARD.t / 2 - 0.7));
+    pts.forEach(function (q) { list.push(gp(q[0], q[1], y)); });
+    var last = pts[pts.length - 1];
+    list.push(gp(last[0], last[1], -BOARD.t / 2 - 0.7));
+    var curve = new THREE.CatmullRomCurve3(list.map(function (q) { return new THREE.Vector3(q[0], q[1], q[2]); }), false, "catmullrom", 0.08);
+    return new THREE.Mesh(new THREE.TubeGeometry(curve, 160, r || 0.3, 8, false), new THREE.MeshStandardMaterial({ color: color, roughness: 0.6 }));
+  }
+
+  function buildServoHeaders() {
+    var top = BOARD.t / 2, body = new THREE.Group(), joints = new THREE.Group(), tags = new THREE.Group(), plug = new THREE.Group();
+    var strips = [[SERVO.rowSig, 0xe6c41c, "SIG"], [SERVO.row5V, 0xc8281e, "5V"], [SERVO.rowGnd, 0x222222, "GND"]];
+    var pinTop = top + 2.54 + 6.1, pinBot = -top - 2.5;
+    var pinGeo = new THREE.BoxGeometry(0.64, pinTop - pinBot, 0.64);
+    var jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+    var xMid = (holeXZ(SERVO.col0, 1).x + holeXZ(SERVO.col0 + 7, 1).x) / 2;
+    strips.forEach(function (st) {
+      var z = holeXZ(0, st[0]).z;
+      body.add(box(8 * BOARD.pitch, 2.54, BOARD.pitch - 0.1, new THREE.MeshStandardMaterial({ color: st[1], roughness: 0.6 }), xMid, top + 1.27, z));
+      var t = makeTag(st[2], st[2] === "5V" ? "#8a2f12" : "#10151a");
+      t.scale.set(3.0, 1.5, 1); t.position.set(holeXZ(SERVO.col0 + 7, 1).x + 3.2, top + 11 + (st[0] - 5) * 1.7, z);
+      tags.add(t);
+      for (var i = 0; i < 8; i++) {
+        var x = holeXZ(SERVO.col0 + i, 1).x;
+        var pn = new THREE.Mesh(pinGeo, matGold); pn.position.set(x, (pinTop + pinBot) / 2, z); body.add(pn);
+        var j = new THREE.Mesh(jointGeo, matSolder); j.position.set(x, -top - 0.65, z); joints.add(j);
+        var what = st[2] === "SIG" ? "Leg servo " + SERVO.legs[i] + " signal, from CPU " + SERVO.map[i][0] : (st[2] === "5V" ? "5 V rail, servo " + SERVO.legs[i] : "Ground rail, servo " + SERVO.legs[i]);
+        holeInfo[holeName(SERVO.col0 + i, st[0])] = what;
+      }
+    });
+    for (var i = 0; i < 8; i++) {
+      var x = holeXZ(SERVO.col0 + i, 1).x, zs = holeXZ(0, SERVO.rowSig).z;
+      var a = makeTag(SERVO.legs[i]), b = makeTag(SERVO.legs[i]);
+      a.position.set(x, pinTop + 1.2, zs - 1.0); b.position.set(x, -top - 4.2, zs);
+      tags.add(a, b);
+      addPinRow(holeName(SERVO.col0 + i, SERVO.rowSig), SERVO.legs[i], "Leg servo " + SERVO.legs[i] + " signal, from CPU " + SERVO.map[i][0] + " at " + SERVO.map[i][1]);
+    }
+    addPinRow("I06 to P06", "5V", "Servo power rail, red strip");
+    addPinRow("I05 to P05", "GND", "Servo ground rail, black strip");
+
+    // Example plug on S1 to show orientation: yellow toward row 07, brown toward row 05
+    var px = holeXZ(SERVO.col0, 1).x, zc = holeXZ(0, SERVO.row5V).z;
+    plug.add(box(2.5, 14, 7.6, matPlastic, px, top + 2.54 + 7, zc));
+    [[SERVO.rowSig, 0xf2a21a], [SERVO.row5V, 0xd0301c], [SERVO.rowGnd, 0x5a3418]].forEach(function (w) {
+      var z = holeXZ(0, w[0]).z, y0 = top + 2.54 + 14;
+      plug.add(wire([[px, y0, z], [px, y0 + 5, z], [px - 1, y0 + 9, z - 4], [px - 3, y0 + 10, z - 12]], 0.55, w[1]));
+    });
+    return { body: body, joints: joints, tags: tags, plug: plug };
+  }
+  var sh = buildServoHeaders();
+  addLayer("components", "Servo headers, 3 x 8 pins", "Yellow signal row 07, red 5 V row 06, black ground row 05, columns I to P", sh.body);
+  addLayer("components", "Servo header names", "Leg names R1 to R4 and L1 to L4, plus SIG, 5V, and GND row tags", sh.tags);
+  addLayer("components", "Example servo plug on R1", "Shows plug direction: yellow wire on the yellow strip", sh.plug);
+  addLayer("solder", "Servo headers, 24 joints", "Solder side, I05 to P07", sh.joints);
+
+  // ---------------------------------------------------------------------
+  // Wiring pass 1, all on the solder side.
+  // Power: bare bus along each rail, short links to the converter, insulated feeds to the CPU.
+  // Signals: every wire reaches row 07 from the row 08 side, so no signal wire crosses a power rail.
+  // ---------------------------------------------------------------------
+  (function () {
+    var c0 = SERVO.col0, c7 = SERVO.col0 + 7;
+    addLayer("wires", "5 V rail", "Bare bus wire across all 8 red-strip joints, I06 to P06", underWire([[c0, 6], [c7, 6]], 0xd0301c, 0.75, 0.42));
+    addLayer("wires", "Ground rail", "Bare bus wire across all 8 black-strip joints, I05 to P05", underWire([[c0, 5], [c7, 5]], 0x1b1b1f, 0.75, 0.42));
+    addLayer("wires", "Converter OUT+ to 5 V rail", "22 AWG, Q09 down column Q to row 06, then into P06", underWire([[16, 9], [16, 6], [c7, 6]], 0xd0301c, 1.3, 0.42));
+    addLayer("wires", "Converter OUT- to ground rail", "Solder bridge or short 22 AWG link, Q05 to P05", underWire([[16, 5], [c7, 5]], 0x1b1b1f, 1.3, 0.42));
+    addLayer("wires", "5 V feed to CPU", "Insulated, I06 along row 06 to column A, then up to A08", underWire([[c0, 6], [0, 6], [0, 8]], 0xe0503c, 1.2));
+    addLayer("wires", "Ground feed to CPU", "Insulated, I05 along row 05 to column B, then up to B08. Crosses the 5 V feed once", underWire([[c0, 5], [1, 5], [1, 8]], 0x3a3a44, 1.9));
+
+    // Far-row CPU pins: short hops. D7 goes direct, the rest use nested lanes just past row 08.
+    addLayer("wires", "R1 signal: D7 to I07", "G08 to I07, direct", underWire([[6, 8], [c0, 7]], SERVO.colors[0], 1.3));
+    [[5, 1, 8.7], [4, 2, 9.05], [3, 3, 9.4]].forEach(function (d) {
+      var n = d[1], dst = c0 + n;
+      addLayer("wires", SERVO.legs[n] + " signal: " + SERVO.map[n][0] + " to " + holeName(dst, 7),
+        SERVO.map[n][1] + " out past row 08, across, then into " + holeName(dst, 7),
+        underWire([[d[0], 8], [d[0], d[2]], [dst, d[2]], [dst, 7]], SERVO.colors[n], 1.3));
+    });
+    // Near-row CPU pins: out past row 01, up the strip just left of column A (stacked two deep), across past row 10, then down into row 07.
+    [[3, 4, 1.4, -0.45, 9.75, 1.2], [2, 5, 1.1, -0.5, 10.1, 1.8], [1, 6, 0.8, -0.72, 10.45, 1.2], [0, 7, 0.5, -0.77, 10.8, 1.8, 14.5]].forEach(function (d) {
+      var n = d[1], dst = c0 + n;
+      addLayer("wires", SERVO.legs[n] + " signal: " + SERVO.map[n][0] + " to " + holeName(dst, 7),
+        SERVO.map[n][1] + " around the left end of the CPU as a tight 4-wire bundle, along the far edge, then into " + holeName(dst, 7),
+        underWire([[d[0], 2], [d[0], d[2]], [d[3], d[2]], [d[3], d[4]], [d[6] || dst, d[4]], [d[6] || dst, 7.5], [dst, 7]], SERVO.colors[n], d[5], 0.24));
+    });
+  })();
+
+
+  // ---------------------------------------------------------------------
+  // Screen: 0.96 inch 128 x 64 SSD1306 OLED, I2C, pins GND VCC SCL SDA. It mounts in the top cover
+  // and reaches the board through a 4-wire cable that plugs onto a 4-pin header.
+  //   I02 = SDA (CPU D4, E02)   J02 = SCL (CPU D5, F02)   K02 = VCC (CPU 3V3, C08)   L02 = GND (ground rail, L05)
+  // This is the screen's own pin order read right to left, so the cable is a straight 1 to 1 ribbon.
+  // ---------------------------------------------------------------------
+  function buildScreen() {
+    var top = BOARD.t / 2, row = 2, col0 = 8;
+    var names = ["SDA", "SCL", "VCC", "GND"], wcol = [0x3fae49, 0x2a7de1, 0xf28c1a, 0x1b1b1f];
+    var hdr = new THREE.Group(), joints = new THREE.Group(), tags = new THREE.Group(), cable = new THREE.Group(), oled = new THREE.Group();
+    var z = holeXZ(0, row).z, xMid = (holeXZ(col0, 1).x + holeXZ(col0 + 3, 1).x) / 2;
+    var pinTop = top + 2.54 + 6.1, pinBot = -top - 2.5;
+    hdr.add(box(4 * BOARD.pitch, 2.54, BOARD.pitch - 0.1, matPlastic, xMid, top + 1.27, z));
+    var pinGeo = new THREE.BoxGeometry(0.64, pinTop - pinBot, 0.64), jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+
+    // OLED module, standing upright well in front of the board, glass facing the viewer.
+    // Its 4-pin header points out the back, toward the board, and takes the second cable plug.
+    var sx = xMid, sy = 14.2, sz = 62;
+    oled.add(box(27.3, 27.8, 1.2, new THREE.MeshStandardMaterial({ color: 0x1d4fa3, roughness: 0.5 }), sx, sy, sz));
+    oled.add(box(26.7, 19.3, 1.5, new THREE.MeshStandardMaterial({ color: 0x0b0b10, roughness: 0.15 }), sx, sy - 0.8, sz + 1.35));
+    oled.add(box(21.7, 3.2, 0.05, new THREE.MeshBasicMaterial({ color: 0xe8c73a }), sx, sy + 5.2, sz + 2.13));   // yellow band
+    oled.add(box(21.7, 7.4, 0.05, new THREE.MeshBasicMaterial({ color: 0x3aa0e8 }), sx, sy - 0.6, sz + 2.13));   // blue area
+    [[1, 1], [1, -1], [-1, 1], [-1, -1]].forEach(function (m) {
+      var r = new THREE.Mesh(new THREE.RingGeometry(1.0, 1.9, 20), matTin);
+      r.position.set(sx + m[0] * 11.6, sy + m[1] * 11.9, sz + 0.62); oled.add(r);
+    });
+    // Pin order as read from the front of the screen, left to right: GND, VCC, SCL, SDA
+    var screenPinX = { GND: sx - 3.81, VCC: sx - 1.27, SCL: sx + 1.27, SDA: sx + 3.81 };
+    var spy = sy + 12.2, backZ = sz - 0.6;
+    oled.add(box(4 * BOARD.pitch, 2.54, 2.54, matPlastic, sx, spy, backZ - 1.27));          // screen header plastic
+    var plugZ = backZ - 2.54 - 7;                                                            // center of the screen-side plug
+    cable.add(box(4 * BOARD.pitch, 2.5, 14, matPlastic, sx, spy, plugZ));                    // plug on the screen header
+    cable.add(box(4 * BOARD.pitch, 14, 2.5, matPlastic, xMid, top + 2.54 + 7, z));           // plug on the board header
+    var wireEndZ = plugZ - 7, y0 = top + 2.54 + 14;
+
+    names.forEach(function (nm, i) {
+      var x = holeXZ(col0 + i, row).x, hole = holeName(col0 + i, row), px = screenPinX[nm];
+      var pn = new THREE.Mesh(pinGeo, matGold); pn.position.set(x, (pinTop + pinBot) / 2, z); hdr.add(pn);
+      var j = new THREE.Mesh(jointGeo, matSolder); j.position.set(x, -top - 0.65, z); joints.add(j);
+      var bg = nm === "VCC" ? "#8a2f12" : "#10151a";
+      var t1 = makeTag(nm, bg), t2 = makeTag(nm, bg), t3 = makeTag(nm, bg);
+      t1.position.set(x, top + 2.54 + 15.5, z); t2.position.set(x, -top - 3.6, z); t3.position.set(px, spy + 2.6, plugZ);
+      t3.scale.set(2.2, 1.1, 1);
+      tags.add(t1, t2, t3);
+      oled.add(box(0.64, 0.64, 8.6, matGold, px, spy, backZ - 4.3));                         // screen header pin, points out the back
+      // Long cable with slack: up out of the board plug, a drooping loop, then into the back of the screen plug
+      cable.add(wire([[x, y0, z], [x, y0 + 8, z + 3], [x * 0.65 + px * 0.35, 12, z + 13], [x * 0.3 + px * 0.7, 4, z + 24],
+                      [px, spy - 4, wireEndZ - 7], [px, spy, wireEndZ - 1], [px, spy, wireEndZ]], 0.5, wcol[i]));
+      holeInfo[hole] = "Screen " + nm;
+      addPinRow(hole, nm, nm === "SDA" ? "Screen data, from CPU D4 (GPIO5) at E02" : nm === "SCL" ? "Screen clock, from CPU D5 (GPIO6) at F02" : nm === "VCC" ? "Screen power, 3.3 V from CPU 3V3 at C08" : "Screen ground, from ground rail at L05");
+    });
+    return { hdr: hdr, joints: joints, tags: tags, cable: cable, oled: oled };
+  }
+  var scr = buildScreen();
+  addLayer("components", "Screen header, 4 pins", "I02 SDA, J02 SCL, K02 VCC, L02 GND", scr.hdr);
+  addLayer("components", "Screen: 0.96 inch OLED, SSD1306", "Off the board, mounts in the top cover", scr.oled);
+  addLayer("components", "Screen cable, 4 wires", "Plug on both ends, long enough to reach the top cover. Match the labels at both ends", scr.cable);
+  addLayer("components", "Screen pin names", "Tags on the header and on the screen", scr.tags);
+  addLayer("solder", "Screen header, 4 joints", "Solder side, I02 to L02", scr.joints);
+  addLayer("wires", "Screen SCL: D5 to J02", "F02 out to just past row 02, across, then into J02", underWire([[5, 2], [5, 2.65], [9, 2.65], [9, 2]], 0x2a7de1, 1.3));
+  addLayer("wires", "Screen SDA: D4 to I02", "E02 out past the SCL wire, across, then into I02. Crosses SCL once", underWire([[4, 2], [4, 3.1], [8, 3.1], [8, 2]], 0x3fae49, 1.9));
+  addLayer("wires", "Screen 3.3 V: 3V3 to K02", "C08 down column C, across past row 03, then into K02. Crosses both CPU feeds", underWire([[2, 8], [2, 3.55], [10, 3.55], [10, 2]], 0xf28c1a, 2.5));
+  addLayer("wires", "Screen ground: rail to L02", "L05 straight down column L to L02", underWire([[11, 5], [11, 2]], 0x3a3a44, 1.3));
+
+
+  // ---------------------------------------------------------------------
+  // CAP_FAR_RIGHT. Bulk capacitor: 470 uF, 16 V electrolytic, about 8 x 12 mm. Smooths servo current spikes.
+  // Top side, lying flat along the far edge over rows 09 and 10, legs pointing at the converter.
+  // The legs drop straight through the board right at the end of the can. Nothing runs past the servo plugs.
+  //   Positive leg -> P09, solder bridge to Q09 (converter OUT+)
+  //   Negative leg (striped side) -> P10, short insulated wire around the OUT+ joint to Q05 (converter OUT-)
+  // ---------------------------------------------------------------------
+  function buildCapacitor() {
+    var top = BOARD.t / 2, body = new THREE.Group(), joints = new THREE.Group();
+    var hPos = holeXZ(15, 9), hNeg = holeXZ(15, 10), qPos = holeXZ(16, 9);
+    var r = 4, len = 12, y = top + r + 0.1, xEnd = hPos.x - 1.6, xc = xEnd - len / 2, zc = (hPos.z + hNeg.z) / 2;
+    var can = new THREE.Mesh(new THREE.CylinderGeometry(r, r, len, 28), new THREE.MeshStandardMaterial({ color: 0x1b2a5a, roughness: 0.4 }));
+    can.rotation.z = Math.PI / 2; can.position.set(xc, y, zc);
+    body.add(can);
+    body.add(box(len - 1, 3.2, 0.3, new THREE.MeshBasicMaterial({ color: 0xdfe6f2 }), xc, y, zc - r));   // negative stripe, far edge side
+    var capTop = new THREE.Mesh(new THREE.CylinderGeometry(r - 0.4, r - 0.4, 0.3, 28), matTin);
+    capTop.rotation.z = Math.PI / 2; capTop.position.set(xc - len / 2 - 0.1, y, zc);
+    body.add(capTop);
+    // Short legs: out of the can end, then straight down through the board
+    [hPos, hNeg].forEach(function (h) {
+      body.add(tube(new THREE.Vector3(xEnd, y - 1.5, h.z), new THREE.Vector3(h.x, y - 1.5, h.z), 0.3, matTin));
+      body.add(tube(new THREE.Vector3(h.x, y - 1.5, h.z), new THREE.Vector3(h.x, -top - 2.0, h.z), 0.3, matTin));
+    });
+    var tp = makeTag("+", "#8a2f12"), tn = makeTag("NEG");
+    tp.position.set(hPos.x, y + r + 1.2, hPos.z + 1.2); tn.position.set(hNeg.x, y + r + 1.2, hNeg.z - 1.6);
+    body.add(tp, tn);
+
+    var jointGeo = new THREE.CylinderGeometry(0.95, 0.25, 1.3, 16);
+    [hPos, hNeg].forEach(function (h) {
+      var j = new THREE.Mesh(jointGeo, matSolder); j.position.set(h.x, -top - 0.65, h.z); joints.add(j);
+    });
+    joints.add(box(Math.abs(qPos.x - hPos.x), 0.5, 1.1, matSolder, (qPos.x + hPos.x) / 2, -top - 0.3, hPos.z));   // P09 to Q09 bridge
+    holeInfo["P09"] = "Capacitor positive leg, bridged to Q09 (converter OUT+)";
+    holeInfo["P10"] = "Capacitor negative leg, wired to Q05 (converter OUT-)";
+    addPinRow("P09", "CAP +", "Capacitor positive leg, solder bridge to converter OUT+ at Q09");
+    addPinRow("P10", "CAP -", "Capacitor negative leg (striped side), insulated wire to converter OUT- at Q05");
+    return { body: body, joints: joints };
+  }
+  var capPart = buildCapacitor();
+  addLayer("components", "Capacitor: 470 uF, 16 V", "Top side, flat along the far edge. Legs drop straight into P09 (+) and P10 (-)", capPart.body);
+  addLayer("solder", "Capacitor, 2 joints and 1 bridge", "Solder side, P09 bridged to Q09, plus the P10 joint", capPart.joints);
+  addLayer("wires", "Capacitor negative to converter OUT-", "22 AWG insulated, P10 along row 10, down just right of column Q, into Q05. Crosses nothing", underWire([[15, 10], [16.75, 10], [16.75, 5], [16, 5]], 0x3a3a44, 1.3, 0.42));
+
+  // Show all / hide all buttons for each section
+  Array.prototype.forEach.call(document.querySelectorAll("[data-all]"), function (btn) {
+    btn.addEventListener("click", function () {
+      var mine = layers.filter(function (l) { return l.section === btn.getAttribute("data-all"); });
+      var anyOff = mine.some(function (l) { return !l.box.checked; });
+      var target = anyOff || mine.length === 0 ? true : false;
+      mine.forEach(function (l) { l.box.checked = target; l.object.visible = target; });
+      btn.textContent = target ? "Hide all" : "Show all";
+      invalidate();
+    });
+    btn.textContent = "Hide all";
+  });
+
+  // Marker ring that highlights the hole the user tapped
+  var marker = new THREE.Mesh(
+    new THREE.RingGeometry(1.05, 1.45, 32),
+    new THREE.MeshBasicMaterial({ color: 0xff8a2a, side: THREE.DoubleSide })
+  );
+  marker.rotation.x = -Math.PI / 2;
+  marker.visible = false;
+  scene.add(marker);
+
+  // ---------------------------------------------------------------------
+  // Orbit controls (custom, pointer events, works with mouse and touch)
+  // theta spins around the vertical axis, phi tilts from straight above (0) to straight below (PI)
+  // ---------------------------------------------------------------------
+  var HOME = { theta: 0.35, phi: 0.75, dist: 235, tx: 38 };
+  var view = { theta: HOME.theta, phi: HOME.phi, dist: HOME.dist, target: new THREE.Vector3(HOME.tx, 0, 0) };
+  var goal = null;   // animation goal for the view buttons
+
+  function placeCamera() {
+    var sp = Math.sin(view.phi);
+    camera.position.set(
+      view.target.x + view.dist * sp * Math.sin(view.theta),
+      view.target.y + view.dist * Math.cos(view.phi),
+      view.target.z + view.dist * sp * Math.cos(view.theta)
+    );
+    camera.lookAt(view.target);
+    document.getElementById("side").textContent = view.phi > Math.PI / 2 ? "Solder side" : "Top side";
+    document.getElementById("btnFlip").textContent = view.phi > Math.PI / 2 ? "Flip to top side" : "Flip to solder side";
+  }
+  function clampView() {
+    view.phi = Math.max(0.02, Math.min(Math.PI - 0.02, view.phi));
+    view.dist = Math.max(25, Math.min(400, view.dist));
+  }
+
+  var pointers = {}, lastPinch = 0, lastMid = null, downAt = null;
+  function pan(dx, dy) {
+    // Move the target in the camera plane, scaled so the board tracks the finger
+    var k = view.dist * 0.0012;
+    var right = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 0);
+    var up = new THREE.Vector3().setFromMatrixColumn(camera.matrix, 1);
+    view.target.addScaledVector(right, -dx * k).addScaledVector(up, dy * k);
+  }
+  canvas.addEventListener("contextmenu", function (e) { e.preventDefault(); });
+  canvas.addEventListener("pointerdown", function (e) {
+    canvas.setPointerCapture(e.pointerId);
+    pointers[e.pointerId] = { x: e.clientX, y: e.clientY, button: e.button, shift: e.shiftKey };
+    downAt = { x: e.clientX, y: e.clientY };
+    goal = null; lastPinch = 0; lastMid = null;
+  });
+  canvas.addEventListener("pointermove", function (e) {
+    var p = pointers[e.pointerId];
+    if (!p) { return; }
+    var ids = Object.keys(pointers);
+    if (ids.length === 1) {
+      var dx = e.clientX - p.x, dy = e.clientY - p.y;
+      if (p.button === 2 || p.shift) { pan(dx, dy); }
+      else { view.theta -= dx * 0.008; view.phi -= dy * 0.008; }
+    }
+    p.x = e.clientX; p.y = e.clientY;
+    if (ids.length === 2) {
+      var a = pointers[ids[0]], b = pointers[ids[1]];
+      var d = Math.hypot(a.x - b.x, a.y - b.y);
+      var mid = { x: (a.x + b.x) / 2, y: (a.y + b.y) / 2 };
+      if (lastPinch) { view.dist *= lastPinch / d; }
+      if (lastMid) { pan(mid.x - lastMid.x, mid.y - lastMid.y); }
+      lastPinch = d; lastMid = mid;
+    }
+    clampView(); invalidate();
+  });
+  function release(e) {
+    var wasTap = downAt && Math.hypot(e.clientX - downAt.x, e.clientY - downAt.y) < 6 && Object.keys(pointers).length === 1;
+    delete pointers[e.pointerId];
+    lastPinch = 0; lastMid = null;
+    if (wasTap && e.type === "pointerup") { pickHole(e); }
+  }
+  canvas.addEventListener("pointerup", release);
+  canvas.addEventListener("pointercancel", release);
+  canvas.addEventListener("wheel", function (e) {
+    e.preventDefault();
+    view.dist *= Math.exp(e.deltaY * 0.0012);
+    goal = null; clampView(); invalidate();
+  }, { passive: false });
+
+  // ---------------------------------------------------------------------
+  // Hole picking: cast a ray onto the visible board face and snap to the nearest hole
+  // ---------------------------------------------------------------------
+  var raycaster = new THREE.Raycaster();
+  function pickHole(e) {
+    var rect = canvas.getBoundingClientRect();
+    var ndc = new THREE.Vector2(((e.clientX - rect.left) / rect.width) * 2 - 1, -((e.clientY - rect.top) / rect.height) * 2 + 1);
+    raycaster.setFromCamera(ndc, camera);
+    var topSide = camera.position.y > 0;
+    var y = (topSide ? 1 : -1) * BOARD.t / 2;
+    var plane = new THREE.Plane(new THREE.Vector3(0, 1, 0), -y);
+    var hit = new THREE.Vector3();
+    var out = document.getElementById("readout");
+    if (!raycaster.ray.intersectPlane(plane, hit)) { return; }
+    var col = Math.round(hit.x / BOARD.pitch + (BOARD.cols - 1) / 2);
+    var row = Math.round((BOARD.rows + 1) / 2 - hit.z / BOARD.pitch);
+    if (col < 0 || col >= BOARD.cols || row < 1 || row > BOARD.rows) {
+      marker.visible = false; out.textContent = "Tap a hole to read its coordinate"; invalidate(); return;
+    }
+    var h = holeXZ(col, row);
+    marker.position.set(h.x, y + (topSide ? 0.05 : -0.05), h.z);
+    marker.visible = true;
+    out.innerHTML = "Hole <b></b>, " + (topSide ? "top side" : "solder side");
+    var nm = COLS[col] + (row < 10 ? "0" : "") + row;
+    out.querySelector("b").textContent = nm;
+    if (holeInfo[nm]) { out.appendChild(document.createTextNode(": " + holeInfo[nm])); }
+    invalidate();
+  }
+
+  // ---------------------------------------------------------------------
+  // View buttons
+  // ---------------------------------------------------------------------
+  document.getElementById("btnFlip").addEventListener("click", function () {
+    goal = { theta: view.theta, phi: Math.PI - view.phi, dist: view.dist, target: view.target.clone() };
+    invalidate();
+  });
+  document.getElementById("btnTop").addEventListener("click", function () {
+    var below = view.phi > Math.PI / 2;
+    goal = { theta: 0, phi: below ? Math.PI - 0.02 : 0.02, dist: 135, target: new THREE.Vector3() };
+    invalidate();
+  });
+  document.getElementById("btnReset").addEventListener("click", function () {
+    goal = { theta: HOME.theta, phi: HOME.phi, dist: HOME.dist, target: new THREE.Vector3(HOME.tx, 0, 0) };
+    invalidate();
+  });
+
+  // ---------------------------------------------------------------------
+  // Resize handling and the render loop (renders only when something changed)
+  // ---------------------------------------------------------------------
+  function resize() {
+    var w = stage.clientWidth, h = stage.clientHeight;
+    if (!w || !h) { return; }
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    // Widen the field of view on narrow screens so the 70 mm board always fits
+    camera.fov = camera.aspect < 1 ? 55 : 35;
+    camera.updateProjectionMatrix();
+    invalidate();
+  }
+  if (window.ResizeObserver) { new ResizeObserver(resize).observe(stage); }
+  window.addEventListener("resize", resize);
+  resize();
+
+  var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function frame() {
+    if (goal) {
+      var k = reduceMotion ? 1 : 0.18;
+      view.theta += (goal.theta - view.theta) * k;
+      view.phi += (goal.phi - view.phi) * k;
+      view.dist += (goal.dist - view.dist) * k;
+      view.target.lerp(goal.target, k);
+      if (Math.abs(goal.phi - view.phi) < 0.002 && Math.abs(goal.theta - view.theta) < 0.002 && Math.abs(goal.dist - view.dist) < 0.1) {
+        view.theta = goal.theta; view.phi = goal.phi; view.dist = goal.dist; view.target.copy(goal.target); goal = null;
+      }
+      needsRender = true;
+    }
+    if (needsRender) {
+      clampView(); placeCamera();
+      renderer.render(scene, camera);
+      needsRender = false;
+    }
+    requestAnimationFrame(frame);
+  }
+  frame();
+})();
+</script>
+</body>
+</html>
