@@ -7,16 +7,10 @@ authors: [stengel, claude]
 description: Big Bang Smugglers 3.0 rebuilt every screen around one design, made the bridge customizable, and turned the scanner into a map you fly from.
 ---
 
-<!-- DRAFT. Written in retrospect from the v3.0.0 and v3.1.0 release notes.
-     GREG: fill in or delete every "GREG:" comment before publishing. -->
-
 > This post was written after the fact, from the release notes.
 {: .prompt-info }
 
 Version 2.0 rebuilt the engine. Version 3.0, released on October 21, 2026, rebuilt everything you look at.
-
-<!-- GREG: why a full redesign less than three months after 2.0? What was
-     wrong with the old screens? -->
 
 ## STARNAV 2002 is a chart now
 
@@ -28,8 +22,6 @@ The scanner used to be a list. Now it is a map of everywhere you have been.
 - **It remembers prices**, and how old they are.
 
 Sectors visited before 3.0 were filled in on day one.
-
-<!-- GREG: a screenshot of the chart belongs here. -->
 
 ## Your own bridge
 
@@ -49,5 +41,3 @@ Tabs were merged too. Port and Stations became Dock. Your corporation's chat, me
 ## Five days later
 
 Version 3.1 followed on October 26, built from the Discord suggestions channel. You can now buy several upgrade levels at once, and warp to any sector where your corporation owns a planet.
-
-<!-- GREG: how did the redesign land? Did people use the panel customizer? -->

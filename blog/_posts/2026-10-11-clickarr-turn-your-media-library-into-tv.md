@@ -7,19 +7,12 @@ authors: [stengel, claude]
 description: The first release of Clickarr, an open-source Android TV and Fire TV app that gives a Plex library channels, a program guide, and channel surfing.
 ---
 
-<!-- DRAFT. Written in retrospect from the README, the v2026.10.11 release notes
-     and the commit history. GREG: every "GREG:" comment below is a spot where
-     only you know the answer. Fill them in or delete them before publishing. -->
-
 > This post was written after the fact, from the release notes and the commit history.
 {: .prompt-info }
 
 Every media server works the same way. Open the app, browse, pick a show, pick an episode, press play. That is a video store. It is not television.
 
 I wanted the other thing: turn the TV on and something is already playing. So I built it.
-
-<!-- GREG: one or two sentences on the actual itch. Was it the kids, decision
-     fatigue, missing the feel of cable? This is the part readers remember. -->
 
 ## What Clickarr is
 
@@ -32,10 +25,6 @@ It is a single APK that you sideload. There is no Clickarr server, no container,
 ## What shipped in the first release
 
 The first release, `v2026.10.11`, went out two days after the first commit. It was built and verified on a Fire TV Stick 4K Max and the Android TV emulator.
-
-<!-- GREG: two days from first commit to first release is the interesting part.
-     How did that happen? If coding agents did most of the typing, say so and
-     say how you ran them. -->
 
 - **Channels** from shows, whole libraries with genre and decade filters, Plex collections, and playlists. In order or shuffled, back to back or on 15, 30, or 60 minute slots.
 - **A program guide** two hours across, with a preview card, favorites, and numeric channel entry.
@@ -60,9 +49,5 @@ Fire TV is a first-class target, so nothing depends on Google Play Services.
 ## Get it
 
 In the Fire TV Downloader app, enter `clickarr.net/apk`. Or grab the APK from [GitHub Releases](https://github.com/thegregstengel/clickarr/releases/latest). The code is MIT licensed and lives at [github.com/thegregstengel/clickarr](https://github.com/thegregstengel/clickarr).
-
-<!-- GREG: add a screenshot or two here. The README has guide, player and
-     channel-editor screens under site/assets/screens/. No post on the blog has
-     an image yet, and this one is the easiest to fix. -->
 
 If your TV or box works, or doesn't, open an issue with the device name. That helps everyone.

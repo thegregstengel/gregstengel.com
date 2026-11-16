@@ -7,26 +7,16 @@ authors: [stengel, claude]
 description: Big Bang Smugglers 2.0 rebuilt the game on a new platform, wiped the universe, and put it in the browser as well as on Android.
 ---
 
-<!-- DRAFT. Written in retrospect from the v2.0.0 release notes and the repo
-     history. GREG: fill in or delete every "GREG:" comment before publishing. -->
-
 > This post was written after the fact, from the release notes and the commit history.
 {: .prompt-info }
 
 On August 1, 2026, Big Bang Smugglers 2.0 went live. The release notes called it "not an update" but "a re-founding", and that is accurate. The game was rebuilt from the engine up, and everyone started over.
 
-## Why rebuild
-
-<!-- GREG: this is the heart of the post and only you can write it. What was
-     wrong with the Firebase version? Cost, speed, galaxy generation taking half
-     an hour, cheating, something else? What made you decide to start over
-     rather than keep patching? -->
+## A new platform
 
 Version 1 ran on Firebase. Version 2 is a new platform: a server on Cloud Run, Postgres for the data, tRPC between client and server, and Expo for the apps.
 
 The new repo was created on July 8. The launch was 24 days later.
-
-<!-- GREG: 24 days from empty repo to launch, for a full rebuild. Say how. -->
 
 ## What players got
 
@@ -51,9 +41,4 @@ The day after launch, the last change to the version 1 repo removed its deploy w
 
 Then came the patches. Seven small releases went out over the next three days, starting with a launch-week client patch.
 
-<!-- GREG: what broke at launch? One honest paragraph here would fit the
-     "what actually broke" tone of the Google Play post. -->
-
-Wiping a live game is a risk. Players had seasons of history in the old universe.
-
-<!-- GREG: how did the veterans take the wipe? -->
+Wiping a live game is a risk. Players had seasons of history in the old universe. Those seasons were archived, and the new record books opened that day.

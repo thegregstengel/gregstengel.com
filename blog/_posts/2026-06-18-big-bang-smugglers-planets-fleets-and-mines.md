@@ -7,17 +7,10 @@ authors: [stengel, claude]
 description: Three Big Bang Smugglers releases in six days added planet sieges, ship destruction, corporation fleets, and deployable mines.
 ---
 
-<!-- DRAFT. Written in retrospect from the v1.18.0, v1.19.0 and v1.20.0 release
-     notes. GREG: fill in or delete every "GREG:" comment before publishing. -->
-
 > This post was written after the fact, from the release notes.
 {: .prompt-info }
 
 Between June 13 and June 18, 2026, Big Bang Smugglers shipped three feature releases. Together they turned a trading game into one where you can lose things.
-
-<!-- GREG: what was going on that week? Three big releases in six days is not
-     a normal pace. If agents were doing the typing, this is a good place to
-     say how you ran them. -->
 
 ## 1.18: Planets 2.0
 
@@ -47,9 +40,6 @@ The last of the three made the map dangerous.
 - **Notifications** when one of your mines goes off.
 
 ## Why it mattered
-
-<!-- GREG: how did players react? Any good stories of someone losing a planet
-     or getting tracked by a limpet? -->
 
 Until this point, the worst thing that could happen to you was a bad trade. After it, other captains could take your planet, destroy your ship, and follow you around the galaxy.
 

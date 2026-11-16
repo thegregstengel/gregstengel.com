@@ -7,9 +7,6 @@ authors: [stengel, claude]
 description: The studio behind Big Bang Smugglers gets a website, and it is a single HTML file that looks like the WOPR terminal from WarGames.
 ---
 
-<!-- DRAFT. Written in retrospect from the site repo's history, README and spec.
-     GREG: fill in or delete every "GREG:" comment before publishing. -->
-
 > This post was written after the fact, from the commit history.
 {: .prompt-info }
 
@@ -20,10 +17,6 @@ It is one HTML file.
 ## The name
 
 In the 1983 film *WarGames*, a kid goes looking for a game company's computer so he can play its unreleased games. The company is called Protovision. He finds something else.
-
-<!-- GREG: why this name? WarGames runs through everything you build (WOPR,
-     Joshua, the tooltip on your own site). One or two sentences on what the
-     film means to you. -->
 
 Protovision Games is me. There is no team and no office.
 
@@ -43,6 +36,3 @@ The page has picked up two things since launch:
 
 - **A logon prompt.** In September it gained an interactive WOPR logon, with the film's responses and sound.
 - **A hidden game.** In October it gained tic-tac-toe, with zero, one, and two player modes. The game list does not offer it. You have to know to ask.
-
-<!-- GREG: anything else you want to say about what Protovision is for, or
-     what ships under it next. -->
