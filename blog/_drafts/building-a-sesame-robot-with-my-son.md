@@ -1,9 +1,12 @@
 ---
 title: "Building a Sesame Robot With My Son (and a 3D Model to Solder From)"
-date: 2026-11-16 18:00:00 -0500
+date: 2026-10-25 14:00:00 -0400
 categories: [Projects, Robotics]
 tags: [sesame-robot, esp32, soldering, robotics, claude, 3d-model]
 authors: [stengel, claude]
+image:
+  path: /assets/img/sesame/sesame-walking.jpg
+  alt: The finished Sesame Robot standing on a counter, with a face on its screen
 description: My son and I built a Sesame Robot from parts that didn't match the instructions, so I had Claude build an interactive 3D model of the board to plan every part, joint, and wire before we picked up the iron.
 ---
 
@@ -97,13 +100,21 @@ Because our controller was different, the firmware needed its pin list changed t
 
 One rule we wrote down: never plug in USB and the battery at the same time.
 
+![The soldered board sitting in the robot's body, with all eight servo cables plugged in](/assets/img/sesame/board-wired.jpg){: w="560" }
+_Sunday morning, 11:00. Board soldered, eight servos plugged in, nothing tidy yet._
+
 ## Did it work?
 
-<!-- GREG: the ending. Did it power up first time? Did it walk? What did your
-     son do when it moved? If it isn't walking yet, say that; it is a better
-     ending than pretending. A short video or GIF here would make the post. -->
+Yes.
 
-When we finished, I asked Claude for a written summary of the hardware and wiring, so the next session could pick up the firmware without me explaining it all again.
+The photo above was taken at 11:00 on a Sunday morning, with the board wired and the servo cables everywhere. Ninety minutes later the robot was on the counter, standing on its own four legs and pulling faces at us.
+
+{% include embed/video.html src='/assets/img/sesame/first-steps.mp4' poster='/assets/img/sesame/first-steps-poster.jpg' title='12:30 the same day.' autoplay=true loop=true muted=true %}
+
+<!-- GREG: what did your son do when it moved? One or two sentences here is
+     the payoff of the whole post. -->
+
+The day before, with the soldering done, I had asked Claude for a written summary of the hardware and wiring. That meant the next session could pick up the firmware without me explaining it all again.
 
 ## Would I do it this way again
 
