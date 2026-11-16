@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>Cloud infrastructure, homelab experiments, and AI assistants. Notes from building, breaking, and fixing all the things.</subtitle>
-  <updated>2026-09-14T08:49:30-05:00</updated>
+  <updated>2026-11-16T08:26:24-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -20,23 +20,23 @@
 
   
   <entry>
-    <title>I Gave My AI Assistant Trello (and It Immediately Became Useful)</title>
-    <link href="https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/" rel="alternate" type="text/html" title="I Gave My AI Assistant Trello (and It Immediately Became Useful)" />
-    <published>2026-03-17T09:30:00-05:00</published>
+    <title>Clickarr, a Month In</title>
+    <link href="https://gregstengel.com/blog/posts/clickarr-a-month-in/" rel="alternate" type="text/html" title="Clickarr, a Month In" />
+    <published>2026-11-05T17:00:00-06:00</published>
   
-    <updated>2026-03-17T09:30:00-05:00</updated>
+    <updated>2026-11-05T17:00:00-06:00</updated>
   
-    <id>https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/i-gave-my-ai-assistant-trello/" />
+    <id>https://gregstengel.com/blog/posts/clickarr-a-month-in/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/clickarr-a-month-in/" />
     <author>
       <name>Greg Stengel</name>
     </author>
 
   
     
-    <category term="Development" />
+    <category term="Projects" />
     
-    <category term="AI" />
+    <category term="Clickarr" />
     
   
 
@@ -46,40 +46,14 @@
 
   
   <entry>
-    <title>Crystal Palace: Building a Mission Control Dashboard for an AI Agent</title>
-    <link href="https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/" rel="alternate" type="text/html" title="Crystal Palace: Building a Mission Control Dashboard for an AI Agent" />
-    <published>2026-03-15T09:00:00-05:00</published>
+    <title>Big Bang Smugglers 3.0: A New Bridge</title>
+    <link href="https://gregstengel.com/blog/posts/big-bang-smugglers-3-0-a-new-bridge/" rel="alternate" type="text/html" title="Big Bang Smugglers 3.0: A New Bridge" />
+    <published>2026-10-21T17:00:00-05:00</published>
   
-    <updated>2026-03-15T09:00:00-05:00</updated>
+    <updated>2026-10-21T17:00:00-05:00</updated>
   
-    <id>https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/crystal-palace-mission-control-for-joshua/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Development" />
-    
-    <category term="Homelab" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Shipping to Google Play: What Actually Broke (And How We Fixed It)</title>
-    <link href="https://gregstengel.com/blog/posts/shipping-to-google-play-what-actually-broke/" rel="alternate" type="text/html" title="Shipping to Google Play: What Actually Broke (And How We Fixed It)" />
-    <published>2026-02-23T16:00:00-06:00</published>
-  
-    <updated>2026-02-23T16:00:00-06:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/shipping-to-google-play-what-actually-broke/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/shipping-to-google-play-what-actually-broke/" />
+    <id>https://gregstengel.com/blog/posts/big-bang-smugglers-3-0-a-new-bridge/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/big-bang-smugglers-3-0-a-new-bridge/" />
     <author>
       <name>Greg Stengel</name>
     </author>
@@ -98,23 +72,23 @@
 
   
   <entry>
-    <title>Four Agents, Eight Bugs, One Push</title>
-    <link href="https://gregstengel.com/blog/posts/parallel-bug-fixing-with-subagents/" rel="alternate" type="text/html" title="Four Agents, Eight Bugs, One Push" />
-    <published>2026-02-20T16:00:00-06:00</published>
+    <title>Clickarr: Turn Your Media Library Into TV</title>
+    <link href="https://gregstengel.com/blog/posts/clickarr-turn-your-media-library-into-tv/" rel="alternate" type="text/html" title="Clickarr: Turn Your Media Library Into TV" />
+    <published>2026-10-11T17:00:00-05:00</published>
   
-    <updated>2026-02-20T16:00:00-06:00</updated>
+    <updated>2026-10-11T17:00:00-05:00</updated>
   
-    <id>https://gregstengel.com/blog/posts/parallel-bug-fixing-with-subagents/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/parallel-bug-fixing-with-subagents/" />
+    <id>https://gregstengel.com/blog/posts/clickarr-turn-your-media-library-into-tv/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/clickarr-turn-your-media-library-into-tv/" />
     <author>
       <name>Greg Stengel</name>
     </author>
 
   
     
-    <category term="Development" />
+    <category term="Projects" />
     
-    <category term="AI" />
+    <category term="Clickarr" />
     
   
 
@@ -124,23 +98,49 @@
 
   
   <entry>
-    <title>Shall We Play a Game? — Joshua Joins Bikini Bottom</title>
-    <link href="https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/" rel="alternate" type="text/html" title="Shall We Play a Game? — Joshua Joins Bikini Bottom" />
-    <published>2026-02-20T10:00:00-06:00</published>
+    <title>You Asked, We Built It: A Season Run From the Discord</title>
+    <link href="https://gregstengel.com/blog/posts/big-bang-smugglers-you-asked-we-built-it/" rel="alternate" type="text/html" title="You Asked, We Built It: A Season Run From the Discord" />
+    <published>2026-10-08T19:00:00-05:00</published>
   
-    <updated>2026-02-20T10:00:00-06:00</updated>
+    <updated>2026-10-08T19:00:00-05:00</updated>
   
-    <id>https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/joshua-plays-big-bang-smugglers/" />
+    <id>https://gregstengel.com/blog/posts/big-bang-smugglers-you-asked-we-built-it/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/big-bang-smugglers-you-asked-we-built-it/" />
     <author>
       <name>Greg Stengel</name>
     </author>
 
   
     
-    <category term="Homelab" />
+    <category term="Game Dev" />
     
-    <category term="AI" />
+    <category term="Big Bang Smugglers" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Protovision Games Is Now an LLC</title>
+    <link href="https://gregstengel.com/blog/posts/protovision-games-llc/" rel="alternate" type="text/html" title="Protovision Games Is Now an LLC" />
+    <published>2026-08-17T11:00:00-05:00</published>
+  
+    <updated>2026-08-17T11:00:00-05:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/protovision-games-llc/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/protovision-games-llc/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Game Dev" />
+    
+    <category term="Protovision Games" />
     
   
 
