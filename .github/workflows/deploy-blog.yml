@@ -36,10 +36,10 @@ jobs:
         run: bundle install
 
       - name: Build site
+        # Deliberately NOT JEKYLL_ENV=production: in production Chirpy imports
+        # `main.bundle`, which only exists after the theme's npm build. This
+        # workflow has no Node step, so a production build fails at the SCSS.
         run: bundle exec jekyll build
-        env:
-          # Chirpy gates HTML compression and its CDN fallbacks on this.
-          JEKYLL_ENV: production
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

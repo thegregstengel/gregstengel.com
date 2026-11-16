@@ -257,6 +257,12 @@ description: Short description for previews and SEO.
   bundled RubyGems was too old to recognize `sass-embedded`'s newer
   `x86_64-linux-gnu` platform tag, so Bundler fell back to the source gem and the
   native build failed at `bundle install`. Don't downgrade it.
+- **Don't set `JEKYLL_ENV=production` in `deploy-blog.yml`.** In production
+  Chirpy's stylesheet imports `main.bundle`, which only exists after the theme's
+  npm build; CI has no Node step, so the build dies with "Can't find stylesheet
+  to import". The blog therefore ships a development-mode build (uncompressed
+  HTML, Bootstrap from the CDN, no PWA). Getting a production build means adding
+  the npm build to the workflow first.
 - **`blog/Gemfile.lock` is committed** (not gitignored) for reproducible builds —
   it pins the prebuilt `sass-embedded` linux gem so CI never tries to compile it.
   Regenerate it in the CI Ruby version if deps change (e.g. via `bundle lock`);
