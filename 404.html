@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="dark" />
-  <meta name="theme-color" content="#0a0c0a" />
+  <meta name="theme-color" content="#0d0c0a" />
   <meta name="robots" content="noindex" />
   <title>404 — not found · Greg Stengel</title>
   <meta name="description"
@@ -22,16 +22,16 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
+  <script src="/palette.js"></script>
   <link rel="stylesheet" href="/styles.css" />
   <style>
     /* Single-tile layout on top of the shared control-panel styles. */
     .panel--404 {
       min-height: 100vh;
+      max-width: 760px;
+      display: grid;
       align-content: center;
-      grid-template-columns: 1fr;
-      grid-template-areas: "hero" "foot";
     }
-    .tile--404 { max-width: 720px; width: 100%; justify-self: center; }
     .kicker--err { color: var(--hot); }
     .headline--404 { font-size: clamp(3.2rem, 12vw, 6.5rem); line-height: 0.95; }
     .headline--404 .headline-accent { font-size: clamp(1.4rem, 4vw, 2.2rem); margin-top: 0.5rem; }
@@ -47,7 +47,8 @@
   <div class="icon-background" aria-hidden="true"></div>
 
   <main class="panel panel--404">
-    <section class="tile tile--hero tile--404">
+    <div class="sheet">
+    <section class="sec sec--hero">
       <p class="kicker"><span class="prompt">greg@stengel</span>:<span class="path">~</span>$ cat <span
           class="req-path">this-page</span></p>
       <p class="kicker kicker--err">cat: <span class="req-path">this-page</span>: No such file or directory</p>
@@ -67,6 +68,7 @@
         <a class="blog-cta" href="/blog/archives/">the archives &rarr;</a>
       </nav>
     </section>
+    </div>
 
     <footer class="panel-foot">
       <span>exit code 1 &middot; gregstengel.com</span>
