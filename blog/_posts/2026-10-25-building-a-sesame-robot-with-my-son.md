@@ -10,15 +10,7 @@ image:
 description: My son and I built a Sesame Robot from parts that didn't match the instructions, so I had Claude build an interactive 3D model of the board to plan every part, joint, and wire before we picked up the iron.
 ---
 
-<!-- DRAFT. Written from the Claude conversation and the finished 3D model.
-     GREG: every "GREG:" comment is a spot only you can fill in. The post works
-     without them, but it is a build log until you add them. With them it is a
-     story about you and your son. Fill in or delete each one before publishing. -->
-
 My son and I built a robot.
-
-<!-- GREG: start here. How old is he? Whose idea was it? What did he say when
-     he saw the Sesame Robot for the first time? Two or three sentences. -->
 
 It is a [Sesame Robot](https://github.com/dorianborian/sesame-robot), an open-source design for a small walking robot. It has four legs, two servos per leg, and a tiny screen for a face.
 
@@ -29,8 +21,6 @@ The design comes with a build guide. We couldn't follow it.
 I bought parts that were close to the guide's, but not the same. Our controller was a Seeed XIAO ESP32-S3, where the firmware expects a different board. Our battery was a two-cell 7.4 V pack. Our circuit board was a blank 70 x 30 mm perfboard: 240 empty holes and no instructions.
 
 So the guide's wiring tables were no use to us. Every pin was somewhere else.
-
-<!-- GREG: why these parts? Already in the drawer, cheaper, what was in stock? -->
 
 I had a pile of components, a soldering iron, and a kid who wanted to see a robot walk. What I didn't have was a plan for where anything went.
 
@@ -56,9 +46,6 @@ Here is where it ended up. Drag to rotate it. **Flip to solder side** shows the 
 
 **Every hole has a name.** The board's grid is lettered A to X one way and numbered 01 to 10 the other. Every joint in the model has an address, so the instructions read like "solder the battery wire at X10". That is something a kid can follow.
 
-<!-- GREG: did he do the soldering, call out the coordinates, or both? This is
-     the best spot for a photo of the two of you at the bench. -->
-
 **You can turn layers off.** With 24 servo pins, 14 controller pins, and more than twenty wires, the full picture is a mess. Unticking everything except the wire you are about to solder turns it into one step.
 
 **It flips over.** Parts go on the top and wires go on the bottom, so everything is mirrored when you turn the board over. The model flips with you, and the labels on the solder side are drawn so they still read correctly.
@@ -74,9 +61,6 @@ The model took sixteen revisions. Most of them were me pointing at something tha
 **The screen cable had one end.** The model had a connector at the board and nothing at the screen. It also needed to be longer, because the screen lives in the top cover.
 
 **One battery wire must not be connected.** The pack has three wires. Red and black are power. Blue is the midpoint between the two cells, and it has no business touching anything. The model labels it "do not connect", and we capped it with heat shrink.
-
-<!-- GREG: any real mishaps at the bench? A cold joint, a burnt finger, a part
-     in backwards? The honest ones are the ones people read. -->
 
 ## The part I didn't know I needed
 
@@ -111,9 +95,6 @@ The photo above was taken at 11:00 on a Sunday morning, with the board wired and
 
 {% include embed/video.html src='/assets/img/sesame/first-steps.mp4' poster='/assets/img/sesame/first-steps-poster.jpg' title='12:30 the same day.' autoplay=true loop=true muted=true %}
 
-<!-- GREG: what did your son do when it moved? One or two sentences here is
-     the payoff of the whole post. -->
-
 The day before, with the soldering done, I had asked Claude for a written summary of the hardware and wiring. That meant the next session could pick up the firmware without me explaining it all again.
 
 ## Would I do it this way again
@@ -122,4 +103,3 @@ Yes. I didn't need the model to be pretty. I needed to make my mistakes on a scr
 
 It also gave my son and me the same picture to look at. We could both point at it.
 
-<!-- GREG: your last line. What did he get out of it? What did you? -->
