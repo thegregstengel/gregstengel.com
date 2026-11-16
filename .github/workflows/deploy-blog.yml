@@ -8,6 +8,11 @@ on:
     branches:
       - main
 
+# Shared with deploy-site.yml: both push to gh-pages, so they must not overlap.
+concurrency:
+  group: gh-pages
+  cancel-in-progress: false
+
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -32,6 +37,9 @@ jobs:
 
       - name: Build site
         run: bundle exec jekyll build
+        env:
+          # Chirpy gates HTML compression and its CDN fallbacks on this.
+          JEKYLL_ENV: production
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

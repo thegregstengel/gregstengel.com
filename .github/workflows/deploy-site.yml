@@ -23,8 +23,9 @@ on:
 permissions:
   contents: write
 
+# Shared with deploy-blog.yml: both push to gh-pages, so they must not overlap.
 concurrency:
-  group: deploy-site
+  group: gh-pages
   cancel-in-progress: false
 
 jobs:

@@ -9,7 +9,7 @@
   <meta name="description"
     content="Greg Stengel — staff infrastructure engineer. Two decades across AWS, Kubernetes, observability, and identity. Remote, based in Palm City, FL." />
   <meta name="author" content="Greg Stengel" />
-  <meta name="theme-color" content="#0a0c0a" />
+  <meta name="theme-color" content="#0d0c0a" />
   <link rel="canonical" href="https://gregstengel.com/" />
   <link rel="alternate" type="application/atom+xml" title="Greg Stengel — blog" href="/blog/feed.xml" />
 
@@ -54,6 +54,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet" />
+  <script src="palette.js"></script>
   <link rel="stylesheet" href="styles.css" />
 </head>
 
@@ -61,297 +62,266 @@
   <div class="icon-background" aria-hidden="true"></div>
 
   <main class="panel">
-    <!-- ===== HERO ===== -->
-    <section class="tile tile--hero">
-      <p class="kicker"><span class="prompt">greg@stengel</span>:<span class="path">~</span>$ whoami</p>
-      <h1 class="hero-name" data-tooltip="Shall we play a game?">Greg Stengel</h1>
-      <p class="hero-role">Staff Infrastructure Engineer · Remote · Palm City, FL</p>
-      <p class="headline">
-        Two decades making
-        <span class="headline-accent">clouds behave.</span>
-      </p>
-      <p class="subhead">
-        AWS, Kubernetes, observability, and identity &mdash; with AI agents becoming part of the toolkit.
-        Building platforms, orchestrating coding agents, and turning &ldquo;I&rsquo;ll get to it&rdquo;
-        into something shipped.
-      </p>
-    </section>
+    <div class="sheet">
+      <div class="sheet-bar" aria-hidden="true">
+        <span class="console-dots"><span></span><span></span><span></span></span>
+        <span>greg@stengel: ~</span>
+      </div>
 
-    <!-- ===== CERTS ===== -->
-    <section class="tile tile--certs" aria-labelledby="certs-h">
-      <h2 class="tile-label" id="certs-h">// certifications</h2>
-      <h3 class="cert-group-label">Splunk <span>· valid through Apr 2028</span></h3>
-      <ul class="cert-list">
-        <li>Enterprise Certified Architect</li>
-        <li>Core Certified Consultant</li>
-        <li>Enterprise Certified Admin</li>
-        <li>Core Certified Power User</li>
-        <li>Core Certified User</li>
-      </ul>
-      <div class="cert-history">
-        <h3 class="cert-group-label">Previously certified</h3>
+      <!-- ===== HERO ===== -->
+      <section class="sec sec--hero">
+        <p class="kicker"><span class="prompt">greg@stengel</span>:<span class="path">~</span>$ whoami</p>
+        <h1 class="hero-name" data-tooltip="Shall we play a game?">Greg Stengel</h1>
+        <p class="hero-role">Staff Infrastructure Engineer · Remote · Palm City, FL</p>
+        <p class="headline">
+          Two decades making
+          <span class="headline-accent">clouds behave.</span>
+        </p>
+        <p class="subhead">
+          AWS is home turf. I automate what repeats, and these days Claude Code, Cursor, and Codex
+          do a lot of the typing, so work that took a month ships in days. Kubernetes, observability,
+          and identity underneath it all.
+        </p>
+        <nav class="social-links" aria-label="Find me elsewhere">
+          <a href="https://github.com/thegregstengel" class="social-link" aria-label="GitHub">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path
+                d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+              <path d="M9 18c-4.51 2-5-2-7-2" />
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/gregstengel" class="social-link" aria-label="LinkedIn">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect width="4" height="12" x="2" y="9" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>
+          </a>
+          <a href="https://www.instagram.com/thegregstengel" class="social-link" aria-label="Instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="m16 11.37 A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
+          </a>
+          <a href="https://x.com/thegregstengel" class="social-link" aria-label="X">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+              stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+            </svg>
+          </a>
+        </nav>
+      </section>
+
+      <!-- ===== THE ARC: eras, with the builds from each nested inside ===== -->
+      <section class="sec" aria-labelledby="arc-h">
+        <h2 class="sec-title" id="arc-h">the arc</h2>
+        <ol class="era-list">
+          <li class="era">
+            <span class="era-num">01</span>
+            <div class="era-body">
+              <h3 class="era-name">Phones, then racks</h3>
+              <p class="era-desc">
+                Started in DSL tech support, talking strangers through modem lights. Then
+                small-business IT, then sysadmin for 100+ web servers: Apache, WebSphere, and Tomcat
+                on Red Hat, IIS on Windows, nearly all of it on VMware. The habit that stuck: figure
+                out what broke, then write it down.
+              </p>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">02</span>
+            <div class="era-body">
+              <h3 class="era-name">Making the noise useful</h3>
+              <p class="era-desc">
+                Somebody had to make sense of the logs, so I taught myself Splunk and built the
+                platform. Then ran Splunk and Enterprise Security for a large enterprise: upgrades,
+                performance, and dashboards people actually used. Collecting everything is easy;
+                making it useful is the job.
+              </p>
+              <ul class="build-list">
+                <li class="build">
+                  <h4 class="build-name">Multi-datacenter Splunk platform</h4>
+                  <p class="build-desc">Built Splunk across three datacenters and 2,500+ nodes. Puppet handled forwarder rollout; scripts handled new index configuration. Less hand configuration, fewer opportunities to get creative by accident.</p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">03</span>
+            <div class="era-body">
+              <h3 class="era-name">AWS becomes home turf</h3>
+              <p class="era-desc">
+                After a short stop deploying OpenStack with Ansible, AWS, and it stuck. Architect
+                for managed cloud customers: their environments built in Terraform, compliance
+                enforced with Cloud Custodian, the fleet run with Puppet, and Splunk watching all of
+                it. Most of what I have built since runs here.
+              </p>
+              <ul class="build-list">
+                <li class="build">
+                  <h4 class="build-name">Monitoring that earns its keep</h4>
+                  <p class="build-desc">Built a clustered Splunk platform in AWS to monitor customer environments. Custom integrations, 50+ dashboards per customer app, and summary indexing turned scattered resource data into useful answers.</p>
+                </li>
+                <li class="build">
+                  <h4 class="build-name">AWS security monitoring pipeline</h4>
+                  <p class="build-desc">Built a CloudFormation stack to send AWS security logs and events through Kinesis Firehose into Splunk HEC, with SNS notifications. Covered root logins, unauthorized API calls, and IAM and network changes. Fewer places to look when something looked wrong.</p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">04</span>
+            <div class="era-body">
+              <h3 class="era-name">Leading it</h3>
+              <p class="era-desc">
+                Managed the cloud engineering team, then directed it, and later ran observability as
+                a senior director. Cut alert noise so support saw the real problems, moved customers
+                off third-party backup tools onto native AWS Backup, and got engineers sharing what
+                they built instead of reinventing it. Kept my hands in the tooling even when the
+                calendar filled with meetings.
+              </p>
+              <ul class="build-list">
+                <li class="build">
+                  <h4 class="build-name">Managed observability offering</h4>
+                  <p class="build-desc">Built Elastic Cloud observability for operations, then turned it into something customers could buy: data-source onboarding, dashboards and alerts, chargeback, and customer-specific runbooks.</p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">05</span>
+            <div class="era-body">
+              <h3 class="era-name">Automate the repeat work</h3>
+              <p class="era-desc">
+                Chose the keyboard again and pointed it at AWS. Python, Bash, Lambda, EventBridge,
+                CloudFormation, Terraform, SSM: patching, backups, migrations, even disk alarms that
+                create and remove themselves. Kubernetes on EKS and some Splunk consulting along the
+                way, plus Azure and GCP when a customer needed them. If a job shows up twice, it gets
+                a script.
+              </p>
+              <ul class="build-list">
+                <li class="build">
+                  <h4 class="build-name">Backup &amp; compliance automation</h4>
+                  <p class="build-desc">Automated AWS backups, patching, and compliance checks with CloudFormation, AWS Config, SSM, and tagging standards, rolled out across accounts with Python tooling so every deployment looked the same.</p>
+                </li>
+                <li class="build">
+                  <h4 class="build-name">Hybrid file-sync pipeline</h4>
+                  <p class="build-desc">Connected SFTP and SMB workflows across AWS and on-prem using Lambda, S3, and DynamoDB. Automated file mapping and sync so moving files didn&rsquo;t need to be somebody&rsquo;s job.</p>
+                </li>
+                <li class="build">
+                  <h4 class="build-name">Fewer IPs, smaller bills</h4>
+                  <p class="build-desc">Built automation to migrate and consolidate public IPs, reducing per-application IP costs. Small pieces of infrastructure add up when the meter never stops.</p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">06</span>
+            <div class="era-body">
+              <h3 class="era-name">Platform &amp; identity</h3>
+              <p class="era-desc">
+                Mostly platform work in AWS these days: EKS across three regions, Envoy and Linkerd
+                in the traffic path, ArgoCD for deploys, Vault for secrets. Alongside it, a big
+                identity project: Okta-backed Identity Center, carried through EKS access entries
+                into Kubernetes RBAC. All of it in Terraform/Terragrunt through GitLab CI. Make the
+                right access easy and the wrong access difficult.
+              </p>
+              <ul class="build-list">
+                <li class="build">
+                  <h4 class="build-name">Identity modernization</h4>
+                  <p class="build-desc">Replaced legacy IAM access with Okta-backed Identity Center across a multi-account AWS environment. Reusable Terraform/Terragrunt modules and GitLab CI made permission changes repeatable. Least privilege, maintained in code.</p>
+                </li>
+                <li class="build">
+                  <h4 class="build-name">Multi-region EKS access</h4>
+                  <p class="build-desc">Operated EKS across three AWS regions, mapping Identity Center access into Kubernetes RBAC with EKS access entries, with ArgoCD deployments on top. Managed Vault secrets and ingress alongside it, with runbooks so the access path didn&rsquo;t live in one person&rsquo;s head.</p>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="era">
+            <span class="era-num">07</span>
+            <div class="era-body">
+              <h3 class="era-name">Agents in the loop</h3>
+              <p class="era-desc">
+                Claude Code, Cursor, and Codex are part of the daily workflow now. I scope the work,
+                run coding agents against it, and review what comes back: infrastructure code,
+                automation, runbooks. Delivery that took a month takes days. The agents do a lot of the
+                typing. I still own what ships.
+              </p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ===== TOOLKIT ===== -->
+      <section class="sec" aria-labelledby="kit-h">
+        <h2 class="sec-title" id="kit-h">the toolkit</h2>
+        <dl class="kit">
+          <div class="kit-row"><dt>Cloud</dt><dd>AWS <span class="home">home turf</span> · Azure · GCP</dd></div>
+          <div class="kit-row"><dt>AI &amp; Agents</dt><dd>Claude Code · Codex · Cursor · agent orchestration · AI-assisted delivery · OpenClaw</dd></div>
+          <div class="kit-row"><dt>Observability</dt><dd>Splunk · Elastic · Prometheus · Grafana · Datadog</dd></div>
+          <div class="kit-row"><dt>Infrastructure as Code</dt><dd>Terraform · Terragrunt · CloudFormation · Ansible · Puppet</dd></div>
+          <div class="kit-row"><dt>Platform &amp; Delivery</dt><dd>Kubernetes / EKS · Envoy · Linkerd · Helm · ArgoCD · GitLab CI · GitHub Actions · Jenkins</dd></div>
+          <div class="kit-row"><dt>Security &amp; Identity</dt><dd>IAM Identity Center · Okta · Vault · KMS · AWS Config</dd></div>
+          <div class="kit-row"><dt>Automation</dt><dd>Python · Bash · Lambda · EventBridge · SSM · Kinesis Firehose</dd></div>
+          <div class="kit-row"><dt>Foundations</dt><dd>Linux / RHEL / Ubuntu · VMware · OpenStack</dd></div>
+        </dl>
+      </section>
+
+      <!-- ===== CERTS ===== -->
+      <section class="sec" aria-labelledby="certs-h">
+        <h2 class="sec-title" id="certs-h">certifications</h2>
+        <p class="cert-group">Current</p>
         <ul class="cert-list">
-          <li>AWS Certified Solutions Architect &ndash; Associate <span class="cert-expiry">Expired Dec 2020</span></li>
-          <li>AWS Certified Cloud Practitioner <span class="cert-expiry">Expired Oct 2024</span></li>
-          <li>FinOps Certified Practitioner <span class="cert-expiry">FinOps Foundation · expired Dec 2025</span></li>
+          <li>Splunk Enterprise Certified Architect</li>
+          <li>Splunk Core Certified Consultant</li>
+          <li>Splunk Enterprise Certified Admin</li>
+          <li>Splunk Core Certified Power User</li>
+          <li>Splunk Core Certified User</li>
         </ul>
-      </div>
-    </section>
+        <p class="cert-group cert-group--prev">Previously held</p>
+        <ul class="cert-list cert-list--prev">
+          <li>AWS Certified Solutions Architect &ndash; Associate</li>
+          <li>AWS Certified Cloud Practitioner</li>
+          <li>FinOps Certified Practitioner</li>
+        </ul>
+      </section>
 
-    <!-- ===== ERAS ===== -->
-    <section class="tile tile--eras" aria-labelledby="eras-h">
-      <h2 class="tile-label" id="eras-h">// the arc</h2>
-      <ol class="era-list">
-        <li class="era">
-          <span class="era-num">01</span>
-          <div class="era-body">
-            <h3 class="era-name">Foundations</h3>
-            <p class="era-desc">
-              Datacenters, colo, and a hundred web servers. Linux, VMware, Apache, WebSphere, IIS
-              &mdash; keep it running, figure out what broke, write it down. Then OpenStack
-              deployments with Ansible, because clicking through infrastructure gets old fast.
-            </p>
-          </div>
-        </li>
-        <li class="era">
-          <span class="era-num">02</span>
-          <div class="era-body">
-            <h3 class="era-name">Making the noise useful</h3>
-            <p class="era-desc">
-              Built Splunk across three datacenters and 2,500+ nodes, with Puppet handling the
-              forwarders. Went deep on clustered deployments, custom integrations, and dashboards
-              people actually used. Later, built out Elastic Cloud observability. Collecting
-              everything is easy; making it useful is the job.
-            </p>
-          </div>
-        </li>
-        <li class="era">
-          <span class="era-num">03</span>
-          <div class="era-body">
-            <h3 class="era-name">Building it. Leading it.</h3>
-            <p class="era-desc">
-              Architected cloud environments, then led the engineers keeping them alive. AWS first,
-              Azure and GCP too. Terraform, backup automation, migrations, fewer noisy alerts, and
-              fewer recurring bills. Kept my hands in the tooling even when the calendar filled with
-              meetings.
-            </p>
-          </div>
-        </li>
-        <li class="era">
-          <span class="era-num">04</span>
-          <div class="era-body">
-            <h3 class="era-name">Platform &amp; identity</h3>
-            <p class="era-desc">
-              Multi-account AWS, EKS across three regions, and the plumbing between Okta, Identity
-              Center, Kubernetes RBAC, and ArgoCD. Terraform/Terragrunt through GitLab CI, Vault for
-              secrets, tighter KMS policies. Make the right access easy and the wrong access
-              difficult.
-            </p>
-          </div>
-        </li>
-        <li class="era">
-          <span class="era-num">05</span>
-          <div class="era-body">
-            <h3 class="era-name">Less toil, more shipping</h3>
-            <p class="era-desc">
-              Python, Bash, Lambda, EventBridge &mdash; whatever gets the repeat work off
-              somebody&rsquo;s plate. Lately, AI agents too, helping turn weeks of delivery into
-              days. Still responsible for what ships. Still writing the runbooks.
-            </p>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ===== SKILLS ===== -->
-    <section class="tile tile--skills" aria-labelledby="skills-h">
-      <h2 class="tile-label" id="skills-h">// the toolkit</h2>
-      <div class="cluster-grid">
-        <div class="cluster">
-          <h3 class="cluster-label">Cloud</h3>
-          <p class="cluster-items">AWS <span class="home">home turf</span> · Azure · GCP</p>
+      <!-- ===== RECOMMENDATIONS ===== -->
+      <section class="sec" aria-labelledby="recs-h">
+        <h2 class="sec-title" id="recs-h">on the record</h2>
+        <div class="rec-grid">
+          <figure class="rec">
+            <blockquote>One of the most talented engineers I&rsquo;ve ever worked with &mdash; instrumental in building key automation and reporting systems, and always willing to teach others.</blockquote>
+            <figcaption>&mdash; DevOps / SRE team lead</figcaption>
+          </figure>
+          <figure class="rec">
+            <blockquote>He automated the entire Splunk setup for thousands of servers, self-taught, and documented it so well it was still in use two years later.</blockquote>
+            <figcaption>&mdash; former manager</figcaption>
+          </figure>
+          <figure class="rec">
+            <blockquote>Detail-oriented with a broad set of technical skills &mdash; always eager to learn, and never backs down from a challenge.</blockquote>
+            <figcaption>&mdash; VP, managed services</figcaption>
+          </figure>
+          <figure class="rec">
+            <blockquote>Dove into technologies he had no background in &mdash; Splunk, Python, cloud &mdash; and quickly became the person the team relied on.</blockquote>
+            <figcaption>&mdash; project manager</figcaption>
+          </figure>
         </div>
-        <div class="cluster">
-          <h3 class="cluster-label">AI &amp; Agents</h3>
-          <p class="cluster-items">Claude Code · Codex · Cursor · agent orchestration · AI-assisted delivery · OpenClaw</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Observability</h3>
-          <p class="cluster-items">Splunk · Elastic · Prometheus · Grafana · Datadog</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Infrastructure as Code</h3>
-          <p class="cluster-items">Terraform · Terragrunt · CloudFormation · Ansible · Puppet</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Platform &amp; Delivery</h3>
-          <p class="cluster-items">Kubernetes / EKS · Helm · ArgoCD · GitLab CI · GitHub Actions · Jenkins</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Security &amp; Identity</h3>
-          <p class="cluster-items">IAM Identity Center · Okta · Vault · KMS · AWS Config</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Automation &amp; Integration</h3>
-          <p class="cluster-items">Python · Bash · Lambda · EventBridge · SSM · Kinesis Firehose</p>
-        </div>
-        <div class="cluster">
-          <h3 class="cluster-label">Foundations</h3>
-          <p class="cluster-items">Linux / RHEL / Ubuntu · VMware · OpenStack</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== SIGNATURE PROJECTS ===== -->
-    <section class="tile tile--projects" aria-labelledby="proj-h">
-      <h2 class="tile-label" id="proj-h">// signature builds</h2>
-      <ol class="project-list">
-        <li class="project">
-          <h3 class="project-name">Multi-datacenter Splunk platform</h3>
-          <p class="project-desc">Built Splunk across three datacenters and 2,500+ nodes. Puppet handled forwarder rollout; scripts handled new index configuration. Less hand configuration, fewer opportunities to get creative by accident.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Monitoring that earns its keep</h3>
-          <p class="project-desc">Built a clustered Splunk platform in AWS to monitor customer environments. Custom integrations, 50+ dashboards per customer app, and summary indexing turned scattered resource data into useful answers.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">AWS security monitoring pipeline</h3>
-          <p class="project-desc">Built a CloudFormation stack to send AWS security logs and events through Kinesis Firehose into Splunk HEC, with SNS notifications. Covered root logins, unauthorized API calls, and IAM and network changes. Fewer places to look when something looked wrong.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Backup &amp; compliance automation</h3>
-          <p class="project-desc">Automated AWS backups and compliance checks with CloudFormation, AWS Config, Cloud Custodian, and tagging standards. Replaced third-party backup tooling with native AWS Backup, taking thousands out of recurring costs.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Hybrid file-sync pipeline</h3>
-          <p class="project-desc">Connected SFTP and SMB workflows across AWS and on-prem using Lambda, S3, and DynamoDB. Automated file mapping and sync so moving files didn&rsquo;t need to be somebody&rsquo;s job.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Fewer IPs, smaller bills</h3>
-          <p class="project-desc">Built automation to migrate and consolidate public IPs, reducing per-application IP costs. Small pieces of infrastructure add up when the meter never stops.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Identity modernization</h3>
-          <p class="project-desc">Replaced legacy IAM access with Okta-backed Identity Center across a multi-account AWS environment. Reusable Terraform/Terragrunt modules and GitLab CI made permission changes repeatable. Least privilege, maintained in code.</p>
-        </li>
-        <li class="project">
-          <h3 class="project-name">Multi-region EKS access</h3>
-          <p class="project-desc">Operated EKS across three AWS regions, connecting Identity Center access to Kubernetes RBAC and ArgoCD deployments. Managed Vault secrets and ingress alongside it, with runbooks so the access path didn&rsquo;t live in one person&rsquo;s head.</p>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ===== RECOMMENDATIONS ===== -->
-    <section class="tile tile--recs" aria-labelledby="recs-h">
-      <h2 class="tile-label" id="recs-h">// on the record</h2>
-      <div class="rec-grid">
-        <figure class="rec">
-          <blockquote>One of the most talented engineers I&rsquo;ve ever worked with &mdash; instrumental in building key automation and reporting systems, and always willing to teach others.</blockquote>
-          <figcaption>&mdash; DevOps / SRE team lead</figcaption>
-        </figure>
-        <figure class="rec">
-          <blockquote>He automated the entire Splunk setup for thousands of servers, self-taught, and documented it so well it was still in use two years later.</blockquote>
-          <figcaption>&mdash; former manager</figcaption>
-        </figure>
-        <figure class="rec">
-          <blockquote>Detail-oriented with a broad set of technical skills &mdash; always eager to learn, and never backs down from a challenge.</blockquote>
-          <figcaption>&mdash; VP, managed services</figcaption>
-        </figure>
-        <figure class="rec">
-          <blockquote>Dove into technologies he had no background in &mdash; Splunk, Python, cloud &mdash; and quickly became the person the team relied on.</blockquote>
-          <figcaption>&mdash; project manager</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- ===== NOW RUNNING (homelab) ===== -->
-    <section class="tile tile--status" aria-labelledby="status-h">
-      <h2 class="tile-label" id="status-h">// after hours</h2>
-      <ul class="status-list">
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <a class="svc" href="/blog/posts/self-hosting-ai-assistant-part-1-ubuntu-server-zotac/">WOPR</a>
-          <span class="state">online</span>
-          <p class="svc-desc">Fanless Zotac. Ubuntu Server. Joshua&rsquo;s home. Quietly plotting uptime.</p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <span class="svc">TrueNAS</span>
-          <span class="state">0 errors</span>
-          <p class="svc-desc">The homelab&rsquo;s storage department.</p>
-        </li>
-        <li>
-          <span class="dot" aria-hidden="true"></span>
-          <a class="svc" href="/blog/posts/hello-world-from-joshua/">Joshua</a>
-          <span class="state">thinking</span>
-          <p class="svc-desc">My OpenClaw AI assistant on WOPR. Helps with code, logs, and automation. Takes requests over Discord.</p>
-        </li>
-      </ul>
-      <p class="status-foot">homelab · all green <span class="cursor" aria-hidden="true">&#9608;</span></p>
-    </section>
-
-    <!-- ===== BLOG ===== -->
-    <section class="tile tile--blog" aria-labelledby="blog-h">
-      <h2 class="tile-label" id="blog-h">// read the receipts</h2>
-      <ul class="post-list" id="post-list" aria-live="polite">
-        <li class="post-loading">loading the latest&hellip;</li>
-      </ul>
-      <a class="blog-cta" href="/blog/">the blog <span aria-hidden="true">&rarr;</span></a>
-    </section>
-
-    <!-- ===== STACK CAPTION ===== -->
-    <section class="tile tile--stack">
-      <h2 class="tile-label">// the stack</h2>
-      <p class="stack-note">
-        It&rsquo;s the wall drifting behind all this. Hover a logo to name it &mdash;
-        cloud, containers, observability, and a closet full of Linux.
-      </p>
-    </section>
-
-    <!-- ===== CONNECT ===== -->
-    <section class="tile tile--connect" aria-labelledby="connect-h">
-      <h2 class="tile-label" id="connect-h">// find me</h2>
-      <div class="social-links">
-        <a href="https://github.com/thegregstengel" class="social-link" aria-label="GitHub">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path
-              d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
-            <path d="M9 18c-4.51 2-5-2-7-2" />
-          </svg>
-        </a>
-        <a href="https://www.linkedin.com/in/gregstengel" class="social-link" aria-label="LinkedIn">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-            <rect width="4" height="12" x="2" y="9" />
-            <circle cx="4" cy="4" r="2" />
-          </svg>
-        </a>
-        <a href="https://www.instagram.com/thegregstengel" class="social-link" aria-label="Instagram">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
-            <path d="m16 11.37 A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
-          </svg>
-        </a>
-        <a href="https://x.com/thegregstengel" class="social-link" aria-label="X">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4l11.733 16h4.267l-11.733 -16z" />
-            <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
-          </svg>
-        </a>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- ===== FOOT ===== -->
     <footer class="panel-foot">
       <span>Remote · Palm City, FL · built by hand</span>
       <span class="foot-hints">
         <button class="foot-hint" type="button" aria-pressed="false" data-music-toggle><span class="music-foot-label">sound off</span> <kbd>m</kbd></button>
-        <button class="foot-hint" type="button" aria-haspopup="dialog" aria-controls="console">a closer look <kbd>?</kbd></button>
+        <!-- The π in the corner. Opens the console (so does `?`). -->
+        <button class="pi" type="button" aria-label="A closer look" aria-haspopup="dialog" aria-controls="console">&pi;</button>
       </span>
     </footer>
   </main>
@@ -402,7 +372,6 @@
   </div>
 
   <script src="background.js"></script>
-  <script src="posts.js"></script>
   <script src="console.js"></script>
   <script src="music.js"></script>
 </body>
