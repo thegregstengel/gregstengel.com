@@ -137,7 +137,10 @@ assets:
     env: # [development | production]
 
 pwa:
-  enabled: true # The option for PWA feature (installable)
+  # Off on purpose: this only takes effect in production builds, which CI now
+  # runs. A service worker caches the blog in visitors' browsers and is awkward
+  # to retract, so turning it on should be a deliberate choice.
+  enabled: false # The option for PWA feature (installable)
   cache:
     enabled: true # The option for PWA offline cache
     # Paths defined here will be excluded from the PWA cache.

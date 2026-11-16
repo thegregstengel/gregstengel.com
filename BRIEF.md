@@ -14,6 +14,37 @@ redirects it toward an opinionated, dense, alive control-panel of a person.
   the blog, the homelab, the work — and that reads as a person with a point of
   view, not a résumé.
 
+## v3 — the sheet (current direction)
+
+**This section supersedes everything below where they conflict.** The v2
+control-panel bento got out of hand: eleven equal-weight tiles, no reading
+order, the career told twice. v3 keeps what worked and calms the rest.
+
+- **Goal:** a landing page built from professional experience, certifications,
+  peer recommendations, and skills. Cleaner and more professional, still
+  retro-tech.
+- **Layout:** one terminal-window sheet, one column, read top to bottom: hero →
+  the arc → toolkit → certifications → on the record. No tile grid.
+- **The arc carries the story.** Seven generalized eras, from DSL tech support
+  to coding agents, with the signature builds nested in the era they belong to.
+  Push public cloud (AWS), automation, and AI-assisted delivery (Claude Code /
+  Cursor / Codex). It may be massaged and need not map 1:1 to the real timeline,
+  but **no lies**.
+- **Colour:** a single phosphor accent that alternates between **amber and
+  green** on every page load. Restraint everywhere else.
+- **Kept, because Greg likes them:** the icon wall, the music player, the social
+  links.
+- **The fun is hidden.** A small π in the page foot (as in *The Net*) opens the
+  console. The blog is deliberately unlisted: you have to know it's there, and
+  the console is the way in.
+- **Cut:** the homelab "after hours" tile (WOPR / TrueNAS / Joshua is blog
+  material now), the blog tile, the stack caption, certification dates.
+- **Still in force from v2:** the anti-resume rule, the first-person peer voice,
+  dark-first, the type pairing, "every loud thing does a job".
+- **No longer in force:** Expressive Maximalist density, the bento grid, the
+  75/20/5 weighting (the page is professional content plus a few hidden jokes),
+  "read the receipts" blog CTAs.
+
 ## v2 — content weighting & the anti-resume rule
 
 The control-panel *aesthetic* holds; v2 loads it with real career substance and

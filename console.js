@@ -2,13 +2,13 @@
   "use strict";
 
   /* ------------------------------------------------------------------
-   * Hidden /whoami console — the 5% fun. Opens on `?`, closes on Esc
+   * Hidden /whoami console — the 5% fun. Opens on the π in the page foot or `?`, closes on Esc
    * or click-outside. Types out a short session for the curious.
    * ------------------------------------------------------------------ */
   const consoleEl = document.getElementById("console");
   const consoleBody = document.getElementById("console-body");
   const consoleClose = document.querySelector(".console-close");
-  const consoleOpen = document.querySelector(".foot-hint");
+  const consoleOpen = document.querySelector('[aria-controls="console"]');
   const panel = document.querySelector(".panel");
   if (!consoleEl || !consoleBody || !consoleClose) return;
 
@@ -19,8 +19,8 @@
     { out: "automate the boring, document the rest." },
     { prompt: "$ ", cmd: "uptime" },
     { out: "~20 years in production · load average: caffeinated" },
-    { prompt: "$ ", cmd: "ls ~/after-hours" },
-    { out: "wopr/  truenas/  joshua/  the-blog/" },
+    { prompt: "$ ", cmd: "ls ~/unlisted" },
+    { out: "blog/", href: "/blog/" },
     { prompt: "$ ", cmd: "echo $PURPOSE" },
     { out: "all the things." },
   ];
@@ -53,7 +53,15 @@
         consoleBody.append("\n");
         await sleep(200);
       } else if (step.out) {
-        consoleBody.append(step.out + "\n");
+        if (step.href) {
+          // The blog isn't linked from the page itself; this is the way in.
+          const a = document.createElement("a");
+          a.href = step.href;
+          a.textContent = step.out;
+          consoleBody.append(a, "\n");
+        } else {
+          consoleBody.append(step.out + "\n");
+        }
         if (!reduceMotion) await sleep(340);
       }
     }
@@ -85,10 +93,13 @@
   }
 
   document.addEventListener("keydown", (e) => {
-    // The close button is the console's only interactive control.
+    // Keep Tab inside the console: the close button plus any typed-out links.
     if (e.key === "Tab" && !consoleEl.hidden) {
+      const stops = Array.from(consoleEl.querySelectorAll("button, a[href]"));
+      const at = stops.indexOf(document.activeElement);
+      const next = at < 0 ? 0 : (at + (e.shiftKey ? -1 : 1) + stops.length) % stops.length;
       e.preventDefault();
-      consoleClose.focus({ preventScroll: true });
+      stops[next].focus({ preventScroll: true });
       return;
     }
     const t = e.target;
