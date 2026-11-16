@@ -4,7 +4,7 @@
   <id>https://gregstengel.com/blog/</id>
   <title>Greg Stengel</title>
   <subtitle>Cloud infrastructure, homelab experiments, and AI assistants. Notes from building, breaking, and fixing all the things.</subtitle>
-  <updated>2026-11-16T08:26:24-06:00</updated>
+  <updated>2026-11-16T08:45:19-06:00</updated>
   <author>
     <name>Greg Stengel</name>
     <uri>https://gregstengel.com/blog/</uri>
@@ -37,6 +37,32 @@
     <category term="Projects" />
     
     <category term="Clickarr" />
+    
+  
+
+  <summary></summary>
+
+  </entry>
+
+  
+  <entry>
+    <title>Building a Sesame Robot With My Son (and a 3D Model to Solder From)</title>
+    <link href="https://gregstengel.com/blog/posts/building-a-sesame-robot-with-my-son/" rel="alternate" type="text/html" title="Building a Sesame Robot With My Son (and a 3D Model to Solder From)" />
+    <published>2026-10-25T13:00:00-05:00</published>
+  
+    <updated>2026-10-25T13:00:00-05:00</updated>
+  
+    <id>https://gregstengel.com/blog/posts/building-a-sesame-robot-with-my-son/</id>
+    <content type="text/html" src="https://gregstengel.com/blog/posts/building-a-sesame-robot-with-my-son/" />
+    <author>
+      <name>Greg Stengel</name>
+    </author>
+
+  
+    
+    <category term="Projects" />
+    
+    <category term="Robotics" />
     
   
 
@@ -115,32 +141,6 @@
     <category term="Game Dev" />
     
     <category term="Big Bang Smugglers" />
-    
-  
-
-  <summary></summary>
-
-  </entry>
-
-  
-  <entry>
-    <title>Protovision Games Is Now an LLC</title>
-    <link href="https://gregstengel.com/blog/posts/protovision-games-llc/" rel="alternate" type="text/html" title="Protovision Games Is Now an LLC" />
-    <published>2026-08-17T11:00:00-05:00</published>
-  
-    <updated>2026-08-17T11:00:00-05:00</updated>
-  
-    <id>https://gregstengel.com/blog/posts/protovision-games-llc/</id>
-    <content type="text/html" src="https://gregstengel.com/blog/posts/protovision-games-llc/" />
-    <author>
-      <name>Greg Stengel</name>
-    </author>
-
-  
-    
-    <category term="Game Dev" />
-    
-    <category term="Protovision Games" />
     
   
 
