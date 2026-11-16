@@ -107,6 +107,9 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
   *Previously held* (AWS, FinOps). No dates.
 - **On the record:** anonymized recommendation pull-quotes with stripped
   relationship tags (`— former manager`, etc.). No names/companies/dates.
+- **Off the clock:** personal projects as linked cards (Big Bang Smugglers,
+  Clickarr, Protovision Games). Real project names are fine here; the
+  anti-resume rule covers employers, not side projects.
 - **Foot:** location line, the `sound` toggle hint, and **the π**.
 
 **The blog is intentionally unlisted.** There is no blog tile or CTA on the
