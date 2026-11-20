@@ -30,8 +30,8 @@ order, the career told twice. v3 keeps what worked and calms the rest.
   Push public cloud (AWS), automation, and AI-assisted delivery (Claude Code /
   Cursor / Codex). It may be massaged and need not map 1:1 to the real timeline,
   but **no lies**.
-- **Colour:** a single phosphor accent that alternates between **amber and
-  green** on every page load. Restraint everywhere else.
+- **Colour:** a single accent per load, rotating through **amber, green and
+  Dracula purple**. Restraint everywhere else.
 - **Kept, because Greg likes them:** the icon wall, the music player, the social
   links.
 - **The fun is hidden.** A small π in the page foot (as in *The Net*) opens the

@@ -25,7 +25,7 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 ├── 404.html                  # Custom 404 (GitHub Pages serves it for every missing URL)
 ├── styles.css                # Landing page styles
 ├── background.js             # Animated tech-icon "stack wall" (hover-to-name)
-├── palette.js                # Alternates amber / green phosphor on each page load
+├── palette.js                # Rotates amber / green / Dracula on each page load
 ├── console.js                # Hidden /whoami console (the π in the page foot, or `?`)
 ├── music.js                  # Sound control (bottom-left soundtrack toggle)
 ├── BRIEF.md                  # Creative direction for the landing page
@@ -79,10 +79,13 @@ Hosted on GitHub Pages. Deployed via GitHub Actions to the `gh-pages` branch.
 - **Dark by construction**, one phosphor accent (`--acc`) over a near-black base,
   alarm-red (`--hot`) reserved for sparing use. No light mode and no
   `prefers-color-scheme` branch.
-- **Two palettes, alternating.** Amber (`#ffb454`, the `:root` default) and green
-  (`#6cff5a`, `:root[data-palette="green"]`), both defined at the top of
-  `styles.css`. `palette.js` flips between them on every page load. Never
-  hard-code an accent colour; use `var(--acc)` / `color-mix()` so both work.
+- **Three palettes, rotating.** Amber (`#ffb454`, the `:root` default), green
+  (`#6cff5a`) and Dracula (purple `#bd93f9` on the Dracula background), each a
+  `:root[data-palette="..."]` block at the top of `styles.css`. `palette.js`
+  steps through them in that order, one per page load. Never hard-code an
+  accent colour; use `var(--acc)` / `color-mix()` so all three work. To add a
+  palette: add its block to `styles.css` and its name + `theme-color` to
+  `ORDER` / `THEME_COLOR` in `palette.js`.
 - **Type:** Space Grotesk (display) + JetBrains Mono (body, labels, terminal
   voice), from Google Fonts.
 - **Background:** the animated "stack wall" -- drifting, fading tech-icon SVGs
@@ -119,9 +122,9 @@ landing page; the only way in is the `blog/` link typed out inside the console
 ### Behavior (JS)
 
 - **`palette.js`:** loaded synchronously in `<head>` *before* the stylesheet so
-  there is no flash. Reads the last palette from `localStorage`, sets the other
-  one on `<html data-palette>`, and updates `theme-color`. First visit or blocked
-  storage gets a coin flip. `404.html` loads it too.
+  there is no flash. Reads the last palette from `localStorage`, sets the next
+  one in the rotation on `<html data-palette>`, and updates `theme-color`. First visit or blocked
+  storage gets a random pick. `404.html` loads it too.
 - **`background.js`:** builds the icon wall on a jittered grid, hover-to-name
   labels (`data-label`), pauses animation while the tab is hidden, caps icon
   count lower on mobile, and ignores height-only resizes. Respects
