@@ -22,12 +22,22 @@
   --display: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 
-/* Green phosphor. palette.js alternates between the two on every page load. */
+/* Green phosphor and Dracula. palette.js rotates through all three palettes,
+   one step per page load. */
 :root[data-palette="green"] {
   --bg: #0a0c0a; --bg-2: #0e110d;
   --surface: hsla(96, 10%, 7%, 0.74);
   --line: hsla(96, 30%, 60%, 0.16); --line-2: hsla(96, 40%, 60%, 0.30);
   --text: #e8ece8; --muted: #8a948a; --acc: #6cff5a;
+}
+/* Dracula (draculatheme.com): purple accent on the theme's own background,
+   foreground and red. Secondary text is lighter than Dracula's "comment"
+   colour, which is too dim to read as body copy. */
+:root[data-palette="dracula"] {
+  --bg: #21222c; --bg-2: #282a36;
+  --surface: hsla(231, 15%, 16%, 0.80);
+  --line: hsla(225, 27%, 62%, 0.20); --line-2: hsla(225, 27%, 62%, 0.40);
+  --text: #f8f8f2; --muted: #a5adcb; --acc: #bd93f9; --hot: #ff5555;
 }
 
 * {

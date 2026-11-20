@@ -8,7 +8,7 @@ This repo powers the full gregstengel.com website, deployed via GitHub Pages.
 ├── index.html         # Static landing page (served at /)
 ├── 404.html           # Custom 404 for the whole domain
 ├── styles.css         # Styling for the landing page and 404
-├── palette.js         # Alternates the amber / green palette on each load
+├── palette.js         # Rotates the amber / green / Dracula palette on each load
 ├── background.js      # Animated tech-icon wall
 ├── console.js         # Hidden console (the π in the page foot)
 ├── music.js           # Sound control
