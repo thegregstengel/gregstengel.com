@@ -31,7 +31,7 @@
   <!-- Begin Jekyll SEO tag v2.9.0 -->
 <meta name="generator" content="Jekyll v4.4.1" />
 <meta property="og:title" content="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
-<meta name="author" content="Stengel" />
+<meta name="author" content="Greg Stengel" />
 <meta property="og:locale" content="en" />
 <meta name="description" content="Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery." />
 <meta name="twitter:description" property="og:description" content="Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery." />
@@ -39,14 +39,15 @@
 <meta property="og:url" content="https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/" />
 <meta property="og:site_name" content="Greg Stengel" />
 <meta property="og:type" content="article" />
-<meta property="article:published_time" content="2026-02-07T09:00:00-06:00" />
-<meta property="article:modified_time" content="2026-02-07T09:00:00-06:00" />
-<meta name="twitter:card" content="summary" />
+<meta property="article:published_time" content="2026-02-07T10:00:00-05:00" />
+<meta property="article:modified_time" content="2026-02-07T10:00:00-05:00" />
+<meta property="og:image" content="https://gregstengel.com/blog/assets/img/og-card.png" /><meta name="twitter:card" content="summary_large_image" />
+      <meta property="twitter:image" content="https://gregstengel.com/blog/assets/img/og-card.png" />
 <meta name="twitter:title" content="Self-Hosting an AI Assistant: Part 5 - Claude Authentication" />
 <meta name="twitter:site" content="@thegregstengel" />
-<meta name="twitter:creator" content="@Stengel" />
+<meta name="twitter:creator" content="@Greg Stengel" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-07T09:00:00-06:00","datePublished":"2026-02-07T09:00:00-06:00","description":"Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery.","headline":"Self-Hosting an AI Assistant: Part 5 - Claude Authentication","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"},"url":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"}</script>
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Greg Stengel","url":"https://gregstengel.com"},"dateModified":"2026-02-07T10:00:00-05:00","datePublished":"2026-02-07T10:00:00-05:00","description":"Giving Joshua a brain - connecting OpenClaw to Claude’s API through OAuth token discovery.","headline":"Self-Hosting an AI Assistant: Part 5 - Claude Authentication","mainEntityOfPage":{"@type":"WebPage","@id":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"},"url":"https://gregstengel.com/blog/posts/self-hosting-ai-assistant-part-5-claude-authentication/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -704,7 +705,7 @@
           <em>
             
               
-                <a href="https://gregstengel.com">Stengel</a>
+                <a href="https://gregstengel.com">Greg Stengel</a>
                 </em>, <em>
               
                 <a href="https://anthropic.com/claude">Claude</a>
@@ -739,9 +740,9 @@
   class="readtime"
   data-bs-toggle="tooltip"
   data-bs-placement="bottom"
-  title="531 words"
+  title="613 words"
 >
-  <em>2 min</em> read</span>
+  <em>3 min</em> read</span>
 
         </div>
       </div>
@@ -773,7 +774,11 @@
   
 
   <div class="content">
-    <p>Joshua can hear me through Discord, but he’s been running headless on WOPR - no AI backend connected. Time to give him a brain. I wanted to use Claude, specifically through my Claude Max subscription rather than paying per-token on the API. This turned into a minor adventure.</p>
+    <blockquote class="prompt-warning">
+  <p><strong>Update, November 2026.</strong> Don’t follow the OAuth sections of this post. Since I wrote it, Anthropic has made clear that tokens from a Claude Free, Pro, or Max subscription may only be used with Claude Code and Claude.ai, not in third-party tools like OpenClaw. See Anthropic’s <a href="https://code.claude.com/docs/en/legal-and-compliance">legal and compliance page</a>. The supported way to connect an agent like this is an API key, which is Attempt 1 below. I’ve left the rest as a record of what I did at the time.</p>
+</blockquote>
+
+<p>Joshua can hear me through Discord, but he’s been running headless on WOPR - no AI backend connected. Time to give him a brain. I wanted to use Claude, specifically through my Claude Max subscription rather than paying per-token on the API. This turned into a minor adventure.</p>
 
 <h2 id="attempt-1-api-key"><span class="me-2">Attempt 1: API Key</span><a href="#attempt-1-api-key" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2>
 
