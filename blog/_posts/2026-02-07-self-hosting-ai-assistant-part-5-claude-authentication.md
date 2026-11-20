@@ -7,6 +7,9 @@ authors: [stengel, claude]
 description: Giving Joshua a brain - connecting OpenClaw to Claude's API through OAuth token discovery.
 ---
 
+> **Update, November 2026.** Don't follow the OAuth sections of this post. Since I wrote it, Anthropic has made clear that tokens from a Claude Free, Pro, or Max subscription may only be used with Claude Code and Claude.ai, not in third-party tools like OpenClaw. See Anthropic's [legal and compliance page](https://code.claude.com/docs/en/legal-and-compliance). The supported way to connect an agent like this is an API key, which is Attempt 1 below. I've left the rest as a record of what I did at the time.
+{: .prompt-warning }
+
 Joshua can hear me through Discord, but he's been running headless on WOPR - no AI backend connected. Time to give him a brain. I wanted to use Claude, specifically through my Claude Max subscription rather than paying per-token on the API. This turned into a minor adventure.
 
 ## Attempt 1: API Key
