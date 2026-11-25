@@ -39,6 +39,7 @@
   const seekEl = root.querySelector(".music-seek");
   const footBtn = document.querySelector("[data-music-toggle]");
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const mobileMQ = window.matchMedia("(max-width: 640px)");
 
   // ---- state -----------------------------------------------------------
   let state = "muted";        // muted | loading | playing | failed
@@ -165,14 +166,30 @@
   async function unmute() {
     touched = true;
     root.classList.add("is-touched");
-    if (audible()) { rampGain(1); setState("playing"); return; }
+    if (audio && !audio.paused) {
+      if (ctx && ctx.state !== "running") ctx.resume().catch(() => {});
+      rampGain(1);
+      setState("playing");
+      return;
+    }
     try {
       ensureAudio();
       setState("loading");
-      if (ctx && ctx.state !== "running") await ctx.resume();
-      audio.currentTime = virtualTime();
-      rampGain(1);
+      if (ctx && ctx.state !== "running") ctx.resume().catch(() => {});
+      const syncAndFadeIn = () => {
+        try { audio.currentTime = virtualTime(); } catch (_) {}
+        if (sounding()) rampGain(1);
+      };
+      if (audio.readyState >= 1) {
+        syncAndFadeIn();
+      } else {
+        audio.addEventListener("loadedmetadata", syncAndFadeIn, { once: true });
+      }
       await audio.play();
+      if (state === "loading" && !audio.paused) {
+        if (audio.readyState >= 1) rampGain(1);
+        setState("playing");
+      }
     } catch (_) {
       if (state === "loading") setState("failed");
     }
@@ -259,12 +276,16 @@
     toggle();
   });
 
-  // Don't burn frames in a background tab; the virtual clock keeps time anyway.
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) stop(); else start();
-  });
+  function canAnimate() { return !document.hidden && !mobileMQ.matches; }
+  function syncLoop() { if (canAnimate()) start(); else stop(); }
+
+  // Don't burn frames in a background tab or when the pill is hidden on mobile;
+  // the virtual clock keeps time anyway.
+  document.addEventListener("visibilitychange", syncLoop);
+  if (mobileMQ.addEventListener) mobileMQ.addEventListener("change", syncLoop);
+  else if (mobileMQ.addListener) mobileMQ.addListener(syncLoop);
 
   setState("muted");
   root.hidden = false;
-  start();
+  syncLoop();
 })();
