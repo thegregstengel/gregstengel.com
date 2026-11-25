@@ -13,7 +13,7 @@ layout: default
   See: https://gregstengel.com/blog/posts/hello-world-building-this-blog/
 {% endcomment %}
 
-{% assign pinned = site.posts | where: 'pin', 'true' %}
+{% assign pinned = site.posts | where_exp: 'item', 'item.pin == true' %}
 {% assign normal = site.posts | where_exp: 'item', 'item.pin != true and item.hidden != true' %}
 
 <div id="post-list" class="flex-grow-1 px-xl-1">

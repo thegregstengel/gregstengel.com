@@ -241,21 +241,35 @@ body {
 .hero-name[data-tooltip]::after {
   content: attr(data-tooltip);
   position: absolute;
-  left: 0;
-  top: 100%;
-  margin-top: 6px;
+  left: calc(100% + 0.85rem);
+  top: 50%;
   font-family: var(--mono);
-  font-size: 0.7rem;
+  font-size: 0.72rem;
   font-weight: 400;
   letter-spacing: 0.04em;
   color: var(--acc);
   white-space: nowrap;
   opacity: 0;
-  transform: translateY(-4px);
+  transform: translate(-4px, -50%);
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
 }
-.hero-name[data-tooltip]:hover::after { opacity: 1; transform: translateY(0); }
+.hero-name[data-tooltip]:hover::after { opacity: 1; transform: translate(0, -50%); }
+
+@media (max-width: 600px) {
+  .hero-name[data-tooltip]::after {
+    left: 0;
+    top: 100%;
+    margin-top: 4px;
+    padding: 2px 6px;
+    background: var(--bg);
+    border: 1px solid var(--line-2);
+    border-radius: 4px;
+    z-index: 2;
+    transform: translateY(-4px);
+  }
+  .hero-name[data-tooltip]:hover::after { transform: translateY(0); }
+}
 
 .hero-role {
   font-size: 0.8rem;
@@ -809,6 +823,10 @@ body {
   touch-action: none;
 }
 .music-seek:focus-visible { outline: none; }
+.music:has(.music-seek:focus-visible) {
+  outline: 2px solid var(--acc);
+  outline-offset: 2px;
+}
 .music-seek::-webkit-slider-runnable-track { background: transparent; height: 14px; }
 .music-seek::-moz-range-track { background: transparent; height: 14px; }
 .music-seek::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 1px; height: 14px; border: 0; background: transparent; }

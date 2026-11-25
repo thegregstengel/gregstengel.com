@@ -10,6 +10,7 @@
   const consoleClose = document.querySelector(".console-close");
   const consoleOpen = document.querySelector('[aria-controls="console"]');
   const panel = document.querySelector(".panel");
+  const musicEl = document.getElementById("music");
   if (!consoleEl || !consoleBody || !consoleClose) return;
 
   const SESSION = [
@@ -78,6 +79,7 @@
     lastFocus = document.activeElement;
     consoleEl.hidden = false;
     if (panel) panel.inert = true;
+    if (musicEl) musicEl.inert = true;
     runSession();
     if (consoleClose) consoleClose.focus({ preventScroll: true });
   }
@@ -87,6 +89,7 @@
     typeAbort = true;
     consoleEl.hidden = true;
     if (panel) panel.inert = false;
+    if (musicEl) musicEl.inert = false;
     if (lastFocus && typeof lastFocus.focus === "function") {
       lastFocus.focus({ preventScroll: true });
     }
